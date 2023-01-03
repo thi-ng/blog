@@ -12,4 +12,5 @@ being migrated to here as well...
 
 | Date       | Title                                                                                           |
 | ---------- | ----------------------------------------------------------------------------------------------- |
-| 2022-12-03 | [Personal considerations for creating generative art](2022/20221204-personal-considerations.md) |
+| 2023-01-03 | [A simple nod of acknowledgment](2023/20230103-a-nod-of-acknowledgement.md)                     |
+| 2022-12-04 | [Personal considerations for creating generative art](2022/20221204-personal-considerations.md) |
