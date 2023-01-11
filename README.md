@@ -17,9 +17,10 @@ being migrated to here as well...
 
 ## 2016
 
-| Date       | Title                                                                    |
-| ---------- | ------------------------------------------------------------------------ |
-| 2016-01-05 | [Evolutionary failures (Part 1)](2016/20160105-evolutionary-failures.md) |
+| Date       | Title                                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------- |
+| 2016-05-02 | [Workshop report: Hi-perf Clojurescript with WebGL, asm.js and Emscripten](2016/20160502-hiperf-clojurescript.md) |
+| 2016-01-05 | [Evolutionary failures (Part 1)](2016/20160105-evolutionary-failures.md)                                          |
 
 ## 2015
 
