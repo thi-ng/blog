@@ -19,6 +19,7 @@ being migrated to here as well...
 
 | Date       | Title                                                                                                             |
 | ---------- | ----------------------------------------------------------------------------------------------------------------- |
+| 2016-06-26 | [Workshop report: Generative design with Clojure](2016/20160626-generative-design-clojure.md)                     |
 | 2016-05-02 | [Workshop report: Hi-perf Clojurescript with WebGL, asm.js and Emscripten](2016/20160502-hiperf-clojurescript.md) |
 | 2016-01-05 | [Evolutionary failures (Part 1)](2016/20160105-evolutionary-failures.md)                                          |
 
