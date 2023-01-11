@@ -1,9 +1,3 @@
----
-date: 2023-01-03
-tags: opensource, culture, mutual-aid, feedback-loop, 2023
-mastodon: https://mastodon.thi.ng/@toxi/109625592951683275
----
-
 # A simple nod of acknowledgment
 
 Most opensource projects are (still) created and maintained by individuals &

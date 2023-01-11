@@ -1,8 +1,3 @@
----
-date: 2022-12-04
-tags: generative, art, manifesto, process, materiality, feedback-loop, serendipity, research, toxi, work, 2022
----
-
 # Personal considerations for creating generative art
 
 ### For informational purposes only
