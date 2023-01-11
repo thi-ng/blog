@@ -99,7 +99,23 @@ write a macro version of _get-in_, expanding the lookup calls at compile time
 and thereby removing at least the overhead of a vector allocation and the use of
 _reduce_ at runtime:
 
-https://gist.github.com/postspectacular/cdde5f63a8d9a1142b829b5a74be2317
+```clj
+;; get-in.clj
+
+(defmacro get-in*
+  "Macro version of clojure.core/get-in without not-found fallback"
+  [root path]
+  (loop [root root, path path]
+    (if path
+      (recur `(get ~root ~(first path)) (next path))
+      root)))
+
+(macroexpand-1 '(get-in* [[1 2 3] [3 4 [5 6 7 8]]] [1 2 3]))
+;; (clojure.core/get (clojure.core/get (clojure.core/get [[1 2 3] [3 4 [5 6 7 8]]] 1) 2) 3)
+
+(get-in* [[1 2 3] [3 4 [5 6 7 8]]] [1 2 3])
+;; 8
+```
 
 Benchmarking this example with
 [criterium](https://github.com/hugoduncan/criterium) under Clojure (which has
@@ -241,7 +257,33 @@ possible, it doesn’t directly map to the worldview of React. For this purpose,
 I’ve been defining a little reusable canvas component for Reagent and most of
 the later workshop examples made use of it:
 
-https://gist.github.com/postspectacular/9de41cb7d9d6c4f264715b7d2fc966c0
+```clj
+;; canvas.cljs
+
+(ns canvas
+  (:require
+    [thi.ng.geom.gl.webgl.animator :as anim]
+    [reagent.core :as reagent]))
+
+(defn canvas-component
+  [props]
+  (reagent/create-class
+   {:component-did-mount
+    (fn [this]
+      (reagent/set-state this {:active true})
+      ((:init props) this)
+      (anim/animate ((:loop props) this)))
+    :component-will-unmount
+    (fn [this]
+      (reagent/set-state this {:active false}))
+    :reagent-render
+    (fn [_]
+      [:canvas
+       (merge
+        {:width (.-innerWidth js/window)
+         :height (.-innerHeight js/window)}
+        props)])}))
+```
 
 ## Managing GLSL shader dependencies
 
@@ -363,7 +405,33 @@ Clojurescript WebGL demo. This exercise tied up many of the things (and loose
 ends) from the past days and too allowed me once more to demonstrate the
 efficient use of typed arrays for visualization purposes.
 
-https://gist.github.com/postspectacular/282a3d8524b86a9b2dfdc4411348ab17
+```c
+// particles.h
+
+// particle system structs
+
+typedef struct {
+  float x,y,z;
+} Vec3;
+
+typedef struct {
+  Vec3 pos; // 12 bytes
+  Vec3 vel; // 12 bytes
+  Vec3 col; // 12 bytes
+} Particle;
+
+typedef struct {
+  Particle *particles;
+  uint32_t numParticles;
+  uint32_t maxParticles;
+  Vec3 emitPos;
+  Vec3 emitDir;
+  Vec3 gravity;
+  float speed;
+  uint32_t age;
+  uint32_t maxAge;
+} ParticleSystem;
+```
 
 The above C structs are used for our particle system. The Emscripten runtime
 emulates the C heap as a single, large JS ArrayBuffer with multiple views of

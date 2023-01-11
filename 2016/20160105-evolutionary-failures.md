@@ -190,7 +190,53 @@ non-destructive and would be quite involved without using zippers. Btw. Tommy
 Hall has a [great introduction to zippers (and GP using
 S-Expressions)](http://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/).
 
-https://gist.github.com/postspectacular/2f2a8b6f528006904849
+```clj
+;; holo2-ast-peephole.edn
+
+;; random example program AST (w/ peephole optimization)
+;; fixed target threshold 25, fixed rotation 45 deg
+;; unoptimized version: https://gist.github.com/postspectacular/f421037929be75ee7e4e
+[[if-target 25
+  [[mov 47]
+   [turn 45]
+   [mov 17]
+   [turn 90]]
+  [[if-target 25
+    [[mov 10]
+     [turn 45]
+     [if-target 25
+      [[turn 45]
+       [mov 11]]
+      [[mov 34]
+       [if-target 25
+        [[turn 45]
+         [mov 12]
+         [turn -45]
+         [mov 14]
+         [turn 45]]
+        [[turn 45]
+         [mov 29]]]
+       [mov 19]]]
+     [turn 90]
+     [mov 13]]
+    [[turn -90]]]]]
+ [mov 50]
+ [if-target 25
+  [[mov 12]
+   [turn 45]
+   [mov 14]]
+  [[turn 45]
+   [mov 26]
+   [turn -45]]]
+ [if-target 25
+  [[mov 15]]
+  [[turn 135]
+   [mov 19]
+   [turn 45]
+   [mov 11]
+   [turn 45]]]
+ [mov 33]]
+```
 
 A randomly generated agent program with applied peephole optimization, cutting
 down code size up to ~30%.
@@ -217,7 +263,148 @@ independently (as unit).
 Basic path finding agent setup, random AST generator and interpreter (GP parts
 omitted for brevity)
 
-https://gist.github.com/postspectacular/72b7741512b74d374f12
+```clj
+;; holo-path-ast.clj
+
+(ns hologp.path
+  (:require
+   [thi.ng.geom.core :as g]
+   [thi.ng.geom.core.vector :as v]
+   [thi.ng.math.core :as m]))
+
+(def config
+  {:mov       [10 20]
+   :turn      [45 45]
+   :if-target {:non-empty 0.2
+               :dist      25}})
+
+(declare eval-ast* rand-ast)
+
+(defrecord Agent [path theta steps targets targets-remaining])
+
+(defn make-agent
+  "Returns a new agent with given start position and target points."
+  [p targets] (Agent. [p] 0 0 0 targets))
+
+;;;;;;;;;;;;;;;;;;;;;;;; Interpreter
+
+(defn near-target?
+  "Returns target if pos is within maxd units."
+  [pos target maxd] (if (< (g/dist pos target) maxd) target))
+
+(defn finished?
+  "Returns true if agent has reached op limit or has no remaining targets."
+  [a limit] (or (>= (:steps a) limit) (empty? (:targets-remaining a))))
+
+(defmulti agent-op
+  "Agent AST interpreter multi-function, dispatches on op-type"
+  (fn [a ast limit] (first ast)))
+
+;; MOV operator: Moves agent in current direction, increases step
+;; counter, potentially consumes/snaps to next target
+(defmethod agent-op 'mov
+  [agent [_ speed] _]
+  (let [pos    (g/+ (peek (:path agent))
+                    (g/as-cartesian (v/vec2 speed (m/radians (:theta agent)))))
+        target (near-target? pos (first (:targets-remaining agent)) speed)
+        pos    (v/vec2 (or target pos))
+        agent  (assoc agent
+                      :path  (conj (:path agent) pos)
+                      :pos   pos
+                      :steps (inc (:steps agent)))]
+    (if target
+      (-> agent
+          (update :targets inc)
+          (update :targets-remaining subvec 1))
+      agent)))
+
+;; TURN operator: Updates direction and increases step counter
+(defmethod agent-op 'turn
+  [agent [_ theta] _]
+  (-> agent
+      (update :theta + theta)
+      (update :steps inc)))
+
+;; IF-TARGET operator: Checks if agent is near target,
+;; then executes either true/false branch
+(defmethod agent-op 'if-target
+  [agent [_ dist then else] limit]
+  (eval-ast*
+   (update agent :steps inc)
+   (if (near-target? (:pos agent) (first (:targets-remaining agent)) dist)
+       then else)
+   limit))
+
+(defn eval-ast*
+  "AST interpreter. Takes agent, AST and op limit. Executes tree until
+  exhausted or agent is finished (has consumed all targets)."
+  [agent ast limit]
+  (reduce
+   (fn [a ast]
+     (if (finished? a limit)
+       (reduced a)
+       (agent-op a ast limit)))
+   agent ast))
+
+(defn eval-ast
+  "Like eval-ast* but with additional iteration counter, allowing
+  repeated applications of the AST."
+  [agent ast limit iter]
+  (loop [a agent, i iter]
+    (if-not (or (zero? i) (finished? a limit))
+      (recur (eval-ast* a ast limit) (dec i))
+      a)))
+
+;;;;;;;;;;;;;;;;;;;;;;;; AST generator
+
+(defn rand-mov
+  "Takes an agent config, returns a random move op."
+  [conf] ['mov (int (apply m/random (:mov conf)))])
+
+(defn rand-turn
+  "Takes an agent config, returns a random turn op."
+  [conf]
+  (let [theta (int (apply m/random (:turn conf)))]
+    ['turn (if (< (rand) 0.5) (- theta) theta)]))
+
+(defn rand-terminal
+  "Takes an agent config, returns a random non-branch op."
+  [conf] ((rand-nth [rand-mov rand-mov rand-mov rand-turn]) conf))
+
+(defn rand-branch
+  "Takes an agent config, child branch depth, max depth & max length.
+  Returns a random if-target op with 2 branches."
+  [conf d maxd maxl]
+  (let [bconf   (:if-target conf)
+        lbranch (if (< (rand) (:non-empty bconf)) [(rand-mov conf)] [])
+        rbranch (if (< (rand) (:non-empty bconf)) [(rand-turn conf)] [])]
+    ['if-target (:dist bconf)
+     (rand-ast conf lbranch d maxd maxl (int (m/random 1 maxl)))
+     (rand-ast conf rbranch d maxd maxl (int (m/random 1 maxl)))]))
+
+(defn rand-ast
+  "Takes an agent config, AST, tree depth, max tree depth, max child
+  branch length and curr branch length. Returns randomly generated AST."
+  [conf acc d maxd maxl cmaxl]
+  (let [acc (if (< d maxd)
+              (if (< (m/random) 0.1)
+                (conj acc (rand-branch conf (inc d) maxd maxl))
+                (let [term (rand-terminal conf)]
+                  (if (and (not= 'mov (first term)) (< (rand) 0.25))
+                    (conj acc term term)
+                    (conj acc term))))
+              (conj acc (rand-terminal conf)))]
+    (if (< (count acc) cmaxl)
+      (rand-ast conf acc d maxd maxl cmaxl)
+      acc)))
+
+(comment
+  ;; example invocation
+  (eval-ast
+   (make-agent (v/vec2) [[30 0] [30 30] [30 60] [60 60]])
+   (rand-ast config [] 0 4 16 16)
+   1000 1))
+```
 
 The following animation shows a single simulation run of the path finding
 process, only showing the fittest agents of each generation:
@@ -347,7 +534,75 @@ that voxel space and export it (here in [Stanford PLY
 format](https://en.wikipedia.org/wiki/PLY_%28file_format%29)). The following
 functions achieve all that (far from realtime though):
 
-https://gist.github.com/postspectacular/3a8b7256e13210ff0a7f
+```clj
+;; sdf-voxel.clj
+
+(ns sdf-voxel
+  (:require
+   [thi.ng.geom.core :as g]
+   [thi.ng.geom.core.vector :as v :refer [vec3]]
+   [thi.ng.geom.voxel.svo :as svo]
+   [thi.ng.geom.voxel.isosurface :as iso]
+   [thi.ng.geom.mesh.io :as mio]
+   [clojure.java.io :as io]))
+
+(defn sd-nested-sphere
+  "Computes signed squared distance from point p to sphere around o
+  with radius r. If p is inside sphere, returns dist modulo step."
+  [o r step p]
+  (let [d (- (g/dist-squared p o) (* r r))]
+    (if (neg? d)
+      (rem d step)
+      d)))
+
+(defn voxel-box
+  "Takes SVO tree, voxel op (set or delete), a voxel filter fn and
+  coordinate ranges for x,y,z. Applies op for all voxels for which
+  filter returns truthy result. Returns updated tree."
+  [tree op flt rx ry rz]
+  (->> (for [x rx y ry, z rz] (vec3 x y z))
+       (filter flt)
+       (svo/apply-voxels op tree)))
+
+(defn voxel-sd-sphere
+  "Takes SVO tree, sphere origin & radius, nesting distance &
+  thickness, x,y,z min/max pairs and voxel resolution. Populates tree
+  with voxels based on sd-nested-sphere evaluation, returns updated tree."
+  [tree o r step w x1 x2 y1 y2 z1 z2 res]
+  (let [thresh (/ step w)]
+    (voxel-box
+     tree svo/set-at
+     (fn [p] (< (Math/abs (sd-nested-sphere o r step p)) thresh))
+     (range x1 x2 res)
+     (range y1 y2 res)
+     (range z1 z2 res))))
+
+(defn export-iso-mesh
+  "Takes output path and SVO, computes tree's iso surface mesh and
+  exports it as binary PLY."
+  [path tree]
+  (with-open [out (io/output-stream path)]
+    (mio/write-ply
+     (mio/wrapped-output-stream out)
+     (iso/surface-mesh tree 10 0.5))))
+
+(defn main
+  "SDF demo configuration, computes & exports SDF hemisphere mesh."
+  []
+  (let [size 16
+        s1   (dec size)
+        s2   (* size 0.5)
+        res  (double 1/8)
+        tree (voxel-sd-sphere
+              (svo/voxeltree size res)
+              (vec3 s2) (- s2 2)
+              0.5 3
+              1 s1
+              1 s1
+              1 s2
+              res)]
+    (export-iso-mesh "sd-sphere.ply" tree)))
+```
 
 With the GP setup from earlier extended with more math (and vector math)
 operators, the next step was breeding random SDFs, applying them to voxels and

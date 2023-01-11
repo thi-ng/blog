@@ -469,7 +469,63 @@ that’s 15–140 times more (e.g. the [Arduino Blinky
 example](https://www.arduino.cc/en/Tutorial/Blink) compiles down to 10,092 bytes
 for a similar CPU [Cortex-M3])!
 
-https://gist.github.com/postspectacular/a2f73e3125ad818769c3
+```assembly
+// blinky.S
+
+    .syntax unified
+    .cpu cortex-m4
+    .thumb
+
+    // configuration values for STM32F4x
+    // see: http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf
+
+#define AHB1PERIPH_BASE 0x40020000
+#define RCC_BASE        AHB1PERIPH_BASE + 0x3800
+#define RCC_AHB1_ENR    RCC_BASE + 0x30
+#define GPIOD_BASE      AHB1PERIPH_BASE + 0x0c00
+#define GPIOD_MODER     GPIOD_BASE
+#define GPIOD_ODR       GPIOD_BASE + 0x14
+#define GPIOD_BIT       8
+#define LED_PIN         15
+#define LED_MODER       1 << (2 * LED_PIN)
+#define LED_BIT         1 << LED_PIN
+#define DELAY           0x80000
+
+    .section  .text
+    .weak     _start
+    .type     _start, %function
+_start:
+    ldr     r0, =RCC_AHB1_ENR   // get contents of AHB1 bus clock enable register
+    ldr     r1, [r0]
+    orr     r1, GPIOD_BIT       // set bit to enable clock for GPIO port D
+    str     r1, [r0]
+    ldr     r0, =GPIOD_MODER    // configure LED pin as outout
+    ldr     r1, =LED_MODER
+    str     r1, [r0]
+    ldr     r0, =GPIOD_ODR      // load address of GPIOD output data register
+.blink:
+    movw    r1, LED_BIT
+    str     r1, [r0]            // setting LED bit in GPIOD_ODR
+    bl      .delay              // jump to delay function below
+    eors    r1, r1              // clear r1 register
+    str     r1, [r0]            // turn LED off
+    bl      .delay              // wait again
+    b       .blink              // infinite loop
+.delay:
+    ldr     r2, =DELAY          // load DELAY value
+1:  subs    r2, r2, #1          // count down to 0 = wait
+    bne     1b
+    bx      lr                  // return to caller
+
+    // partial, but mandatory ARM Cortex M interrupt table
+    // here we only specify the reset handler, which also is our main program
+    .section .isr_vector_table, "a", %progbits
+    .type    isr_vectors, %object
+isr_vectors:
+    .word   _estack             // stack start address (defined in linker script)
+    .word   _start              // address of the reset handler
+    .size   isr_vectors, . - isr_vectors
+```
 
 A version complete with linker & flash scripts is [available
 here](https://gist.github.com/postspectacular/045a694803d896dd0065).

@@ -107,7 +107,19 @@ circle with a given resolution (e.g. resolution = 6 produces a hexagon) and then
 continued re-sampling the edges of the resulting polygon perimeter at a fixed
 distance to produce a sequence of uniformly spaced points.
 
-https://gist.github.com/postspectacular/14aa9f6e5bd1c56965cc3509a27ff933
+```clj
+;; polysample.clj
+
+(require '[thi.ng.geom.core :as g])
+(require '[thi.ng.geom.circle :as c])
+(require '[thi.ng.geom.polygon :as poly])
+
+(-> (c/circle 100)
+    (g/as-polygon 6)
+    (g/sample-uniform 10 false))
+
+;; [[100.0 0.0] [95.0 8.660254037844387] [90.0 17.320508075688775] ...]
+```
 
 A simple transformation like that can yield a quite major change in the
 resulting output of an otherwise unchanged process (this one inspired by my
@@ -138,7 +150,24 @@ famous [Peter de Jong attractor](http://paulbourke.net/fractals/peterdejong/)
 and visualized it first using SVG, then as bitmap graphics and introduced color,
 by mapping spatial coordinates to points in RGB space.
 
-https://gist.github.com/postspectacular/13ece130bcc31c303064d387d4d6b54d
+```clj
+;; dejong.clj
+
+(defn compute-dejong
+  "Computes a single DeJong 2d point vector for given params and XY pos"
+  [a b c d x y]
+  (v/vec2
+   (+ (Math/sin (* a y)) (Math/cos (* (* b x) x)))
+   (+ (Math/sin (* (* c x) x)) (Math/cos (* d y)))))
+
+(->> (range 1e6)
+     (reduce
+      (fn [[points [x y]] _]
+        (let [pos (compute-dejong a b c d x y)]
+          [(conj points pos) pos]))
+      [[] [(m/random width) (m/random width)]])
+     (first))
+```
 
 ![image](../assets/9e/ef/01lEartNdCiY0Vrez.png)
 
@@ -296,7 +325,72 @@ current setup & syntax could be easily changed to turn it into a
 [Lisp](https://en.wikipedia.org/wiki/Lisp_%28programming_language%29)
 interpreter, even with macro-expansion.
 
-https://gist.github.com/postspectacular/47d62cc0386452fe3f9f0465c1fb1b73
+```clj
+;; lsys.clj
+
+(require '[thi.ng.geom.core :as g])
+(require '[thi.ng.geom.vector :as v])
+
+(defn make-agent
+  [pos theta speed rot-theta]
+  {:pos       pos
+   :theta     theta
+   :rot-theta rot-theta
+   :speed     speed
+   :path      []
+   :stack     []})
+
+(defmulti interpret (fn [agent sym] sym))
+
+(defmethod interpret :fwd
+  [agent _]
+  (let [pos  (:pos agent)
+        pos' (m/+ pos (g/as-cartesian
+                       (v/vec2 (:speed agent)
+                               (:theta agent))))]
+    (-> agent
+        (assoc :pos pos')
+        (update :path conj [pos pos' (count (:stack agent))]))))
+
+(defmethod interpret :left
+  [agent _] (update agent :theta - (:rot-theta agent)))
+
+(defmethod interpret :right
+  [agent _] (update agent :theta + (:rot-theta agent)))
+
+(defmethod interpret :push
+  [agent _]
+  (-> agent
+      (update :stack conj (dissoc agent :stack))
+      (assoc :path [])))
+
+(defmethod interpret :pop
+  [agent _]
+  (let [agent' (peek (:stack agent))]
+    (assoc agent'
+           :stack (pop (:stack agent))
+           :path  (into (:path agent') (:path agent)))))
+
+(defmethod interpret :default
+  [agent sym] agent)
+
+(defn interpret-symbols
+  [agent syms] (reduce interpret agent syms))
+
+(defn rewrite-symbols
+  [rules symbols] (mapcat rules symbols))
+
+(def dragon-curve
+  {:start [:a]
+   :a     [:a :right :b :right]
+   :b     [:left :a :left :b]})
+
+(->> [:start]
+     (iterate (partial rewrite-symbols dragon-curve))
+     (take 10)
+     (last)
+     (interpret-symbols (make-agent (v/vec2) 0 5 m/HALF_PI)))
+```
 
 The images below demonstrate different L-Systems generated with the above
 interpreter. My favourite one is the rhomboidal [Penrose
