@@ -1,13 +1,13 @@
 # Of umbrellas, transducers, reactive streams & mushrooms (Pt.1)
 
 In which we start delving deeper into the land of
-[thi.ng/umbrella](http://thi.ng/umbrella)…
+[thi.ng/umbrella](https://thi.ng/umbrella)…
 
 This is the first chapter of an ongoing blog series, other parts available:
 
 -   [Part 2](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023) — HOFs, Transducers, Reducers, ES6 iterables
--   [Part 3](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b) — Convolution, 1D/2D Cellular Automata
--   [Part 4](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)— Disjoint Sets, Graph analysis, Signed Distance Fields
+-   [Part 3](./20190310-of-umbrellas-transducers-reactive-streams-pt3.md) — Convolution, 1D/2D Cellular Automata
+-   [Part 4](./20190314-of-umbrellas-transducers-reactive-streams-pt4.md) — Disjoint Sets, Graph analysis, Signed Distance Fields
 
 Once upon a time, in the cold February of the year 2018, this narrator sat by
 his fireplace and [told of a small software
@@ -21,7 +21,7 @@ has been brewing & evolving for several years (since late 2015)…
 
 This larger undertaking/labor of love is:
 
-## [thi.ng/umbrella](http://thi.ng/umbrella)
+## [thi.ng/umbrella](https://thi.ng/umbrella)
 
 …a mono-repository and proving ground for a set of mutually developed &
 complementary projects, aimed at the general premise of building TypeScript/ES6
@@ -59,7 +59,7 @@ picture, and in most cases not part of the “business logic”. Yet, the
 architectural design choices of this UI layer can have a huge impact on the
 rest. Unfortunately, the previous article from a year ago didn’t go into any
 detail about possible workflows and real-world usage patterns supported and
-enabled by [**thi.ng/hdom**](http://thi.ng/hdom) (the library discussed in that
+enabled by [thi.ng/hdom](https://thi.ng/hdom) (the library discussed in that
 article), especially the much more important aspects of state handling and
 deriving UI components from other values (app state). This was partly because
 these issues are outside the scope of hdom, but also was due to the already
@@ -110,51 +110,78 @@ A small selection of example projects included in the repo:
 
 ![image](../assets/98/fc/01lHAVdglLOFmyy5n.jpeg)
 
-Dataflow graph example — [Live demo](https://demo.thi.ng/umbrella/estuary/) / Source code (needs updating)
+Dataflow graph example — [Live demo](https://demo.thi.ng/umbrella/estuary/) /
+Source code (needs updating)
 
 ![image](../assets/5c/31/01lHAVdZjJmZqUZhL.png)
 
-Pump & dump in action — Crypto-currency SVG live chart - [Live demo](https://demo.thi.ng/umbrella/crypto-chart/) / [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
+Pump & dump in action — Crypto-currency SVG live chart - [Live
+demo](https://demo.thi.ng/umbrella/crypto-chart/) / [Source
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)
 
 ![image](../assets/22/e0/01lHAVnQLdSSa2rc6.png)
 
-thi.ng/hdom benchmark — [Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) / [Source code](https://github.com/thi-ng/umbrella/blob/master/examples/hdom-benchmark2)
+thi.ng/hdom benchmark — [Live
+demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) / [Source
+code](https://github.com/thi-ng/umbrella/blob/develop/examples/hdom-benchmark2)
 
 ![image](../assets/7c/96/01lHAVsAzmkYT6oWo.jpeg)
 
-[Incremental Voronoi / Delaunay](https://github.com/thi-ng/umbrella/tree/master/packages/geom-voronoi) via [Quad-edge data structure](https://github.com/thi-ng/umbrella/tree/master/packages/quad-edge) of 20k [Poisson-disk sampled](https://github.com/thi-ng/umbrella/tree/master/packages/poisson) points, accelerated using [kD-Tree spatial indexing](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel)
+[Incremental Voronoi /
+Delaunay](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi)
+via [Quad-edge data
+structure](https://github.com/thi-ng/umbrella/tree/develop/packages/quad-edge) of
+20k [Poisson-disk
+sampled](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson)
+points, accelerated using [kD-Tree spatial
+indexing](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
 
 ![image](../assets/f7/be/01lHAVrfirDglTJlT.gif)
 
-Transducer based [Figlet](https://en.wikipedia.org/wiki/FIGlet) style bitmap font transformer —[Live demo](https://demo.thi.ng/umbrella/bitmap-font/) / [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font)
+Transducer based [Figlet](https://en.wikipedia.org/wiki/FIGlet) style bitmap
+font transformer —[Live demo](https://demo.thi.ng/umbrella/bitmap-font/) /
+[Source
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)
 
 ![image](../assets/7c/1d/01lHAVqyXY2xeNVmm.png)
 
-Recursive polygon tessellation & [thi.ng/hdom-canvas](http://thi.ng/hdom-canvas) visualization — [Live demo](https://demo.thi.ng/umbrella/geom-tessel/) / [Source code](https://github.com/thi-ng/umbrella/blob/master/examples/geom-tessel)
+Recursive polygon tessellation & [thi.ng/hdom-canvas](https://thi.ng/hdom-canvas)
+visualization — [Live demo](https://demo.thi.ng/umbrella/geom-tessel/) / [Source
+code](https://github.com/thi-ng/umbrella/blob/develop/examples/geom-tessel)
 
 ![image](../assets/55/99/01lHAVcpLAWFz4EG7.png)
 
-D0 & stochastic L-Systems made w/ [thi.ng/lsys](http://thi.ng/lsys)
+D0 & stochastic L-Systems made w/ [thi.ng/lsys](https://thi.ng/lsys)
 
 ![image](../assets/60/24/01lHAVpce38DRq2sF.png)
 
-Minimal Markdown parser / hiccup converter — [Live demo](https://demo.thi.ng/umbrella/markdown/) / [Source code](https://github.com/thi-ng/umbrella/blob/master/examples/markdown)
+Minimal Markdown parser / hiccup converter — [Live
+demo](https://demo.thi.ng/umbrella/markdown/) / [Source
+code](https://github.com/thi-ng/umbrella/blob/develop/examples/markdown)
 
 ![image](../assets/af/37/01lHAVk6NA9ijV9dm.png)
 
-Sine-plasma effect w/ realtime multi-contour extraction — [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) / [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+Sine-plasma effect w/ realtime multi-contour extraction — [Live
+demo](https://demo.thi.ng/umbrella/iso-plasma/) / [Source
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)
 
 ![image](../assets/49/7f/01lHAVwOCOsexlPXQ.png)
 
-hdom virtual scroller component with fuzzy search — [Live demo](https://demo.thi.ng/umbrella/hdom-vscroller/) / [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-vscroller)
+hdom virtual scroller component with fuzzy search — [Live
+demo](https://demo.thi.ng/umbrella/hdom-vscroller/) / [Source
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-vscroller)
 
 ![image](../assets/d0/50/01lHAVuDNhxd1UCFY.jpeg)
 
-Worker based, interactive Mandelbrot explorer with cosine gradient colorization —[Live demo](https://demo.thi.ng/umbrella/mandelbrot/) / [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/mandelbrot)
+Worker based, interactive Mandelbrot explorer with cosine gradient
+colorization —[Live demo](https://demo.thi.ng/umbrella/mandelbrot/) / [Source
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)
 
 ![image](../assets/38/41/01lHAVpiD5mV2tXis.png)
 
-Interactive, additive wave synthesis SVG visualization —[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) / [Source code](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+Interactive, additive wave synthesis SVG visualization —[Live
+demo](https://demo.thi.ng/umbrella/svg-waveform/) / [Source
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)
 
 In addition to these bundled examples, most packages have also been used in
 several private production projects, some of which already for several years.
@@ -180,7 +207,7 @@ Screenshot of the current state of Shroomania — Play it @
 [demo.thi.ng/shroomania](https://demo.thi.ng/shroomania).
 
 You can play the current prototype at:
-[**demo.thi.ng/shroomania**](https://demo.thi.ng/shroomania)
+[demo.thi.ng/shroomania](https://demo.thi.ng/shroomania)
 
 Aim: Collect all edible mushrooms, avoid the toxic ones. FYI. There’s no
 gratifying element waiting for you if you manage to collect them all…
@@ -194,7 +221,7 @@ topics covered by this example project:
 
 Cellular automata example used as starting point for the game — [Live
 demo](https://demo.thi.ng/umbrella/cellular-automata/) / [Source
-code](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata)
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)
 
 1.  **Procedural generation**: Apart from the cute pixel art base tile set,
     obtained from
@@ -213,7 +240,7 @@ code](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata)
     more meaningful data for successive map generation steps.
 3.  **Functional programming with transducers**: Almost all data processing
     steps in terms of terrain generation and game state handling are done via
-    [transducers](http://thi.ng/transducers) (and compositions of such), one of
+    [transducers](https://thi.ng/transducers) (and compositions of such), one of
     my favorite (and IMHO one of the most powerful) functional programming
     concepts, able to maximize
     [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) in many usage
@@ -223,17 +250,17 @@ code](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata)
     are all connected into a dataflow graph of reactive values making up the
     game state & processing logic. Each reactive value is essentially of a
     stream-based nature and we will use a number of
-    [thi.ng/rstream](http://thi.ng/rstream) constructs and operators to connect
+    [thi.ng/rstream](https://thi.ng/rstream) constructs and operators to connect
     them into a compute graph, with injected transducers doing the actual work
     (or stopping downstream traffic).
 5.  **Declarative, data-driven, on-demand canvas drawing**: Excluding some minor
     pre-processing steps for the minimap overlay, where we use the “low-level”
     HTML canvas API, the main game render step only updates the UI when needed
     and uses [thi.ng/hdom](http:thi.ng/hdom) and
-    [thi.ng/hdom-canvas](http://thi.ng/hdom-canvas) components (i.e. JS arrays &
+    [thi.ng/hdom-canvas](https://thi.ng/hdom-canvas) components (i.e. JS arrays &
     iterators).
 
-> [](https://twitter.com/thing_umbrella/status/1101247444908687361)
+https://twitter.com/thing_umbrella/status/1101247444908687361
 
 ## Epilogue
 
@@ -247,8 +274,8 @@ stone, two flies and such…
 Now go on and read:
 
 -   [Part 2](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023) — Transducers
--   [Part 3](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b) — Cellular automata
--   [Part 4](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)— Disjoint Sets, Graph analysis, Signed Distance Fields
+-   [Part 3](./20190310-of-umbrellas-transducers-reactive-streams-pt3.md) — Cellular automata
+-   [Part 4](./20190314-of-umbrellas-transducers-reactive-streams-pt4.md) — Disjoint Sets, Graph analysis, Signed Distance Fields
 
 Lastly, if you have any questions or feedback about any of the projects
 mentioned, please do get in touch via

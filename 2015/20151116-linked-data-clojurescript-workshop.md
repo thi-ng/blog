@@ -3,7 +3,7 @@
 Last week, during the second 3-day data visualization
 [workshop](http://workshop.thi.ng) with [Clojure](http://clojure.org),
 [Clojurescript](https://github.com/clojure/clojurescript) and the
-[_thi.ng_](http://thi.ng) libraries, we built a small web application using data
+[thi.ng](https://thi.ng) libraries, we built a small web application using data
 from the UK’s [Office for National Statistics](http://statistics.data.gov.uk/)
 (ONS) and the [London Data
 Store](http://data.london.gov.uk/dataset/average-house-prices-borough).
@@ -48,7 +48,7 @@ the clearly visible upward trend for most boroughs. Charts are generated for all
 ![image](../assets/e8/db/01lD32Gr4GdNtJii6.png)
 
 Screenshot of the query editor and auto-generated visualization of the shown
-query’s structure (courtesy [thi.ng/fabric](http://thi.ng/fabric) and
+query’s structure (courtesy [thi.ng/fabric](https://thi.ng/fabric) and
 [Graphviz](http://graphviz.org) on the server, editor uses
 [CodeMirror](http://codemirror.net))
 
@@ -56,7 +56,7 @@ query’s structure (courtesy [thi.ng/fabric](http://thi.ng/fabric) and
 locally (instructions further below).
 
 The remainder of this article sheds some more light on implementation details,
-the role of the [_thi.ng_](http://thi.ng/) libraries in realising this project
+the role of the [thi.ng](https://thi.ng/) libraries in realising this project
 and lots of links to further reading…
 
 Marcin Ignac (one of the participants and fellow computational designer) also
@@ -178,11 +178,11 @@ this boils down to just this:
 
 With both the geo data already in graph form and the house sale transactions
 converted, we were ready to place them into one common container and acquainted
-ourselves with the [thi.ng/fabric](http://thi.ng/fabric) library.
+ourselves with the [thi.ng/fabric](https://thi.ng/fabric) library.
 
 ![image](../assets/2b/48/01lD3249m5rUfeXBp.jpeg)
 
-[thi.ng/fabric](http://thi.ng/fabric) is a still young, modular framework for
+[thi.ng/fabric](https://thi.ng/fabric) is a still young, modular framework for
 Clojure/Clojurescript, providing a general purpose compute graph model as the
 foundation to build more context specific applications on (from spreadsheets,
 navigation, inferencing to knowledge graphs). In the compute graph, nodes store
@@ -305,7 +305,7 @@ their structure.
 ## Always be visualizing…
 
 In a somewhat longer next step, we then introduced the
-[thi.ng/geom](http://thi.ng/geom) SVG and visualization modules, which also form
+[thi.ng/geom](https://thi.ng/geom) SVG and visualization modules, which also form
 the backbone of our [heatmap
 visualization](https://github.com/thi-ng/geom/blob/master/geom-viz/src/core.org#heatmap).
 After learning about the general approach, output format independence and
@@ -329,7 +329,7 @@ Blender’s Suzanne imported as STL and rendered in SVG with Phong sofware shade
 
 In order to translate a value range to colors, some form of gradient lookup
 table (or function, or both) is required. The
-[thi.ng/color](http://thi.ng/color) library provides a namespace to [define
+[thi.ng/color](https://thi.ng/color) library provides a namespace to [define
 complex color gradients using just 12
 numbers](https://github.com/thi-ng/color/blob/master/src/gradients.org) (4x RGB
 cosine wave params). The original idea for these gradients comes from the
@@ -383,7 +383,7 @@ the original callbacks with async channel operations to coordinate the different
 processing steps, allowed us to keep a linear structure in our functions and
 avoid blocking the DOM during pre-processing of the charts.
 
-[thi.ng/geom](http://thi.ng/geom)’s visualization engine is completely
+[thi.ng/geom](https://thi.ng/geom)’s visualization engine is completely
 declarative and essentially transforms a specification map definining all axes,
 datasets, layout methods and styling configs into a nested DOM-like data
 structure. Because both the initial visualization spec and the result is pure
@@ -464,9 +464,9 @@ project & workshop:
 -   [lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild/)
 -   [lein-figwheel](https://github.com/bhauman/lein-figwheel)
 -   [reagent](https://github.com/reagent-project/reagent)
--   [thi.ng/color](http://thi.ng/color)
--   [thi.ng/fabric](http://thi.ng/fabric)
--   [thi.ng/geom](http://thi.ng/geom)
--   [thi.ng/math](http://thi.ng/math)
--   [thi.ng/strf](http://thi.ng/strf)
--   [thi.ng/validate](http://thi.ng/validate)
+-   [thi.ng/color](https://thi.ng/color-clj)
+-   [thi.ng/fabric](https://thi.ng/fabric)
+-   [thi.ng/geom](https://thi.ng/geom-clj)
+-   [thi.ng/math](https://thi.ng/math-clj)
+-   [thi.ng/strf](https://thi.ng/strf)
+-   [thi.ng/validate](https://thi.ng/validate)

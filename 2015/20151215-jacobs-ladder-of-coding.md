@@ -10,15 +10,14 @@ honour to be the first children in our East-german town to touch these, to us
 mystical, machines & learn to program them. The hardware available to us was the
 glorious [Robotron KC85/3](https://en.wikipedia.org/wiki/KC_85), the company’s
 top-of-the-range model of modular (and unaffordable) home computers, and some
-Russian [Junost B&W
-TVs](https://www.google.co.uk/search?tbm=isch&q=junost+tv) as monitors. As
-it turned out, not much else but programming could be done by us with these
-boxes and knowing close to nothing about computers nor any games you could play
-with them, we happily accepted our fate and embarked on our mission to spend
-every Tuesday afternoon throughout the entire school years of 1988/89 to learn
-as much about computing as we could and built our own game as an excuse for a
-learning context. It was the best “school” of my life (in fact it was the most
-decisive year of my childhood), with our little band of nerds unwittingly
+Russian [Junost B&W TVs](https://www.google.co.uk/search?tbm=isch&q=junost+tv)
+as monitors. As it turned out, not much else but programming could be done by us
+with these boxes and knowing close to nothing about computers nor any games you
+could play with them, we happily accepted our fate and embarked on our mission
+to spend every Tuesday afternoon throughout the entire school years of 1988/89
+to learn as much about computing as we could and built our own game as an excuse
+for a learning context. It was the best “school” of my life (in fact it was the
+most decisive year of my childhood), with our little band of nerds unwittingly
 touching almost every aspect of creative computing / production, self-guided
 learning & result-oriented experimentation, team thinking, sharing etc. Last but
 not least, in terms of extreme resource constraints, it was a **very** far cry
@@ -78,10 +77,10 @@ there is a guy called
 about audio, frequencies & music theory in order to make simple chip tunes
 noises for our game, made me want to learn to play the piano, later build a 4bit
 sampler (with my brother’s help) and yet a few years later brought me into music
-production, setup a little studio, play live gigs and release a handful of
-12&#34; vinyl. Designing pixel fonts & graphics on paper too proved to be the
-perfect way to learn about binary & hex numbers, bit masking/shifting… skills
-still often essential today, especially when working with embedded devices.
+production, setup a little studio, play live gigs and release a handful of 12"
+vinyl. Designing pixel fonts & graphics on paper too proved to be the perfect
+way to learn about binary & hex numbers, bit masking/shifting… skills still
+often essential today, especially when working with embedded devices.
 
 ![image](../assets/ba/e4/01lDPWUxrw6MW1Ifo.jpeg)
 
@@ -101,7 +100,7 @@ Media Lab, with students role-playing different parts of a CPU or a whole
 computer executing a simple process. Later at college, my own CS prof too would
 often quote Alan Perlis:
 
-> “ To understand a program you must become both the machine and the
+> “To understand a program you must become both the machine and the
 > program.” — Alan Perlis
 
 Initially we’d only be using the machine largely to just verify our ideas
@@ -177,7 +176,7 @@ co-organized and produced the Halle Project, a “megademo” (a 2 disk collecti
 of a dozen smaller productions) for one of the scene’s biggest meetings with a
 few hundred participants, organized by Top Magazine.
 
-https://youtu.be/LLan9YDecBI
+https://www.youtube.com/watch?v=LLan9YDecBI
 
 The Halle Project 1993. I created the loader, contributed the first two parts
 and the music for Peter Dell’s (Jacomo) amazing Visdom demo (starts at 6:12).
@@ -187,7 +186,7 @@ Fenslau](http://www.discogs.com/artist/61591-Torsten-Fenslau)’s epic intros to
 the classic [HR3 clubnight](http://www.yourepeat.com/watch/?v=IkAI6raCkkg) radio
 show. 7 month later, Torsten died in a car crash :(
 
-https://youtu.be/U5ClV5v3i5c
+https://www.youtube.com/watch?v=U5ClV5v3i5c
 
 The Halle Project 1994 edition, my first foray into vector 3D graphics layered
 over a hand-pixeled background image and a chip tune version of Gerry Rafferty’s
@@ -211,7 +210,7 @@ internal RAM extension to a combined 320KB.
 Lesson learned: Language skills, natural and coded ones, are gateways, opening
 paths not just for more expression, but also to paths in life.
 
-https://youtu.be/q46nTcTfv3k
+https://www.youtube.com/watch?v=q46nTcTfv3k
 
 The Brundles loading sequence and gameplay of the first few levels. My friend
 Rolf A. Specht (Analog Research) did most of the graphics for the game and Kemal
@@ -346,7 +345,7 @@ been rejecting frameworks more and more over the past years. As explained
 earlier, my trajectory has always followed more of a “bottom-up” approach and I
 often still struggle with its polar opposite (“top-down”), both in coding as in
 design. Creative projects require creative tools. For example, my
-[toxiclibs](http://toxiclibs.org) project was partly started out of concrete
+[toxiclibs](https://github.com/postspectacular/toxiclibs) project was partly started out of concrete
 needs for work projects, but to work around
 [Processing](http://processing.org)’s lack of abstract data models for its core
 themes (e.g. creation of visuals). However, it never was purely a Processing
@@ -360,7 +359,7 @@ document some of these options via 100+ small examples and the larger work
 projects I myself and others used these libraries for. Another key principle was
 to use it all as teaching tool. There’re many things I’ve learned since, but
 this same guiding philosophy still too forms the basis for toxiclibs’ successor,
-the collection of [thi.ng](http://thi.ng/)’s for (initially) Clojure &
+the collection of [thi.ng](https://thi.ng/)’s for (initially) Clojure &
 Clojurescript and is (hopefully) expressed even more clearly. Providing many,
 only loosely coupled constructs with many points for customization, but without
 overly dictating how they can be used or combined, is key to enable flexibility
@@ -395,7 +394,7 @@ API layers, I believe that actively avoiding this knowledge gap outright, by
 design, in the world of embedded devices and IoT, is something we should
 seriously question and counteract.
 
-https://youtu.be/lbUnz1a9GPk
+https://www.youtube.com/watch?v=lbUnz1a9GPk
 
 [Denno Coil](https://en.wikipedia.org/wiki/Denn%C5%8D_Coil) was an anime series
 about a group of hacker children in an augmented reality city. One of the
@@ -549,7 +548,7 @@ ingenuity present among embedded system coders, which I sometimes miss in our
 main platforms. It’s also nice to see that the demoscene is embracing some of
 these platforms:
 
-https://youtu.be/ymGCeG9_6c0
+https://www.youtube.com/watch?v=ymGCeG9_6c0
 
 Jupiter & Beyond by SVatG (2013) running on a $15 STM32F4 dev board **without
 GPU/VGA support**. In addition to the visuals and audio, the demo too generates
@@ -595,13 +594,13 @@ and [education](http://sonic-pi.net) is happening).
 The following are the perfect examples why we can’t (and shouldn’t) rely on just
 general purpose mainstream languages for everything we do with our computers.
 
-https://youtu.be/TxQJPNSzl9s
+https://www.youtube.com/watch?v=TxQJPNSzl9s
 
 Andrew Sorenson is one of my livecoding heros. He has been working on his
 [Impromptu](http://impromptu.moso.com.au/) and
 [Extempore](http://extempore.moso.com.au/) languages for many years.
 
-https://youtu.be/K4zAcRcXo68
+https://www.youtube.com/watch?v=K4zAcRcXo68
 
 Sam Aaron is the founder of the [Overtone](https://overtone.github.io/) and
 [Sonic-PI](http://sonic-pi.net) projects,
@@ -620,7 +619,7 @@ every few years, only this time using low-cost embedded devices and with the aim
 to combine it with livecoding, gestural / environmental inputs and applying &
 testdriving concepts from other languages in this controlled environment.
 
-https://youtu.be/LQ988B5vlyo
+https://www.youtube.com/watch?v=LQ988B5vlyo
 
 Forever by Universal Everything at Victoria & Albert Museum, 2008/9. In addition
 to coding all visuals for this installation, I too designed a rule-based,
@@ -695,7 +694,7 @@ livecoding on an Arduino and an
 [FPGA](https://en.wikipedia.org/wiki/Field-programmable_gate_array) (the latter
 includes a custom Forth CPU itself):
 
-https://youtu.be/gFE6oK7jkq4
+https://www.youtube.com/watch?v=gFE6oK7jkq4
 
 AmForth can be downloaded from here:
 [http://amforth.sourceforge.net/](http://amforth.sourceforge.net/). The AmForth
@@ -705,7 +704,7 @@ The book reference shown in the video is [Starting
 Forth](http://www.forth.com/starting-forth/index.html) by Leo Brodie, generally
 a great intro to programming.
 
-https://youtu.be/rdLgLCIDSk0
+https://www.youtube.com/watch?v=rdLgLCIDSk0
 
 James Bowman and his open source J1 Forth CPU running on a Lattice FPGA. This
 project uses the first fully open source FPGA development toolchain, Project
@@ -719,7 +718,7 @@ style languages and b) some of the ideas are highly interesting to me even if
 applied to more mainstream environments (incl.
 [audio](https://github.com/PaulBatchelor/Sporth) & shader development).
 
-https://youtu.be/30s3mgrkzQ0
+https://www.youtube.com/watch?v=30s3mgrkzQ0
 
 One of the experiments done with my own JS & browser based Forth VM & REPL to
 define pixel shaders in Forth and transpile them into GLSL. The original idea

@@ -64,19 +64,19 @@ more time afterwards to actually also make it work for production builds.
 
 ![image](../assets/99/71/01lExsaB4x9O6WTVE.png)
 
-[Live demo](http://demo.thi.ng/ws-ldn-11/). Binary [STL
+[Live demo](https://demo.thi.ng/ws-ldn-11/). Binary [STL
 mesh](https://en.wikipedia.org/wiki/STL_%28file_format%29) loading via
 WebWorker. The above mesh was generated with the voxel module of
-[thi.ng/geom](http://thi.ng/geom). The mesh contains ~240k triangles (filesize
+[thi.ng/geom](https://thi.ng/geom). The mesh contains ~240k triangles (filesize
 11.2MB) and takes 6–8secs to parse. Without workers this would cause an
 unacceptable UI freeze for the same period…
 
 The example project is a simple STL mesh viewer, using
-[thi.ng/geom](http://thi.ng/geom)’s [mesh
+[thi.ng/geom](https://thi.ng/geom)’s [mesh
 I/O](https://github.com/thi-ng/geom/blob/develop/src/mesh/io.org) and
 [WebGL](https://github.com/thi-ng/geom/tree/develop/src/gl) modules, as well as
 [Reagent](http://reagent-project.github.io/) (just to test with a few more
-dependencies). [Live demo here](http://demo.thi.ng/ws-ldn-11/).
+dependencies). [Live demo here](https://demo.thi.ng/ws-ldn-11/).
 
 ## Project configuration
 
@@ -114,7 +114,7 @@ are especially useful for WebGL-based use cases (or any other use case where
 binary data is natural & suitable, e.g. asm.js too). In short, data ownership
 can be literally transferred (instead of copied) to the other party by
 specifying a list of object references as optional argument to
-[_postMessage_](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage)— here
+[`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage)— here
 “object” meaning
 [ArrayBuffers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 (In case you’re wondering why this is especially suitable for WebGL, it’s
@@ -124,7 +124,7 @@ hence a perfect match…)
 **Very important:** Since our worker is written in ClojureScript, it needs to
 import the file _base.js_ (the module containing CLJS etc.). This is done via
 [importScripts](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts).
-Also note, Workers cannot use the global _window_ object and should use _self_
+Also note, Workers cannot use the global `window` object and should use `self`
 instead…
 
 ```clj
@@ -330,12 +330,12 @@ for WebGL (the worker itself has no access to it).
 Since the advanced optimizations in the Closure compiler generally completely
 change the order, naming and presence of things, they will cause havoc in the
 generated _meshworker.js_ file. Even though we placed the
-[_importScripts_](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts)
+[`importScripts`](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts)
 at the very beginning of the source file, the compiled version (due to x-module
 motion) has a lot of other code injected/prepended (which is relying on code
 defined in the _base.js_ file) and therefore is causing errors at runtime. After
 some experimentation I figured out that this can be avoided by post-processing
-the JS file and moving the _importScripts_ call to where it belongs: at the
+the JS file and moving the `importScripts` call to where it belongs: at the
 beginning of the file. A simple nodejs script can automate this process:
 
 ```text

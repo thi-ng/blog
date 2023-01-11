@@ -1,7 +1,7 @@
 # Evolutionary failures (Part 1)
 
 A journey into Genetic Programming techniques with [Clojure](http://clojure.org)
-and [thi.ng](http://thi.ng/)
+and [thi.ng](https://thi.ng/)
 
 Over the years, generative techniques like Cellular Automata, [Diffusion-limited
 Aggregation](http://toxiclibs.org/2010/02/new-package-simutils/),
@@ -101,7 +101,7 @@ My first step in the [HOLO](http://holo-magazine.com) design process was the
 creation of a sufficiently flexible GP playground for my later experiments and
 to evolve path-finding agents to create a (typographic) form as an initial
 design idea. Related to this, though a year prior, I created the [Mophogen
-DSL](http://thi.ng/morphogen), partially done as a component of [my
+DSL](https://thi.ng/morphogen), partially done as a component of [my
 commission](http://devartcodefactory.com/) for the Barbican / [Google
 DevArt](https://devart.withgoogle.com/) exhibition. Morphogen is a small
 domain-specific language, written in Clojure, for defining complex 3D forms
@@ -417,7 +417,7 @@ generation highlighted in red.
 As part of the evolution, the top 10 paths of each generation were recorded and
 a subset of these later visualized together in a single image, thus showing the
 slow reduction of complete random walks and the appearance of the ever more
-complete target path over time. I used [thi.ng/geom](http://thi.ng/geom)’s [SVG
+complete target path over time. I used [thi.ng/geom](https://thi.ng/geom)’s [SVG
 module](https://github.com/thi-ng/geom/blob/master/geom-svg/src/index.org) to
 export the raw paths, then used the
 [auto-spline](https://github.com/thi-ng/geom/blob/master/geom-types/src/bezier.org#automatic-curve-generation)
@@ -427,7 +427,7 @@ convert each 2D path into a 3D mesh tube for rendering. In the image below the
 generation (in terms of evolution) of a path is mapped to its elevation, with
 the 1st generation at the bottom. In order to create a smooth workflow, do as
 much as possible directly from the Clojure REPL and to avoid manual repetitive
-work for dozens of outputs, I used [thi.ng/luxor](http://thi.ng/luxor) to
+work for dozens of outputs, I used [thi.ng/luxor](https://thi.ng/luxor) to
 generate render [scene
 templates](https://github.com/thi-ng/luxor/blob/master/src/scenes.org) for
 [Luxrender](http://luxrender.net) with model, camera, light groups & material
@@ -498,7 +498,7 @@ others, SDFs can be used to not just represent many different & complex
 geometries, but also manipulate our understanding of space itself (by
 re-interpreting the produced distance values).
 
-https://youtu.be/4oPpcSZa3NE
+https://www.youtube.com/watch?v=4oPpcSZa3NE
 
 Fairlight & Alcatraz’ “Uncovering Static” demo (64KB, 2011) was a pioneering
 production using SDFs for mesh (re)construction. Matt Swoboda (Smash of
@@ -520,7 +520,7 @@ printing).
 
 The mesh in the image above has been created with the handful of ready-to-run
 Clojure functions below (using various pieces of the
-[thi.ng/geom](http://thi.ng/geom) library), then rendered in
+[thi.ng/geom](https://thi.ng/geom) library), then rendered in
 [Blender](http://www.blender.org/). Instead of using the regular sphere distance
 function, the “sd-nested-sphere” function re-interpretes & warps the space
 _within_ the sphere, using the modulo of the distance and some arbitrary step
@@ -687,9 +687,9 @@ magazine, visit:
 
 ![image](../assets/4a/bd/01lEJAdATpOmaeSEx.gif)
 
-[**thi.ng**](http://thi.ng) **is a collection of libraries for creative
+[thi.ng](https://thi.ng) **is a collection of libraries for creative
 computing (for Clojure, WebGL, OpenGL/OpenCL, and soon more). Please visit**
-[**workshop.thi.ng**](http://workshop.thi.ng) **to find details about upcoming
+[workshop.thi.ng](http://workshop.thi.ng) **to find details about upcoming
 intensive training workshops:**
 
 -   **next Clojure session: Berlin, early Feb 2016**

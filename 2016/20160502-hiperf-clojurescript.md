@@ -51,7 +51,7 @@ learning etc.)
 Workshop exercise #1: Six implementations of Conway’s Game of Life — from naive
 (but idiomatic & slow) to optimized Clojurescript using typed arrays and direct
 pixel manipulations (10,840 ms / frame vs 16.5 ms / frame = ~650x faster for a
-1024x1024 grid). [Live demo](http://demo.thi.ng/ws-ldn-8/gol/)
+1024x1024 grid). [Live demo](https://demo.thi.ng/ws-ldn-8/gol/)
 
 When it comes to optimization, there are generally two prevailing camps:
 Optimize Early and Optimize Late, with the latter being the by far larger group,
@@ -78,26 +78,27 @@ With this in mind, as part of this first exercise we looked at:
 ## Awareness & understanding overheads of idiomatic language patterns
 
 The textbook approach to encoding a 2D data grid in Clojure/script is using a
-nested vector, which then can easily be processed using _map_ / _reduce_ to
+nested vector, which then can easily be processed using `map` / `reduce` to
 produce the next generation in the simulation. Accessing individual grid cells
 is also straightforward using
-_(_[_get-in_](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/get-in)
-_grid [x y])_. However, in the GOL simulation we need to access 9 cells (1 cell
+`([get-in](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/get-in)
+grid [x y])`. However, in the GOL simulation we need to access 9 cells (1 cell
 
 -   8 neighbors) in order to compute the new state of each cell. So in a 1024 x
-    1024 grid this use of _get-in_ will result in the creation of 9,437,184
-    temporary Clojurescript vector objects (the vectors for the lookup coordinates)
-    per frame, exercising a huge pressure on the garbage collector. In addition,
-    since _get-in_ can take lookup paths of any length and works polymorphically
-    using protocol methods, each invocation also incurs a call to _reduce,_
-    resulting in even more temp objects, an iteration loop and a load of protocol
-    dispatch functions for its internal use of *get* — altogether a lot of (way too
-    much!) work for a simple 2D index lookup.
+    1024 grid this use of `get-in` will result in the creation of 9,437,184
+    temporary Clojurescript vector objects (the vectors for the lookup
+    coordinates) per frame, exercising a huge pressure on the garbage collector.
+    In addition, since `get-in` can take lookup paths of any length and works
+    polymorphically using protocol methods, each invocation also incurs a call
+    to `reduce`, resulting in even more temp objects, an iteration loop and a
+    load of protocol dispatch functions for its internal use of
+    `get` — altogether a lot of (way too much!) work for a simple 2D index
+    lookup.
 
 In some situations (only if the lookup path is static, as in our case), we could
-write a macro version of _get-in_, expanding the lookup calls at compile time
+write a macro version of `get-in`, expanding the lookup calls at compile time
 and thereby removing at least the overhead of a vector allocation and the use of
-_reduce_ at runtime:
+`reduce` at runtime:
 
 ```clj
 ;; get-in.clj
@@ -120,16 +121,16 @@ _reduce_ at runtime:
 Benchmarking this example with
 [criterium](https://github.com/hugoduncan/criterium) under Clojure (which has
 somewhat different/faster protocol dispatch than in Clojurescript), the macro
-version results in 43.61ns vs 205.18ns for the default _get-in_ (~5x faster).
+version results in 43.61ns vs 205.18ns for the default `get-in` (~5x faster).
 
 Often these things are relegated as micro-optimizations and in some ways they
-are, but considering that core functions like _get-in_ are heavily used
+are, but considering that core functions like `get-in` are heavily used
 throughout most Clojurescript applications, being more aware of the inherent
 costs is useful and can help us looking into alternative solutions when needed.
 
 Btw. One of the intermediate steps taken to speed up our simulation was using
-[_transduce_](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/transduce)
-instead of _map_ & _reduce_ to compute the number of alive neighbor cells,
+[`transduce`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/transduce)
+instead of `map` & `reduce` to compute the number of alive neighbor cells,
 however this ended up actually being ~15–20% slower in this case. We have not
 looked into the reasons for this (yet)…
 
@@ -138,7 +139,7 @@ looked into the reasons for this (yet)…
 The more obvious improvement to speed up the simulation was using a flat 1D
 vector to encode the grid and calculate cell indices for the 2D coordinates,
 much like in a pixel buffer. This not just gives us better cache locality, but
-instead of _get-in_ we could now just use _nth_, gain a ~6x speed up and
+instead of `get-in` we could now just use `nth`, gain a ~6x speed up and
 somewhat simpler code.
 
 The final step (leaving out some other stages) of this exercise was an
@@ -149,22 +150,22 @@ drawing API, but making use of direct pixel manipulations via the canvas
 context’s
 [ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData). Since
 all our data (both simulation grid and pixels) are stored in typed arrays, we
-switched to only use _loop_ instead of _map_ / _reduce_ (thereby removing
+switched to only use `loop` instead of `map` / `reduce` (thereby removing
 millions of internal function calls) and altogether gained a ~650x speedup
 compared to the original.
 
 A live version of the exercise is here:
-[http://demo.thi.ng/ws-ldn-8/gol/](http://demo.thi.ng/ws-ldn-8/gol/) (Please be
+[https://demo.thi.ng/ws-ldn-8/gol/](https://demo.thi.ng/ws-ldn-8/gol/) (Please be
 aware that the UI for the “naive” mode and largest grid size will completely
 freeze for ~10 seconds)
 
 Some of the other things we talked about:
 
--   avoid keywords or collections as functions (use _get_ instead)
--   use named functions instead of closures for _map_/_reduce_ fns
+-   avoid keywords or collections as functions (use `get` instead)
+-   use named functions instead of closures for `map`/`reduce` fns
 -   protocol function dispatch overhead
--   _loop_ vs _doseq_
--   _deftype_ vs. _defrecord_ (code size, memory efficiency, protocols)
+-   `loop` vs `doseq`
+-   `deftype` vs. `defrecord` (code size, memory efficiency, protocols)
 -   controlled use of _set!_ and _volatile!_ to achieve mutability
 
 ## WebGL
@@ -180,7 +181,7 @@ it has to do with actual coding and it’s often the theory moments when A-level
 maths knowledge comes back knocking on our door — it’s a lot to take in,
 especially in a 3-day workshop, but we tried to cover most of the core topics
 (and altogether probably spent most of the time on that) and we put theory to
-practical use with the help of various [thi.ng/geom](http://thi.ng/geom)
+practical use with the help of various [thi.ng/geom](https://thi.ng/geom)
 examples. Later on we walked through an early prototype for a WebGL game written
 in Clojurescript, going into more advanced topics, incl. creating mesh
 geometries from scratch and creating a path-following camera etc.
@@ -188,7 +189,7 @@ geometries from scratch and creating a path-following camera etc.
 ![image](../assets/16/34/01lERt2cpXpI2WEZy.png)
 
 Live demo of the game “prototype” (just a POC really thus far):
-[http://demo.thi.ng/sjo/](http://demo.thi.ng/sjo/) — Move mouse to move
+[https://demo.thi.ng/sjo/](https://demo.thi.ng/sjo/) — Move mouse to move
 horizontally in the tunnel, press/hold down to accelerate (also works with
 touch) — The entire tunnel is generated using the [Cinquefoil
 Knot](https://en.wikipedia.org/wiki/Cinquefoil_knot) formula and
@@ -196,7 +197,7 @@ Knot](https://en.wikipedia.org/wiki/Cinquefoil_knot) formula and
 frames](https://github.com/thi-ng/geom/blob/develop/examples/ptf/demos.org) to
 create the polygon segments. Btw. Sjö = Seven in Islandic
 
-[thi.ng/geom](http://thi.ng/geom) is the most mature of the thi.ng projects and
+[thi.ng/geom](https://thi.ng/geom) is the most mature of the thi.ng projects and
 has had basic WebGL support for over 2 years, however only recently I’ve managed
 to invest more time in extending and updating its API to provide an unified
 solution for both desktop OpenGL & WebGL in the browser. Some of the latest
@@ -290,7 +291,7 @@ the later workshop examples made use of it:
 Code re-use is one of the big issues with GLSL (on any platform) and for a long
 time this has been largely solved via a copy & paste culture. To address this in
 Clojurescript from early on, we can use the
-[thi.ng/shadergraph](http://thi.ng/shadergraph) library, which provides us with:
+[thi.ng/shadergraph](https://thi.ng/shadergraph) library, which provides us with:
 
 -   a transitive dependency resolution mechanism for GLSL code (based on the
     normal Clojure namespace mechanism and Stuart Sierra’s dependency library)
@@ -359,7 +360,7 @@ Our little example project can be found here:
 
 ## asm.js & Emscripten
 
-Even though [thi.ng](http://thi.ng/) started out as (and largely still is) a
+Even though [thi.ng](https://thi.ng/) started out as (and largely still is) a
 Clojure & Clojurescript-centric collection of projects, over the past year I’ve
 been slowly expanding its scope to become more polyglot, so far mainly in the
 form of some still unreleased C projects (not counting previous OpenCL related
@@ -379,7 +380,7 @@ thi.ngs). And whilst the combination of
 
 Simple 3D particle system written in C, compiled to Javascript with Emscripten
 and visualized / controlled via Clojurescript & WebGL. [Live
-demo](http://demo.thi.ng/ws-ldn-8/)
+demo](https://demo.thi.ng/ws-ldn-8/)
 
 One of the most interesting projects in this respect is
 [Emscripten](http://emscripten.org), a LLVM-based transpiler for C and C++ to
@@ -451,7 +452,7 @@ particles in this array are tightly packed and no alignment bytes are needed
 
 On the Clojurescript side we’re using
 [Reagent](http://reagent-project.github.io) to wrap React.js and the latest dev
-snapshot (0.0.1158-SNAPSHOT) of [thi.ng/geom](http://thi.ng/geom) to handle all
+snapshot (0.0.1158-SNAPSHOT) of [thi.ng/geom](https://thi.ng/geom) to handle all
 WebGL aspects.
 
 Thanks to Emscripten’s [interop

@@ -76,8 +76,8 @@ generative systems, we also want to naturally visualize the results, straight
 from the REPL and as a way of unit testing, using our eye to judge the
 correctness and aesthetic potential of the system. All examples in this workshop
 are largely using vanilla Clojure, though we also extensively used the
-[thi.ng/geom](http://thi.ng/geom), [thi.ng/math](http://thi.ng/math) &
-[thi.ng/color](http://thi.ng/color) libraries to help us with [vector
+[thi.ng/geom](https://thi.ng/geom), [thi.ng/math](https://thi.ng/math) &
+[thi.ng/color](https://thi.ng/color) libraries to help us with [vector
 algebra](https://github.com/thi-ng/geom/blob/develop/src/core/vector.org), [SVG
 generation](https://github.com/thi-ng/geom/blob/develop/src/svg/core.org),
 [geometry data types](https://github.com/thi-ng/geom/tree/develop/src/types) &
@@ -87,7 +87,7 @@ simplify working with color (in multiple color spaces & formats).
 ## Polygons, polymorphism & graphs
 
 We talked about various fundamental geometry data types, abstractions and
-polymorphic operations provided by [thi.ng/geom](http://thi.ng/geom). These
+polymorphic operations provided by [thi.ng/geom](https://thi.ng/geom). These
 types could be considered classes (in the OOP sense), but they too can act as
 configurable point, line and shape generators and provide dozens of other useful
 operations: analysis of dimensions, bounds, area, volume, intersections with
@@ -140,10 +140,10 @@ Many generative processes are iterative by nature, i.e. in math speak:
 `f(x+1) = f(f(x))`
 
 In Clojure this can be elegantly achieved by using
-[_iterate_](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/iterate),
-[_reduce_](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/reduce)
+[`iterate`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/iterate),
+[`reduce`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/reduce)
 or
-[_loop_](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/loop).
+[`loop`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/loop).
 
 Strange Attractors are some of the simplest iterative systems. We chose the
 famous [Peter de Jong attractor](http://paulbourke.net/fractals/peterdejong/)
@@ -209,7 +209,7 @@ controlled by the underlying 2D noise field. Color gradient created with
 3D noise visualized as [voxel iso surface
 mesh](https://github.com/thi-ng/geom/blob/develop/examples/voxel/demos.org#example-3d-gradient-noise)
 and draft-rendered with [Luxrender](http://luxrender.net) (via
-[http://thi.ng/luxor](http://thi.ng/luxor))
+[https://thi.ng/luxor](https://thi.ng/luxor))
 
 ## Poisson disk sampling (Blue noise)
 
@@ -429,6 +429,6 @@ fellow Clojurians interested in this field.
 **If you’re interested in taking part in similar hands-on training workshops in
 the future, please** [**sign up to the
 newsletter**](https://tinyletter.com/thi-ng/) **or visit**
-[**workshop.thi.ng**](http://workshop.thi.ng) **for announcements.**
+[workshop.thi.ng](http://workshop.thi.ng) **for announcements.**
 
 Till next time.
