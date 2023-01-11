@@ -18,6 +18,7 @@ being migrated to here as well...
 | 2022-08-31 | [Zig pointer types cheatsheet](2022/20220831-zig-pointer-cheatsheet.md)                                                           |
 | 2019-03-14 | [Of umbrellas, transducers, reactive streams & mushrooms (Pt.4)](2019/20190314-of-umbrellas-transducers-reactive-streams-pt4.md)  |
 | 2019-03-10 | [Of umbrellas, transducers, reactive streams & mushrooms (Pt.3)](2019/20190310-of-umbrellas-transducers-reactive-streams-pt3.md)  |
+| 2019-03-07 | [Of umbrellas, transducers, reactive streams & mushrooms (Pt.2)](2019/20190307-of-umbrellas-transducers-reactive-streams-pt2.md)  |
 | 2019-03-04 | [Of umbrellas, transducers, reactive streams & mushrooms (Pt.1)](2019/20190304-of-umbrellas-transducers-reactive-streams-pt1.md)  |
 | 2018-02-04 | [How to UI in 2018](2018/20180204-how-to-ui-in-2018.md)                                                                           |
 | 2016-07-03 | [ClojureScript, WebWorkers & WebGL](2016/20160703-clojurescript-webworkers-webgl.md)                                              |

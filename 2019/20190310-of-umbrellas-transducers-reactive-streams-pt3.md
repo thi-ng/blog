@@ -199,7 +199,7 @@ exact same result, if given the same inputs.
 [thi.ng/transducers](https://thi.ng/transducers) provides several options for
 creating an iterative process (will only briefly discuss a couple).
 
-**iterate()**
+### iterate()
 
 Classic, infinite, iterative induction, feedback:** _f(t+1) = f(f(t))_**.
 Because `iterate` creates an infinite sequence/generator, be sure to limit it
@@ -226,7 +226,7 @@ tx.transduce(
 // [ 0.875, 1.625, 2.5625, 4.109375, 5.53125, 5.296875, ... ]
 ```
 
-**scan()**
+### scan()
 
 This is a higher-order, _stateful_ transducer, wrapping an inner reducer. It’s a
 [generalization of the Prefix Sum
