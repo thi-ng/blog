@@ -14,6 +14,8 @@ being migrated to here as well...
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | 2023-01-03 | [A simple nod of acknowledgment](2023/20230103-a-nod-of-acknowledgement.md)                                                       |
 | 2022-12-04 | [Personal considerations for creating generative art](2022/20221204-personal-considerations.md)                                   |
+| 2022-09-03 | [Zig projects I'm working on...](2022/20220903-zig-projects-wip.md)                                                               |
+| 2022-08-31 | [Zig pointer types cheatsheet](2022/20220831-zig-pointer-cheatsheet.md)                                                           |
 | 2018-02-04 | [How to UI in 2018](2018/20180204-how-to-ui-in-2018.md)                                                                           |
 | 2016-07-03 | [ClojureScript, WebWorkers & WebGL](2016/20160703-clojurescript-webworkers-webgl.md)                                              |
 | 2016-06-26 | [Workshop report: Generative design with Clojure](2016/20160626-generative-design-clojure.md)                                     |
