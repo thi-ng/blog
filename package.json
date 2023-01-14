@@ -1,0 +1,24 @@
+{
+    "name": "blog",
+    "version": "0.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:thi-ng/blog.git",
+    "author": "Karsten Schmidt <k@thi.ng>",
+    "license": "CC-BY-NC-SA-4.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "doc:readme": "node --loader ts-node/esm src/readme.ts"
+    },
+    "devDependencies": {
+        "@thi.ng/checks": "^3.3.7",
+        "@thi.ng/compare": "^2.1.22",
+        "@thi.ng/file-io": "^0.4.0",
+        "@thi.ng/logger": "^1.4.7",
+        "@thi.ng/markdown-table": "^0.3.36",
+        "@thi.ng/paths": "^5.1.28",
+        "@thi.ng/transclude": "^0.1.4",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.4"
+    }
+}
