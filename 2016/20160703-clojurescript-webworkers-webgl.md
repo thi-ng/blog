@@ -75,7 +75,7 @@ The example project is a simple STL mesh viewer, using
 [thi.ng/geom](https://thi.ng/geom)’s [mesh
 I/O](https://github.com/thi-ng/geom/blob/develop/src/mesh/io.org) and
 [WebGL](https://github.com/thi-ng/geom/tree/develop/src/gl) modules, as well as
-[Reagent](http://reagent-project.github.io/) (just to test with a few more
+[Reagent](https://reagent-project.github.io/) (just to test with a few more
 dependencies). [Live demo here](https://demo.thi.ng/ws-ldn-11/).
 
 ## Project configuration
@@ -355,7 +355,7 @@ fs.writeFileSync(path, src, "utf8");
 The complete example repo can be found here and has been successfully tested in
 Chrome (incl. on Android), Firefox, Safari.
 
-[http://github.com/thi-ng/ws-ldn-11/day2/ex05b/](http://github.com/thi-ng/ws-ldn-11/day2/ex05b/)
+[https://github.com/thi-ng/ws-ldn-11/day2/ex05b/](https://github.com/thi-ng/ws-ldn-11/day2/ex05b/)
 
 ## Future
 

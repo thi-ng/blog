@@ -129,9 +129,9 @@ switched on until November 10, 1989, the day after the Berlin Wall was opened
 and I could buy an
 [XC-12](http://www.atarimania.com/documents/Atari_XC12_Program_Recorder_Owners_Manual_1986_Atari.pdf)
 tape recorder. I too had to choose whether to go the usual route of working with
-the built-in [BASIC](http://atariarchives.org/basic/) language or stick with
+the built-in [BASIC](https://atariarchives.org/basic/) language or stick with
 what I’d learned/taught myself so far,
-[Assembly](http://atariarchives.org/roots/)… In hindsight, am glad I chose the
+[Assembly](https://atariarchives.org/roots/)… In hindsight, am glad I chose the
 latter, since it proved to be far more useful and transportable knowledge, even
 today!
 
@@ -156,7 +156,7 @@ Assembly to [Hexcode](https://en.wikipedia.org/wiki/Hexadecimal) on paper. I
 never questioned the manic insanity of this process until later — I just didn’t
 know any better at the time. As an aside, recently reading in George Dyson’s
 “[Darwin among the
-machines](http://www.amazon.com/Darwin-among-Machines-Evolution-Intelligence/dp/0465031625)”
+machines](https://www.amazon.com/Darwin-among-Machines-Evolution-Intelligence/dp/0465031625)”
 about similar stories of the [IAS](https://www.ias.edu/) pioneers in Princeton
 some 35-40 years prior, made me realise that progress in computing is often
 (still) slow indeed.
@@ -167,7 +167,7 @@ Some early logo sketches for CSS (Chip Special Software), my first demoscene
 hande/alias.
 
 By joining the local “Chaos Club Chemnitz” (a not much bigger group than our
-KC85 team two years prior) and [ABBUC](http://www.abbuc.de/) (which is
+KC85 team two years prior) and [ABBUC](https://www.abbuc.de/) (which is
 celebrating its 30th anniversary this year!), I quickly got sucked into the
 [demoscene](https://en.wikipedia.org/wiki/Demoscene) flourishing all over Europe
 and found more creative outlets and confidence bending the machine to my will.
@@ -182,7 +182,7 @@ The Halle Project 1993. I created the loader, contributed the first two parts
 and the music for Peter Dell’s (Jacomo) amazing Visdom demo (starts at 6:12).
 The sample in the first intro part was recorded with my self-built 4bit sampler,
 filled up the entire available RAM and was taken from one of [Torsten
-Fenslau](http://www.discogs.com/artist/61591-Torsten-Fenslau)’s epic intros to
+Fenslau](https://www.discogs.com/artist/61591-Torsten-Fenslau)’s epic intros to
 the classic [HR3 clubnight](http://www.yourepeat.com/watch/?v=IkAI6raCkkg) radio
 show. 7 month later, Torsten died in a car crash :(
 
@@ -239,7 +239,7 @@ with Director / Shockwave 3D in 2002. It featured and acted as a testbed for
 tightly synced audio responsive visuals, voxel isosurfaces, flocking, mesh
 deformations, 3D typography. Sadly, no video version exists and due to Shockwave
 being a proprietary platform, also no emulator. Also see entry on
-[pouet.net](http://www.pouet.net/prod.php?which=7926).
+[pouet.net](https://www.pouet.net/prod.php?which=7926).
 
 In the pre-internet world of the early ’90s, we had mainly two camps: 8bit vs.
 16bit and Atari vs. Commodore (and some Sinclair). People in each other camp
@@ -280,7 +280,7 @@ community level: A reliance on insular support ecosystems, libraries & tooling
 is typical, reducing overall code re-use (at least between communities sharing
 the same underlying language) and increasing fragmentation. More often than not
 these platforms [**equate simplicity with
-ease**](http://www.infoq.com/presentations/Simple-Made-Easy) (go watch Rich
+ease**](https://www.infoq.com/presentations/Simple-Made-Easy) (go watch Rich
 Hickey taking this argument eloquently apart!). The popular prioritization of no
 pre-requisite knowledge, super shallow learning curves and quick results
 eventually becomes the main obstacle to later achieve systemic changes, not just
@@ -347,7 +347,7 @@ often still struggle with its polar opposite (“top-down”), both in coding as
 design. Creative projects require creative tools. For example, my
 [toxiclibs](https://github.com/postspectacular/toxiclibs) project was partly started out of concrete
 needs for work projects, but to work around
-[Processing](http://processing.org)’s lack of abstract data models for its core
+[Processing](https://processing.org)’s lack of abstract data models for its core
 themes (e.g. creation of visuals). However, it never was purely a Processing
 specific project (even though 99% of people have only ever been using it in that
 context). Over the 6 years that I worked almost daily on this project, my only
@@ -438,12 +438,12 @@ System-On-a-Chip) and communication with peripherals operates. We can play a
 game of catching up. Sometimes doing so without crutches, in Assembly, can be
 incredibly enlightening and refreshingly _simple_ (again, in the [Rich Hickey
 interpretation of the
-word](http://www.infoq.com/presentations/Simple-Made-Easy), **go watch it!!!**),
+word](https://www.infoq.com/presentations/Simple-Made-Easy), **go watch it!!!**),
 often even surprisingly so. To anyone who’s developed a sense of code aesthetic
 and has a love of lightness and minimalism in how we work with computers,
 out-of-fashion languages like Assembly (but also the many flavors of Lisp,
 Forth) or new contenders like [Rust](https://www.rust-lang.org/),
-[Pony](http://www.ponylang.org/) provide an appealing choice — if not for their
+[Pony](https://www.ponylang.org/) provide an appealing choice — if not for their
 speed and elegance, but at the very least for learning purposes and a different
 glimpse of what programming was like, is (in some fields) and could be (in
 ours). Some languages have introduced ideas which only became truly viable
@@ -476,7 +476,7 @@ for a similar CPU [Cortex-M3])!
     .thumb
 
     // configuration values for STM32F4x
-    // see: http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf
+    // see: https://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf
 
 #define AHB1PERIPH_BASE 0x40020000
 #define RCC_BASE        AHB1PERIPH_BASE + 0x3800
@@ -534,7 +534,7 @@ Code written for one CPU usually doesn’t work on another. Even though this
 remains a fundamental, unresolvable issue, I too believe that in the current
 market situation it is somewhat of a lesser concern than it used to be
 (especially if we’re also honest about the realistic lifespan and scope of much
-of our software): For example, [ARM](http://www.arm.com/) and its IP-only
+of our software): For example, [ARM](https://www.arm.com/) and its IP-only
 business model has somewhat ensured that there’re now dozens of manufacturers
 with hundreds of different versions alone of the [Cortex
 M](https://en.wikipedia.org/wiki/ARM_Cortex-M) chip family. And although they do
@@ -558,7 +558,7 @@ small computers are/can be.
 
 Instead, I want to revisit this world “closer to the metal” with the by now very
 different mindset obtained from working on the other side of the abstraction
-spectrum. Especially my last 4 years spent with [Clojure](http://clojure.org/)
+spectrum. Especially my last 4 years spent with [Clojure](https://clojure.org/)
 (one of the notable, open-your-mind exceptions I talked about earlier) have
 provided me with an incredible (and incredibly useful) amount of new insights
 and research ideas. I’ve already noticed how this has positively impacted my
@@ -586,24 +586,24 @@ workflow. The ability to break the write/(compile)/run cycle or [hot-swap code
 in a running system](https://github.com/bhauman/lein-figwheel) without
 destroying application state already has [transformed the often-times
 frustrating experience of modern
-webdesign](http://github.com/clojure/clojurescript). It also enables live
+webdesign](https://github.com/clojure/clojurescript). It also enables live
 coding, a field which is rapidly gaining popularity, not just for musical
 applications (though being a timebased medium, that’s where most of the research
-and [education](http://sonic-pi.net) is happening).
+and [education](https://sonic-pi.net) is happening).
 
 The following are the perfect examples why we can’t (and shouldn’t) rely on just
 general purpose mainstream languages for everything we do with our computers.
 
-https://www.youtube.com/watch?v=TxQJPNSzl9s
+https://www.youtube.com/watch?v=bq-260NUw5o
 
 Andrew Sorenson is one of my livecoding heros. He has been working on his
 [Impromptu](http://impromptu.moso.com.au/) and
-[Extempore](http://extempore.moso.com.au/) languages for many years.
+[Extempore](https://extemporelang.github.io/) languages for many years.
 
 https://www.youtube.com/watch?v=K4zAcRcXo68
 
 Sam Aaron is the founder of the [Overtone](https://overtone.github.io/) and
-[Sonic-PI](http://sonic-pi.net) projects,
+[Sonic-PI](https://sonic-pi.net) projects,
 [Supercollider](https://supercollider.github.io/) based livecoding languages &
 environments, with the latter primarily aimed at music education using Raspberry
 PI (but also available for OSX/Windows).
@@ -631,7 +631,7 @@ non-stop over the 3 months of the installation.
 
 If many people already take issues with Lisp’s extensive use of parenthesis,
 then [Forth](https://en.wikipedia.org/wiki/Forth_%28programming_language%29) and
-the [family of concatenative languages](http://concatenative.org/) will seem
+the [family of concatenative languages](https://concatenative.org/) will seem
 even more alien, dare I say radical. However even a brief cursory examination
 should show some unique benefits: Forth has an unique focus on programmer
 freedom, simplicity and being lightweight. It constitutes a stack based,
@@ -659,10 +659,13 @@ applications, incl. much work done for NASA and in the early years at Apple
 
 > “…Forth does it differently. There is no syntax, no redundancy, no typing.
 > There are no errors that can be detected. …there are no parentheses. No
-> indentation. No hooks, no compatibility. …No files. No operating system.”>
-> —[Chuck Moore](http://www.colorforth.com/1percent.html), creator of Forth
+> indentation. No hooks, no compatibility. …No files. No operating system.”
+>
+> —[Chuck
+> Moore](https://web.archive.org/web/20150730202353/http://www.colorforth.com/1percent.html),
+> creator of Forth
 
-In the same article “[1% the Code](http://concatenative.org/)”, he further
+In the same article “[1% the Code](https://concatenative.org/)”, he further
 continues:
 
 > “I must say that I’m appalled at the code I see. Because all this code suffers
@@ -673,17 +676,19 @@ continues:
 > undesirable result. Bloated code does not just keep programmers employed, but
 > managers and whole companies, internationally. Compact code would be an
 > economic disaster. Because of its savings in team size, development time,
-> storage requirements and maintainance cost.”> — [Chuck
-> Moore](http://www.colorforth.com/1percent.html)
+> storage requirements and maintainance cost.”
+>
+> — [Chuck
+> Moore](https://web.archive.org/web/20150730202353/http://www.colorforth.com/1percent.html)
 
 A practical example of this: When I started my journey of ARM C programming
 using an [STM32F429 dev
-board](http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090), I was
+board](https://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090), I was
 shocked to find the bundled system source files add up to 160,000+ lines of C
 (excluding comments!), which don’t provide much more than common ARM definitions
 & macros, system initialization, basic peripheral drivers and an hardware
 abstraction layer. On the other hand, a [complete Forth
-environment](http://mecrisp.sourceforge.net/) with core peripheral drivers and
+environment](https://mecrisp.sourceforge.net/) with core peripheral drivers and
 livecoding capabilities (via Serial port/UART) for the same CPU (and dozens
 others) clocks in at only 8,550 lines of Assembly (that’s 5%). Of course that
 isn’t a fair or even very meaningful comparison, but the magnitudes in
@@ -697,18 +702,18 @@ includes a custom Forth CPU itself):
 https://www.youtube.com/watch?v=gFE6oK7jkq4
 
 AmForth can be downloaded from here:
-[http://amforth.sourceforge.net/](http://amforth.sourceforge.net/). The AmForth
-website also contains a
-[cookbook](http://amforth.sourceforge.net/TG/Cookbook.html) of various examples.
-The book reference shown in the video is [Starting
-Forth](http://www.forth.com/starting-forth/index.html) by Leo Brodie, generally
-a great intro to programming.
+[https://amforth.sourceforge.net/](https://amforth.sourceforge.net/). The
+AmForth website also contains a
+[cookbook](https://amforth.sourceforge.net/TG/Cookbook.html) of various
+examples. The book reference shown in the video is [Starting
+Forth](https://www.forth.com/starting-forth/) by Leo Brodie, generally a great
+intro to programming.
 
 https://www.youtube.com/watch?v=rdLgLCIDSk0
 
 James Bowman and his open source J1 Forth CPU running on a Lattice FPGA. This
 project uses the first fully open source FPGA development toolchain, Project
-IceStorm. [More info](http://www.excamera.com/sphinx/article-j1a-swapforth.html)
+IceStorm. [More info](https://www.excamera.com/sphinx/article-j1a-swapforth.html)
 
 To clarify where I’m going with all this: I’m not at all proposing that we
 should be dropping everything and (re-)adopt languages like Forth, but I do
@@ -736,7 +741,7 @@ still C based) musical ARM adventure of mine.
 All of this will at some point soon be open source and more properly documented.
 For now it is largely a proof-of-concept and the result of a few months of
 preparations and examples created during
-[two](http://actcenter.kr/program/build-your-own-synthesizer-getting-started-with-bare-metal-arm-programming-karsten-schmidt/)
+[two](https://web.archive.org/web/20151229102713/https://actcenter.kr/program/build-your-own-synthesizer-getting-started-with-bare-metal-arm-programming-karsten-schmidt/)
 [workshops](http://workshop.thi.ng/) about the project, run in the past month,
 with more coming early next year. If you’re interested learning how to work
 efficiently with ARM based devices (not just for music), create your own USB

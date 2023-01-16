@@ -7,8 +7,8 @@ This is part 4 of an ongoing series introducing & discussing projects of the
 minigame on the side. Other parts available:
 
 -   [Part 1](./20190304-of-umbrellas-transducers-reactive-streams-pt1.md) — Project & series overview
--   [Part 2](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023) — HOFs, Transducers, Reducers
--   [Part 3](./20190310-of-umbrellas-transducers-reactive-streams-pt3.md) — Convolution, 1D/2D Cellular Automata
+-   [Part 2](./20190307-of-umbrellas-transducers-reactive-streams-pt2.md) — HOFs, Transducers, Reducers, ES6 iterables
+-   [Part 3](./20190310-of-umbrellas-transducers-reactive-streams-pt3.md) — Convolution, 1D/2D Cellular Automata
 
 We finished the last part with expanding our 1D cellular automata generator to
 two dimensions, and in this part, we will slightly refactor this and perform
@@ -581,7 +581,7 @@ inaccessible parts of the map (positive). This kind of map is also called a
 discrete [Signed Distance
 Field](https://en.wikipedia.org/wiki/Signed_distance_function) and finds
 applications in many domains, including 3D graphics, [volumetric
-modeling](http://www.tokeru.com/cgwiki/index.php?title=HoudiniVolumes#SDF),
+modeling](https://www.tokeru.com/cgwiki/index.php?title=HoudiniVolumes#SDF),
 visualization, GPU font rendering etc.
 
 ![image](../assets/fa/90/01lHoT7HaiXCAnGUH.png)

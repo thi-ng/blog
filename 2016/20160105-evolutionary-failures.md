@@ -1,6 +1,6 @@
 # Evolutionary failures (Part 1)
 
-A journey into Genetic Programming techniques with [Clojure](http://clojure.org)
+A journey into Genetic Programming techniques with [Clojure](https://clojure.org)
 and [thi.ng](https://thi.ng/)
 
 Over the years, generative techniques like Cellular Automata, [Diffusion-limited
@@ -14,7 +14,7 @@ Programming](https://en.wikipedia.org/wiki/Genetic_programming) (GP short, a
 specialization of Genetic Algorithms) too has been on my to-do list of
 techniques to use for a project, yet it never seemed sufficiently suitable until
 about a year ago, when I received a chance email from my friends at
-[HOLO](http://holo-magazine.com) to create a guest design for the second issue
+[HOLO](https://www.holo.mg) to create a guest design for the second issue
 of their “magazine” (it really should be called a book series!). Each issue of
 HOLO is centered around a topic in the crossover field of arts, science and
 technology. The topic chosen for the new issue was an “investigation of chance,
@@ -97,7 +97,7 @@ general introduction to applying the concept programmatically on the computer.
 
 ## Morphogen
 
-My first step in the [HOLO](http://holo-magazine.com) design process was the
+My first step in the [HOLO](https://www.holo.mg) design process was the
 creation of a sufficiently flexible GP playground for my later experiments and
 to evolve path-finding agents to create a (typographic) form as an initial
 design idea. Related to this, though a year prior, I created the [Mophogen
@@ -119,7 +119,7 @@ delete.
 This structure was evolved from a single box using an operator tree ~60 levels
 deep and only uses five of the eight available operators ([source
 code](https://github.com/thi-ng/morphogen/blob/master/src/examples.org#hex-virus)).
-Rendered with [Luxrender](http://luxrender.net).
+Rendered with [Luxrender](https://luxcorerender.org).
 
 The main take away points from this project were:
 
@@ -171,7 +171,7 @@ whose genome is consisting of only these three different operations:
 
 Clojure, with its rich set of built-in data types, sequence abstractions and
 polymorphic functions (here:
-[defmulti](http://clojuredocs.org/clojure.core/defmulti)), is a great
+[defmulti](https://clojuredocs.org/clojure.core/defmulti)), is a great
 environment to implement an
 [interpreter](https://en.wikipedia.org/wiki/Interpreter_%28computing%29) for
 such language experiments without much ceremony. The program tree
@@ -188,7 +188,7 @@ very easy to pick a random tree node/branch and edit/replace it in a functional
 manner. And since we’re dealing with immutable data, this “editing” is of course
 non-destructive and would be quite involved without using zippers. Btw. Tommy
 Hall has a [great introduction to zippers (and GP using
-S-Expressions)](http://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/).
+S-Expressions)](https://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/).
 
 ```clj
 ;; holo2-ast-peephole.edn
@@ -430,7 +430,7 @@ much as possible directly from the Clojure REPL and to avoid manual repetitive
 work for dozens of outputs, I used [thi.ng/luxor](https://thi.ng/luxor) to
 generate render [scene
 templates](https://github.com/thi-ng/luxor/blob/master/src/scenes.org) for
-[Luxrender](http://luxrender.net) with model, camera, light groups & material
+[Luxrender](https://luxcorerender.org) with model, camera, light groups & material
 setups and then could directly produce hi-def renders straight from the REPL. To
 free up my laptop, rendering happened on dynamically spawned 16-core EC2
 instances (relatively straightforward to achieve via Michael Cohen’s
@@ -467,7 +467,7 @@ source:
 > capture human intelligence in mechanical form.” - George Dyson
 
 Reading George Dyson’s “[Darwin among the
-machines](http://www.amazon.com/Darwin-among-Machines-Evolution-Intelligence/dp/0465031625)”
+machines](https://www.amazon.com/Darwin-among-Machines-Evolution-Intelligence/dp/0465031625)”
 at about the same time, I found it an especially good complement to what I was
 doing. Its anecdotal coverage of the history of computing machines and
 contrasting parallels and philosophical arguments in biology (e.g. Darwinian
@@ -493,7 +493,7 @@ its parallels in biology/science/fiction. Highly recommended reading!
 Functions](https://en.wikipedia.org/wiki/Signed_distance_function) (SDF) are one
 of the most exciting topics / techniques in shader programming. [Popularized by
 demoscener
-Iq](http://iquilezles.org/www/articles/distfunctions/distfunctions.htm) and
+Iq](https://iquilezles.org/www/articles/distfunctions/distfunctions.htm) and
 others, SDFs can be used to not just represent many different & complex
 geometries, but also manipulate our understanding of space itself (by
 re-interpreting the produced distance values).
@@ -521,7 +521,7 @@ printing).
 The mesh in the image above has been created with the handful of ready-to-run
 Clojure functions below (using various pieces of the
 [thi.ng/geom](https://thi.ng/geom) library), then rendered in
-[Blender](http://www.blender.org/). Instead of using the regular sphere distance
+[Blender](https://www.blender.org/). Instead of using the regular sphere distance
 function, the “sd-nested-sphere” function re-interpretes & warps the space
 _within_ the sphere, using the modulo of the distance and some arbitrary step
 value, and thus creates the strange repetitions. The fractured patterns on the
@@ -682,8 +682,8 @@ or accompanying melody lines.
 To get a sneak peek of the upcoming HOLO issue and learn more about the
 magazine, visit:
 
--   [http://holo-magazine.com/2/](http://holo-magazine.com/2/)
--   [http://www.creativeapplications.net/holo/holo-2-the-grand-tour/](http://www.creativeapplications.net/holo/holo-2-the-grand-tour/)
+-   [https://www.holo.mg/2/](https://www.holo.mg/2/)
+-   [https://www.creativeapplications.net/holo/holo-2-the-grand-tour/](https://www.creativeapplications.net/holo/holo-2-the-grand-tour/)
 
 ![image](../assets/4a/bd/01lEJAdATpOmaeSEx.gif)
 
@@ -702,7 +702,7 @@ found helpful:
 -   [Genetic Programming Notebook](http://www.geneticprogramming.com/)
 -   [Cartesian Genetic Programming](http://www.cartesiangp.co.uk/)
 -   [Cartesian GP tutorial](http://www.cartesiangp.co.uk/papers/gecco2012-tutorial-miller.pdf) (@ GECCO 2012)
--   [Tommy Hall’s GP tutorial](http://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/)
+-   [Tommy Hall’s GP tutorial](https://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/)
 
 A closing thought from George Dyson’s book:
 

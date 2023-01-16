@@ -6,7 +6,7 @@ This is part 3 of an ongoing series introducing & discussing projects of the
 [thi.ng/umbrella](https://thi.ng/umbrella) monorepo. Other parts:
 
 -   [Part 1](./20190304-of-umbrellas-transducers-reactive-streams-pt1.md) — Project & series overview
--   [Part 2](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023) — HOFs, Transducers, Reducers, ES6 iterables
+-   [Part 2](./20190307-of-umbrellas-transducers-reactive-streams-pt2.md) — HOFs, Transducers, Reducers, ES6 iterables
 -   [Part 4](./20190314-of-umbrellas-transducers-reactive-streams-pt4.md) — Disjoint Sets, Graph analysis, Signed Distance Fields
 
 Having covered some transducer basics and related functional programming
@@ -709,7 +709,7 @@ News](https://news.ycombinator.com/item?id=19355112).
 Other parts:
 
 -   [Part 1](./20190304-of-umbrellas-transducers-reactive-streams-pt1.md) — Project & series overview
--   [Part 2](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023) — HOFs, Transducers, Reducers, ES6 iterables
+-   [Part 2](./20190307-of-umbrellas-transducers-reactive-streams-pt2.md) — HOFs, Transducers, Reducers, ES6 iterables
 -   [Part 4](./20190314-of-umbrellas-transducers-reactive-streams-pt4.md) — Disjoint Sets, Graph analysis, Signed Distance Fields
 
 PS. To prove textmode can still be hip, here’re a few more demoscene productions

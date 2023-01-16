@@ -81,7 +81,7 @@ The textbook approach to encoding a 2D data grid in Clojure/script is using a
 nested vector, which then can easily be processed using `map` / `reduce` to
 produce the next generation in the simulation. Accessing individual grid cells
 is also straightforward using
-`([get-in](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/get-in)
+`([get-in](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/get-in)
 grid [x y])`. However, in the GOL simulation we need to access 9 cells (1 cell
 
 -   8 neighbors) in order to compute the new state of each cell. So in a 1024 x
@@ -129,7 +129,7 @@ throughout most Clojurescript applications, being more aware of the inherent
 costs is useful and can help us looking into alternative solutions when needed.
 
 Btw. One of the intermediate steps taken to speed up our simulation was using
-[`transduce`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/transduce)
+[`transduce`](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/transduce)
 instead of `map` & `reduce` to compute the number of alive neighbor cells,
 however this ended up actually being ~15–20% slower in this case. We have not
 looked into the reasons for this (yet)…
@@ -343,7 +343,7 @@ allows for typed arrays) and is potentially magnitudes faster than using a copy.
 The most likely scenario for this transfer feature is a ping-pong like
 processing setup of the same data object between main process and worker, each
 claiming temporary ownership rights before sending it back to the other party.
-[Rust](http://rust-lang.org) users might feel right at home here :)
+[Rust](https://rust-lang.org) users might feel right at home here :)
 
 In terms of code organization, Clojurescript’s (well, actually Google Closure
 compiler’s) modular compilation at least allows us to keep the worker parts in
@@ -365,7 +365,7 @@ Clojure & Clojurescript-centric collection of projects, over the past year I’v
 been slowly expanding its scope to become more polyglot, so far mainly in the
 form of some still unreleased C projects (not counting previous OpenCL related
 thi.ngs). And whilst the combination of
-[Clojure](http://clojure.org)/[Clojurescript](https://github.com/clojure/clojurescript)
+[Clojure](https://clojure.org)/[Clojurescript](https://github.com/clojure/clojurescript)
 
 -   C seems a bit weird at first, I’m fully convinced (and have proof!) there are
     many use cases for which I believe this combination is golden, giving us the
@@ -383,7 +383,7 @@ and visualized / controlled via Clojurescript & WebGL. [Live
 demo](https://demo.thi.ng/ws-ldn-8/)
 
 One of the most interesting projects in this respect is
-[Emscripten](http://emscripten.org), a LLVM-based transpiler for C and C++ to
+[Emscripten](https://emscripten.org), a LLVM-based transpiler for C and C++ to
 [asm.js](http://asmjs.org) (and soon [WASM](https://webassembly.github.io/)).
 The former (asm.js) is a highly optimizable subset of JavaScript. WASM
 (WebAssembly) is a new sandboxed execution environment currently still being
@@ -451,20 +451,20 @@ particles in this array are tightly packed and no alignment bytes are needed
 ![image](../assets/1b/ab/01lEUuivnupxA4d5R.png)
 
 On the Clojurescript side we’re using
-[Reagent](http://reagent-project.github.io) to wrap React.js and the latest dev
+[Reagent](https://reagent-project.github.io) to wrap React.js and the latest dev
 snapshot (0.0.1158-SNAPSHOT) of [thi.ng/geom](https://thi.ng/geom) to handle all
 WebGL aspects.
 
 Thanks to Emscripten’s [interop
-API](http://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html),
+API](https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html),
 communication between the compiled C module and CLJS is pretty trivial, even
 though we’re limited to only passing/receiving primitive LLVM data types. In the
 case of our example this is absolutely fine though, since in CLJS we’re only
 interested in a) initializing the particle system, b) updating it and c)
 obtaining a pointer to the array of particles. The following code shows how to
-[wrap](http://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html?highlight=closure#cwrap)
+[wrap](https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html?highlight=closure#cwrap)
 and
-[call](http://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html?highlight=closure#ccall)
+[call](https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html?highlight=closure#ccall)
 compiled C functions from Clojurescript:
 
 Updating and rendering the particle system with WebGL is similarly trivial.
@@ -484,7 +484,7 @@ The full source code for this example is here:
 If you’re interested in learning more about any of these technologies, please
 visit the [workshop.thi.ng](http://workshop.thi.ng/) website for upcoming
 training sessions or sign up to the [thi.ng
-newsletter](http://tinyletter.com/thi-ng).
+newsletter](https://tinyletter.com/thi-ng).
 
 **I’m about to announce the next bunch of workshop dates for June in the next 2
 days. Apart from teaching, I’m also currently available for freelance

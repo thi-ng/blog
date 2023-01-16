@@ -71,7 +71,7 @@ and drive other parts of the design? E.g. What happens if we make the radius
 itself a function of the rotation angle?
 
 Whereas Clojure already offers an [interactive
-workflow](http://clojure.org/about/dynamic) out of the box, working on visual
+workflow](https://clojure.org/about/dynamic) out of the box, working on visual
 generative systems, we also want to naturally visualize the results, straight
 from the REPL and as a way of unit testing, using our eye to judge the
 correctness and aesthetic potential of the system. All examples in this workshop
@@ -97,7 +97,7 @@ tessellations etc. Many types also provide a kind of graph access, e.g. to
 extract the vertices, edges, cycles (i.e. mesh faces), find vertex valence,
 split/join edges etc. Much like many of the functions in _clojure.core_, all of
 the 50+ operations defined in the _thi.ng.geom.core_ namespace are
-[protocols](http://clojure.org/reference/protocols) and implemented to varying
+[protocols](https://clojure.org/reference/protocols) and implemented to varying
 extents by the currently 20+ shape types, thus keeping the main API surface area
 small and easy to learn.
 
@@ -140,10 +140,10 @@ Many generative processes are iterative by nature, i.e. in math speak:
 `f(x+1) = f(f(x))`
 
 In Clojure this can be elegantly achieved by using
-[`iterate`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/iterate),
-[`reduce`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/reduce)
+[`iterate`](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/iterate),
+[`reduce`](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/reduce)
 or
-[`loop`](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/loop).
+[`loop`](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/loop).
 
 Strange Attractors are some of the simplest iterative systems. We chose the
 famous [Peter de Jong attractor](http://paulbourke.net/fractals/peterdejong/)
@@ -177,7 +177,7 @@ interpolation factors for color blending.
 ## Noise
 
 Ever since their first use in the original
-[Tron](http://www.imdb.com/title/tt0084827/) movie, [Ken
+[Tron](https://www.imdb.com/title/tt0084827/) movie, [Ken
 Perlin](http://mrl.nyu.edu/~perlin/)’s noise formulas have become a staple for
 many procedural design tasks (e.g. texture / terrain generation, volumetric
 clouds, flow fields). In many design situations, procedural noise is more
@@ -187,7 +187,7 @@ they describe a noise space (in any dimension) and can also be applied in a
 manner similar to additive sound synthesis, combining the results of harmonics
 in different octaves to form more complex signals. Adding secondary processes to
 distort input coordinates (e.g. turbulence) and/or filter outputs (e.g. [biquad
-filters](http://www.earlevel.com/main/2003/02/28/biquads/)), we can create a
+filters](https://www.earlevel.com/main/2003/02/28/biquads/)), we can create a
 large variety of visual characteristics.
 
 The direct representation of 2D noise values as colors is just one way of many.
@@ -208,7 +208,7 @@ controlled by the underlying 2D noise field. Color gradient created with
 
 3D noise visualized as [voxel iso surface
 mesh](https://github.com/thi-ng/geom/blob/develop/examples/voxel/demos.org#example-3d-gradient-noise)
-and draft-rendered with [Luxrender](http://luxrender.net) (via
+and draft-rendered with [Luxrender](https://luxcorerender.org) (via
 [https://thi.ng/luxor](https://thi.ng/luxor))
 
 ## Poisson disk sampling (Blue noise)
@@ -217,12 +217,12 @@ Apart from Perlin noise, there are many other types of procedural noise, each
 with different characteristics: Simplex noise, Fractal noise, Gradient noise,
 Pink noise, Brown noise, Blue noise etc. The latter also goes under the name
 [Poisson disk
-sampling](http://www.cs.virginia.edu/~gfx/pubs/antimony/antimony.pdf) and is
-especially useful to generate random samples with locally adjustable uniform
-distributions. The image below has been generated with this approach, using a
-[quadtree](https://en.wikipedia.org/wiki/Quadtree) as acceleration structure and
-one of the example programs bundled with the [c.thi.ng](http://c.thi.ng/)
-library.
+sampling](https://web.archive.org/web/20160316205808/https://www.cs.virginia.edu/~gfx/pubs/antimony/antimony.pdf)
+and is especially useful to generate random samples with locally adjustable
+uniform distributions. The image below has been generated with this approach,
+using a [quadtree](https://en.wikipedia.org/wiki/Quadtree) as acceleration
+structure and one of the example programs bundled with the
+[c.thi.ng](http://c.thi.ng/) library.
 
 ![image](../assets/58/05/01lEdSqXMPJFeo1xd.png)
 
@@ -312,7 +312,7 @@ applications).
 
 The code below implements a simple, yet easily extensible L-System
 [interpreter](https://en.wikipedia.org/wiki/Interpreter_%28computing%29), based
-on Clojure’s [multimethod](http://clojure.org/reference/multimethods) mechanism
+on Clojure’s [multimethod](https://clojure.org/reference/multimethods) mechanism
 (without even a single conditional expression, unlike implementations in most
 other languages). At the end we define a sample rule set for the [Dragon
 curve](https://en.wikipedia.org/wiki/Dragon_curve) fractal (pictured further
@@ -411,7 +411,7 @@ existing Twitter bot skeleton project. The repo for this is here:
 
 [thi-ng/thingybot](https://github.com/thi-ng/thingybot)
 
-There’s also [@thingybot](http://twitter.com/thingybot), where you can find some
+There’s also [@thingybot](https://twitter.com/thingybot), where you can find some
 more outputs (and the bot is sporadically online).
 
 https://twitter.com/thingybot/status/747696221817544704
