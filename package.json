@@ -8,7 +8,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "doc:readme": "node --loader ts-node/esm src/readme.ts"
+        "doc:readme": "node --loader ts-node/esm src/readme.ts",
+        "sanitize": "node --loader ts-node/esm src/sanitize.ts"
     },
     "devDependencies": {
         "@thi.ng/checks": "^3.3.7",

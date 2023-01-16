@@ -1,7 +1,6 @@
 import { isString } from "@thi.ng/checks";
 import { compare, compareByKey } from "@thi.ng/compare";
 import { readJSON, writeText } from "@thi.ng/file-io";
-import { ConsoleLogger } from "@thi.ng/logger";
 import { table } from "@thi.ng/markdown-table";
 import { updateIn } from "@thi.ng/paths";
 import {
@@ -9,18 +8,10 @@ import {
     tabsToSpaces,
     transcludeFile,
 } from "@thi.ng/transclude";
-
-interface Post {
-    date: string;
-    title: string;
-    body: string;
-    tags: string[];
-}
-
-export const LOGGER = new ConsoleLogger("tools");
+import { DB_PATH, LOGGER, Post } from "./api.js";
 
 const allPosts = () => {
-    const db = <Post[]>readJSON("assets/_db.json", LOGGER);
+    const db = <Post[]>readJSON(DB_PATH, LOGGER);
 
     const posts = db
         .filter((p) => p.tags.includes("post"))
