@@ -11,3 +11,7 @@ being migrated to here as well...
 ## Blog posts
 
 {{allPosts}}
+
+## License
+
+© 2003 - 2023 Karsten Schmidt // CC-BY-NC-SA-4.0
