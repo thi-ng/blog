@@ -90,16 +90,16 @@ pipelines:
 
 This construct works just fine, though is subtly hiding at least two issues:
 
-1.  [It's merely a clever [fluent
+1.  It's merely a clever [fluent
     API](https://en.wikipedia.org/wiki/Fluent_interface) application of the
     Array class' prototype methods. Apart from `map` and `filter` being HOFs,
     the larger construct is not strictly functional. In other words, the
     individual processing steps are not standalone functions and they only work
     with arrays, but no other data types. E.g., there's no `map` for objects,
-    strings or sets...]
-2.  [Each transformation step creates a new (temporary) array, which in turn
+    strings or sets...
+2.  Each transformation step creates a new (temporary) array, which in turn
     needs to be iterated over again. In the above example, the data
-    flow is this:]
+    flow is this:
 
 ```text
 input  -> [1, 2, 3, 4]
@@ -270,7 +270,7 @@ Let's summarize some other advantages of Transducers over the more traditional
 chained application of `Array.map()`, `Array.filter()` and `Array.reduce()` and
 variations of that theme, supplied by many related JS libs:
 
-1.  [**Transducers separate the actual transformation and (optional) reduction
+1.  **Transducers separate the actual transformation and (optional) reduction
     from their inputs.** In other words, they do not deal with the process of
     obtaining a source value to transform, nor with the process applied to a
     transformed value — the latter is the role of Reducers (which we will
@@ -282,21 +282,21 @@ variations of that theme, supplied by many related JS libs:
     piecewise construction of the result array (really a form of reduction, as
     we've seen earlier). Transducer functions exclusively only deal with the
     second step (transformation) and so have a much wider scope of application
-    and are more reusable.]
-2.  [**Transducers can be composed (using functional composition) to form
+    and are more reusable.
+2.  **Transducers can be composed (using functional composition) to form
     re-usable transformation pipelines**, which generally avoid (or at least
     drastically minimize) the creation of intermediate result arrays. This is
     amplified even more by using ES6 generators instead of large arrays as data
     source. In a multi-stage transformation pipeline, each new source value is
-    processed as far as possible and then only reduced once (if at all).]
-3.  [**Transducers can be executed in a single-step manner**, i.e. only
+    processed as far as possible and then only reduced once (if at all).
+3.  **Transducers can be executed in a single-step manner**, i.e. only
     processing a single value instead of transforming an entire collection. This
     makes them amenable to use in async processes, yet still retain all the
-    other benefits mentioned here.]
-4.  [**Transducers are built around Reducers and can cause early termination of
+    other benefits mentioned here.
+4.  **Transducers are built around Reducers and can cause early termination of
     the entire processing pipeline**. As with the previous point, this too
-    enables interesting use cases, as we will see later on.]
-5.  [**Transducers can lead to much better code reuse** across the board (use
+    enables interesting use cases, as we will see later on.
+5.  **Transducers can lead to much better code reuse** across the board (use
     cases) because there's no reliance on certain input data types. This avoids
     the vast and IMHO partially unnecessary code repetition going on across the
     JS community. E.g. how many libraries with custom datatypes are
@@ -305,12 +305,12 @@ variations of that theme, supplied by many related JS libs:
     (i.e. arrays, strings, maps, sets, generators) and any other custom datatype
     which implements `Symbol.iterator` or the `IReducible` interface (a single
     function) to provide custom/optimized reduction logic. For array-like inputs
-    (arrays, typed arrays, strings) a fast route is provided.]
-6.  [**The separation of concerns in a transducer process makes it easy/easier
+    (arrays, typed arrays, strings) a fast route is provided.
+6.  **The separation of concerns in a transducer process makes it easy/easier
     to parallelize processing**, at least partially, e.g. via workers. This too
     is helped by the fact that the majority of transformation functions are
     usually pure, i.e. only depend on their given arguments and do (usually) not
-    mutate any global/external state.]
+    mutate any global/external state.
 
 Remember the definition of a transducer from earlier:
 
