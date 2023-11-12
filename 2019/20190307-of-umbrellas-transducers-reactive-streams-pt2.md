@@ -232,7 +232,7 @@ programming approach, but they too have turned out to be a super flexible key
 ingredient in the thi.ng/umbrella project and are used extensively by several of
 its packages.
 
-There\'s already a number (dozens) of older transducer libraries available for
+There's already a number (dozens) of older transducer libraries available for
 JavaScript. With
 [thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 (and its sibling packages) I was aiming for an alternative, more comprehensive,
@@ -407,7 +407,7 @@ function* choices<T>(opts: ArrayLike<T>, n: number) {
 }
 
 [...choices("abcd", 10)];
-// [ 'a', 'c', 'd', 'c', 'a', 'b', 'c', 'b', 'b', 'b' ]
+// [ "a", "c", "d", "c", "a", "b", "c", "b", "b", "b" ]
 
 reduce(histogram(), null, choices("abcd", 100));
 // { a: 29, b: 27, c: 25, d: 19 }
@@ -465,7 +465,8 @@ Some basic examples, both using the same transducer, but different reducers:
 const mul10 = map((x) => x * 10);
 
 // Replicate Array.map()
-transduce(mul10, push(), null, [1, 2, 3, 4])[(10, 20, 30, 40)];
+transduce(mul10, push(), null, [1, 2, 3, 4]);
+// [10, 20, 30, 40]
 
 // or sum up values
 transduce(mul10, sum(), null, [1, 2, 3, 4]);
@@ -523,12 +524,12 @@ cpp,C++,5`;
 
 // parse src and transform `ratings` field
 const doc = parseCSV(src, { rating: (x) => parseFloat(x) });
-// [ { rating: 6, lang: 'JavaScript', id: 'js' },
-//   { rating: 8, lang: 'TypeScript', id: 'ts' },
-//   { rating: 7.5, lang: 'Clojure', id: 'clj' },
-//   { rating: 7, lang: 'Go', id: 'go' },
-//   { rating: 6.5, lang: 'C', id: 'c' }
-//   { rating: 5, lang: 'C++', id: 'cpp' } ]
+// [ { rating: 6, lang: "JavaScript", id: "js" },
+//   { rating: 8, lang: "TypeScript", id: "ts" },
+//   { rating: 7.5, lang: "Clojure", id: "clj" },
+//   { rating: 7, lang: "Go", id: "go" },
+//   { rating: 6.5, lang: "C", id: "c" }
+//   { rating: 5, lang: "C++", id: "cpp" } ]
 ```
 
 After splitting each CSV line into an array of strings, the `rename` transducer
@@ -562,8 +563,8 @@ tx.transduce(
         { id: 2, name: "bob", age: 66 },
     ]
 );
-// [ { id: 'id-1', name: 'ALICE', age: 84 },
-//   { id: 'id-2', name: 'BOB', age: 66 } ]
+// [ { id: "id-1", name: "ALICE", age: 84 },
+//   { id: "id-2", name: "BOB", age: 66 } ]
 ```
 
 Altogether, the [**thi.ng/transducers**](http://thi.ng/transducers) base package
@@ -703,10 +704,12 @@ inputs into tuples, like so:
 
 ```ts
 [...tx.zip(tx.range(), "abcd", tx.choices("xyz"))];
-// [ [ 0, 'a', 'y' ],
-//   [ 1, 'b', 'x' ],
-//   [ 2, 'c', 'z' ],
-//   [ 3, 'd', 'x' ] ]
+// [
+//     [ 0, "a", "y" ],
+//     [ 1, "b", "x" ],
+//     [ 2, "c", "z" ],
+//     [ 3, "d", "x" ]
+// ]
 ```
 
 zip only yields values until one of its inputs is exhausted. In the above code,
@@ -728,16 +731,17 @@ tx.transduce(tx.partition(3), tx.push(), tx.range(10));
 // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
 
 // overlaps can be achieved via optional step size
-tx.transduce(tx.partition(3, 1), tx.push(), tx.range(10))[
-    ([0, 1, 2],
-    [1, 2, 3],
-    [2, 3, 4],
-    [3, 4, 5],
-    [4, 5, 6],
-    [5, 6, 7],
-    [6, 7, 8],
-    [7, 8, 9])
-];
+tx.transduce(tx.partition(3, 1), tx.push(), tx.range(10));
+// [
+//     [0, 1, 2],
+//     [1, 2, 3],
+//     [2, 3, 4],
+//     [3, 4, 5],
+//     [4, 5, 6],
+//     [5, 6, 7],
+//     [6, 7, 8],
+//     [7, 8, 9]
+// ]
 
 // process chunks & re-flatten results
 tx.transduce(
