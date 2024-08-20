@@ -12,14 +12,14 @@
         "sanitize": "node --loader ts-node/esm src/sanitize.ts"
     },
     "devDependencies": {
-        "@thi.ng/checks": "^3.3.7",
-        "@thi.ng/compare": "^2.1.22",
-        "@thi.ng/file-io": "^0.4.0",
-        "@thi.ng/logger": "^1.4.7",
-        "@thi.ng/markdown-table": "^0.3.36",
-        "@thi.ng/paths": "^5.1.28",
-        "@thi.ng/transclude": "^0.1.4",
-        "ts-node": "^10.9.1",
-        "typescript": "^4.9.4"
+        "@thi.ng/checks": "^3.6.11",
+        "@thi.ng/compare": "^2.4.1",
+        "@thi.ng/file-io": "^2.1.11",
+        "@thi.ng/logger": "^3.0.19",
+        "@thi.ng/markdown-table": "^0.3.133",
+        "@thi.ng/paths": "^5.1.89",
+        "@thi.ng/transclude": "^0.1.101",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.4"
     }
 }
