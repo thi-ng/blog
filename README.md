@@ -12,6 +12,10 @@ being migrated to here as well...
 
 | Date       | Title                                                                                                                             |
 |:-----------|:----------------------------------------------------------------------------------------------------------------------------------|
+| 2025-03-28 | [The map is not the terrain](2025/20250328-the-map-is-not-the-terrain.md)                                                         |
+| 2025-03-19 | [The Purpose Of a LLM Is What It Does](2025/20250319-llm-posiwid.md)                                                              |
+| 2023-02-26 | [Forth on Mastodon](2023/20230226-forth-mastodon.md)                                                                              |
+| 2023-01-12 | [May the Forth by with you!](2023/20230112-may-the-forth-be-with-you.md)                                                          |
 | 2023-01-03 | [A simple nod of acknowledgment](2023/20230103-a-nod-of-acknowledgement.md)                                                       |
 | 2022-12-04 | [Personal considerations for creating generative art](2022/20221204-personal-considerations.md)                                   |
 | 2022-09-03 | [Zig projects I'm working on...](2022/20220903-zig-projects-wip.md)                                                               |
