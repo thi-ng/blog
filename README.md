@@ -12,6 +12,8 @@ being migrated to here as well...
 
 | Date       | Title                                                                                                                             |
 |:-----------|:----------------------------------------------------------------------------------------------------------------------------------|
+| 2025-05-13 | [Blue-eyed AI in contemporary design education](2025/20250513-blue-eyed-ai.md)                                                    |
+| 2025-05-13 | [thi.ng/color-palettes updates](2025/20250511-color-palettes.md)                                                                  |
 | 2025-03-29 | [De/Frag on show at ZKM Karlsruhe](2025/20250329-defrag-zkm.md)                                                                   |
 | 2025-03-28 | [The map is not the terrain](2025/20250328-the-map-is-not-the-terrain.md)                                                         |
 | 2025-03-19 | [The Purpose Of a LLM Is What It Does](2025/20250319-llm-posiwid.md)                                                              |
