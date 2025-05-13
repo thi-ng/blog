@@ -8,7 +8,7 @@ import {
     tabsToSpaces,
     transcludeFile,
 } from "@thi.ng/transclude";
-import { DB_PATH, LOGGER, Post } from "./api.js";
+import { DB_PATH, LOGGER, type Post } from "./api.js";
 
 const allPosts = () => {
     const db = <Post[]>readJSON(DB_PATH, LOGGER);
