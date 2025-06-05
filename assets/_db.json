@@ -2703,5 +2703,24 @@
         "date": "2025-05-13",
         "title": ["thi.ng/color-palettes updates"],
         "src": ["https://mastodon.thi.ng/@toxi/114482747249037187"]
+    },
+    {
+        "id": "03ZnKn1kLKRjaXozE",
+        "body": "2025/20250605-dashboards.md",
+        "type": "record",
+        "mime": "text/plain",
+        "tags": [
+            "2025",
+            "post",
+            "dashboard",
+            "quantified-self",
+            "dataviz",
+            "data",
+            "decision",
+            "behavior"
+        ],
+        "date": ["2026-06-05"],
+        "title": ["Dashboard-driven decision making"],
+        "src": ["https://mastodon.thi.ng/@toxi/114629890566882161"]
     }
 ]

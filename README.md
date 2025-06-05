@@ -12,6 +12,7 @@ being migrated to here as well...
 
 | Date       | Title                                                                                                                             |
 |:-----------|:----------------------------------------------------------------------------------------------------------------------------------|
+| 2026-06-05 | [Dashboard-driven decision making](2025/20250605-dashboards.md)                                                                   |
 | 2025-05-13 | [Blue-eyed AI in contemporary design education](2025/20250513-blue-eyed-ai.md)                                                    |
 | 2025-05-13 | [thi.ng/color-palettes updates](2025/20250511-color-palettes.md)                                                                  |
 | 2025-03-29 | [De/Frag on show at ZKM Karlsruhe](2025/20250329-defrag-zkm.md)                                                                   |
