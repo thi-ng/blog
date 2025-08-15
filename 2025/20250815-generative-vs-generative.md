@@ -12,5 +12,5 @@ Before LLMs absorbed ownership of "generative", the word referred to techniques,
 
 Unlike the ultra-reductionist AI textbox prompt as "universal UI", removing pretty much any form of decent direct human control over the generative aspects of the process, most "classic" generative design tools have been embracing all the inherent complexity and nuances, focus on deep interactive human control and feedback cycles of these processes, either via UI or through direct code/param manipulation (if we're talking about computational generative work). So, also from an HCI POV, LLMs have been undoing/ignoring so much of previous hard-earned progress/research and just another aspect of the ongoing imposed human ⭤ machine ⭤ corporation power structure inversion...
 
-[1] https://github.com/thi-ng/blog/blob/main/2022/20221204-personal-considerations.md
-[2] https://conditionaldesign.org/archive/
+-   [1] https://github.com/thi-ng/blog/blob/main/2022/20221204-personal-considerations.md
+-   [2] https://conditionaldesign.org/archive/
