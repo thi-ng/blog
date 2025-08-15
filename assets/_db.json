@@ -2711,16 +2711,37 @@
         "mime": "text/plain",
         "tags": [
             "2025",
-            "post",
+            "behavior",
             "dashboard",
-            "quantified-self",
-            "dataviz",
             "data",
+            "dataviz",
             "decision",
-            "behavior"
+            "post",
+            "quantified-self"
         ],
-        "date": ["2026-06-05"],
+        "date": "2026-06-05",
         "title": ["Dashboard-driven decision making"],
         "src": ["https://mastodon.thi.ng/@toxi/114629890566882161"]
+    },
+    {
+        "id": "03iyJeaGWAyi1UCuY",
+        "body": "2025/20250815-generative-vs-generative.md",
+        "type": "record",
+        "mime": "text/plain",
+        "tags": [
+            "2025",
+            "ai",
+            "art",
+            "design",
+            "generative",
+            "language",
+            "llm",
+            "meaning",
+            "post",
+            "process"
+        ],
+        "date": "2026-08-15",
+        "title": ["Generative vs generative"],
+        "src": ["https://mastodon.thi.ng/@toxi/115032923181514049"]
     }
 ]

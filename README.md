@@ -12,6 +12,7 @@ being migrated to here as well...
 
 | Date       | Title                                                                                                                             |
 |:-----------|:----------------------------------------------------------------------------------------------------------------------------------|
+| 2026-08-15 | [Generative vs generative](2025/20250815-generative-vs-generative.md)                                                             |
 | 2026-06-05 | [Dashboard-driven decision making](2025/20250605-dashboards.md)                                                                   |
 | 2025-05-13 | [Blue-eyed AI in contemporary design education](2025/20250513-blue-eyed-ai.md)                                                    |
 | 2025-05-13 | [thi.ng/color-palettes updates](2025/20250511-color-palettes.md)                                                                  |
