@@ -12,10 +12,10 @@ This is the first chapter of an ongoing blog series, other parts available:
 Once upon a time, in the cold February of the year 2018, this narrator sat by
 his fireplace and [told of a small software
 device](../2018/20180204-how-to-ui-in-2018.md) to conjure
-so-called user interfaces within the glowing rectangles of people’s networked
+so-called user interfaces within the glowing rectangles of people's networked
 screens, with nothing but the native data structures provided by any of the
 recent incarnations of JavaScript. Though (arguably) poignant, that story more
-or less ended in an anti-climax with an open ending, and this author didn’t make
+or less ended in an anti-climax with an open ending, and this author didn't make
 it clear, it was nothing but a chapter in a much larger undertaking, one which
 has been brewing & evolving for several years (since late 2015)…
 
@@ -30,7 +30,7 @@ more data-oriented and functional way. In short: Less magic, less tooling, more
 plain data, more data flow, more composition, more types (without becoming
 fascist about them), shallow(er) / opt-in abstractions, and above all, more
 flexibility and re-use. Currently counting in at 89 packages with, at first
-sight, seemingly not too much in common (or so I’ve been told), a small random
+sight, seemingly not too much in common (or so I've been told), a small random
 sampling of topics covered, includes:
 
 -   Data structures for various use cases (graphs, sets, trees, heaps, lists etc.)
@@ -55,27 +55,27 @@ sampling of topics covered, includes:
 -   …and, of course, above-mentioned component based UI generation
 
 In any application, this last topic (UI update) is just a piece of the bigger
-picture, and in most cases not part of the “business logic”. Yet, the
+picture, and in most cases not part of the "business logic". Yet, the
 architectural design choices of this UI layer can have a huge impact on the
-rest. Unfortunately, the previous article from a year ago didn’t go into any
+rest. Unfortunately, the previous article from a year ago didn't go into any
 detail about possible workflows and real-world usage patterns supported and
 enabled by [thi.ng/hdom](https://thi.ng/hdom) (the library discussed in that
 article), especially the much more important aspects of state handling and
 deriving UI components from other values (app state). This was partly because
 these issues are outside the scope of hdom, but also was due to the already
 lengthy nature of the post. Additionally, even after 3+ years of working with
-some of these tools on an almost daily basis, I’m still regularly discovering,
+some of these tools on an almost daily basis, I'm still regularly discovering,
 adding and experimenting with new approaches.
 
 Primarily for this last reason, i.e. experimentation with new approaches**,
 thi.ng/umbrella** is more of a toolkit and explicitly **not a framework.**
 Instead, it aims to support a wide variety of use cases with very disparate
 architectural needs and approaches. It largely provides fundamental constructs
-to enable a “pick & mix” approach for different aspects of app development. It’s
+to enable a "pick & mix" approach for different aspects of app development. It's
 designed to avoid lock-in and most customization points only expect either raw,
 JS native data or certain interfaces rather than specific implementations. Some
 packages offer higher levels of abstraction or more context-specific
-functionality as separate opt-in layers. It’s maybe also worth pointing out that
+functionality as separate opt-in layers. It's maybe also worth pointing out that
 most packages in this project heavily rely on various ES6 syntax features and
 are not explicitly considering legacy ES5 compatibility nor do they provide
 polyfills of any form. However, all packages are distributed in these three
@@ -84,8 +84,8 @@ declarations and source maps.
 
 Several of these packages are partial, updated ports of some of my earlier
 Clojure / ClojureScript (and Go) projects. Others are at least heavily
-influenced by the Clojure approach to (plain) “Data First”. As I said many times
-before, I’m heavily indebted to all that this language and community have taught
+influenced by the Clojure approach to (plain) "Data First". As I said many times
+before, I'm heavily indebted to all that this language and community have taught
 me, even though my focus now has shifted to other languages, better suited for
 my endeavors…
 
@@ -98,7 +98,7 @@ Since the publication of the previous article, there have been 2250+ new commits
 example projects (totaling a few thousand lines & many showing how various
 packages can be used in combination), plus dozens of smaller example snippets in
 various long-form readme files and docstrings in the source code. So much for
-the rough overview. There’s still _a lot_ more to do, particularly in terms of
+the rough overview. There's still _a lot_ more to do, particularly in terms of
 documentation & testing, but the full scope of topics covered by the whole
 project, by now makes it impossible for me to cover meaningfully in a single
 article or two. Therefore, I will apply some dose of Divide & Conquer and aim to
@@ -209,12 +209,12 @@ Screenshot of the current state of Shroomania — Play it @
 You can play the current prototype at:
 [demo.thi.ng/shroomania](https://demo.thi.ng/shroomania)
 
-Aim: Collect all edible mushrooms, avoid the toxic ones. FYI. There’s no
+Aim: Collect all edible mushrooms, avoid the toxic ones. FYI. There's no
 gratifying element waiting for you if you manage to collect them all…
 
-Controls: WASD or cursor keys. Sorry, there’s no mobile version.
+Controls: WASD or cursor keys. Sorry, there's no mobile version.
 
-To set expectations, and before we start digging in, let’s briefly explain the
+To set expectations, and before we start digging in, let's briefly explain the
 topics covered by this example project:
 
 ![image](../assets/3b/a1/01lHAVeJojPMzLmCn.png)
@@ -254,7 +254,7 @@ code](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata
     them into a compute graph, with injected transducers doing the actual work
     (or stopping downstream traffic).
 5.  **Declarative, data-driven, on-demand canvas drawing**: Excluding some minor
-    pre-processing steps for the minimap overlay, where we use the “low-level”
+    pre-processing steps for the minimap overlay, where we use the "low-level"
     HTML canvas API, the main game render step only updates the UI when needed
     and uses [thi.ng/hdom](http:thi.ng/hdom) and
     [thi.ng/hdom-canvas](https://thi.ng/hdom-canvas) components (i.e. JS arrays &

@@ -7,7 +7,7 @@ concurrency ever since the announcement of the
 [core.async](https://github.com/clojure/core.async) library a few years ago. And
 whereas core.async with its channel based philosophy gives us many powerful and
 deeply transformative abstractions to better structure our code, in many cases
-it’s often essentially just been used to provide the _illusion_ of concurrent
+it's often essentially just been used to provide the _illusion_ of concurrent
 processes in the inherently single threaded environment of the JavaScript VM.
 This illusion is Good Enough™ and incredibly believable for a large number of
 lightweight use cases (though overzealous use can have quite an impact on file
@@ -23,10 +23,10 @@ application. The latter can only be achieved via message passing, which in many
 cases can incur quite an overhead due to needing to clone data (see exceptions
 below). Of course I realize & appreciate the importance of the various security
 considerations which caused these constraints, but they do quickly add up to
-have a dramatic impact on an app’s architecture and the overall development
+have a dramatic impact on an app's architecture and the overall development
 workflow, maybe especially so for ClojureScript.
 
-ClojureScript uses a dual stage compilation strategy, relying on [Google’s
+ClojureScript uses a dual stage compilation strategy, relying on [Google's
 Closure compiler](https://developers.google.com/closure/compiler/) to produce
 the final, optimized JS output. For production builds this usually generates a
 single JS file, and thanks to dead code elimination, this is only containing the
@@ -37,13 +37,13 @@ for a long while now, allowing users to split outputs into separate modules and
 ClojureScript gained access to that feature sometime last year. This means, we
 can indicate to the compiler which namespaces should end up in which (of the
 multiple) output files, as well as specify module dependencies. Via its so
-called “cross module method motion”, the compiler then potentially even further
+called "cross module method motion", the compiler then potentially even further
 re-arranges functions over the various outputs, e.g. if it can prove that a
 function is only used by a single module. This is truly splendid and generally
 works like a charm — unless one wants to use Workers and have them be part of a
 common code base.
 
-There’re many reasons, both technical and from a UX perspective, why splitting
+There're many reasons, both technical and from a UX perspective, why splitting
 up large code bases for web deployment is an important step to take: We can
 reduce the initial download size, enable code sharing between modules etc.
 WebWorkers too can have a positive effect on the overall user experience,
@@ -56,10 +56,10 @@ ingredients to enable this modular magic, neither tool can be made aware of the
 fact that certain namespaces of the common code base are intended to run in a
 separate scope (i.e. as worker), but still want to make use of other modules and
 the compiler(s) will therefore produce breaking code when utilizing the full,
-“advanced” optimization strategy/configuration.
+"advanced" optimization strategy/configuration.
 
 In our [ClojureScript workshop last week](http://workshop.thi.ng/#WS-LDN-11), we
-developed a small example discussing some of these pitfalls and I’ve spent some
+developed a small example discussing some of these pitfalls and I've spent some
 more time afterwards to actually also make it work for production builds.
 
 ![image](../assets/99/71/01lExsaB4x9O6WTVE.png)
@@ -72,7 +72,7 @@ WebWorker. The above mesh was generated with the voxel module of
 unacceptable UI freeze for the same period…
 
 The example project is a simple STL mesh viewer, using
-[thi.ng/geom](https://thi.ng/geom)’s [mesh
+[thi.ng/geom](https://thi.ng/geom)'s [mesh
 I/O](https://github.com/thi-ng/geom/blob/develop/src/mesh/io.org) and
 [WebGL](https://github.com/thi-ng/geom/tree/develop/src/gl) modules, as well as
 [Reagent](https://reagent-project.github.io/) (just to test with a few more
@@ -115,9 +115,9 @@ binary data is natural & suitable, e.g. asm.js too). In short, data ownership
 can be literally transferred (instead of copied) to the other party by
 specifying a list of object references as optional argument to
 [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage)— here
-“object” meaning
+"object" meaning
 [ArrayBuffers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-(In case you’re wondering why this is especially suitable for WebGL, it’s
+(In case you're wondering why this is especially suitable for WebGL, it's
 because geometry data and other attributes must be defined as typed arrays,
 hence a perfect match…)
 
@@ -360,7 +360,7 @@ Chrome (incl. on Android), Firefox, Safari.
 ## Future
 
 WebWorkers are an exciting technology and I think deserve more attention by the
-larger ClojureScript community. Part of ClojureScript’s rationale was to
+larger ClojureScript community. Part of ClojureScript's rationale was to
 simplify the development of larger web applications. Support of modular
 compilation is part of that story and WebWorkers are too.
 

@@ -60,7 +60,7 @@ dot([1, 2, 3], [10, 20, 30]);
 > the advantage of using GPUs for ML, which are hardware optimized for this
 > computation.
 
-Let’s start with a simple 1D convolution process, built via
+Let's start with a simple 1D convolution process, built via
 [transducers](https://thi.ng/transducers). First, we need to define some (random)
 test data:
 
@@ -75,7 +75,7 @@ const kernel = [0.25, 0.5, 0.25];
 The next thing we require is a sliding window of all `signal` values. This
 sliding window should always be the same size as `kernel` — in order to compute
 the dot product, both vectors must be the same size. If you paid attention in
-the previous article, we’ve already introduced the `partition` transducer for
+the previous article, we've already introduced the `partition` transducer for
 that precise effect, i.e. segmenting a linear input sequence into overlapping or
 non-overlapping chunks of a given size.
 
@@ -97,7 +97,7 @@ import * as tx from "@thi.ng/transducers";
 //   [ 0, 5, 4 ] ]
 ```
 
-This is _almost_ perfect, but not yet good enough! We’re only getting 8 result
+This is _almost_ perfect, but not yet good enough! We're only getting 8 result
 windows for our 10 input values. In general, with a partition size `k` and a
 step size of 1, `partition` will always produce `n — k + 1` outputs for `n`
 inputs. In order to process the very first and last value of `signal`, we also
@@ -142,7 +142,7 @@ In our current 1D case, the iterator which can help us with this is called `wrap
 // [ 5, 1, 2, 3, 4, 5, 1 ]
 ```
 
-Now it’s only a small step to compute a full convolution: We do this by
+Now it's only a small step to compute a full convolution: We do this by
 composing the `partition` transform with another `map` operation to compute the
 dot product of the sliding window with the kernel. We also add optional support
 for the wrap-around behavior:
@@ -180,7 +180,7 @@ Some notes/observations:
     version. However, this is only true for a single convolution step. If the
     result is repeatedly convolved again, eventually all values will be
     impacted.
--   For the non-wrap-around version, we’re using the `repeat` generator to
+-   For the non-wrap-around version, we're using the `repeat` generator to
     produce the right number of zeroes, e.g. `[...repeat(0, 3)]` => `[0, 0, 0]`
 
 ![image](../assets/01/eb/01lHxkKCTODZTkCS0.png)
@@ -228,10 +228,10 @@ tx.transduce(
 
 ### scan()
 
-This is a higher-order, _stateful_ transducer, wrapping an inner reducer. It’s a
+This is a higher-order, _stateful_ transducer, wrapping an inner reducer. It's a
 [generalization of the Prefix Sum
 operator](https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function).
-Since this is all quite a mouthful, let’s see it in action. Also recall
+Since this is all quite a mouthful, let's see it in action. Also recall
 `reductions` from the previous article…
 
 ```js
@@ -250,8 +250,8 @@ tx.transduce(
 ```
 
 > Stateful here means that the results produced by `scan` are dependent on
-> previous inputs (kind of the whole point of this operator, since it’s wrapping
-> a reducer). There’re several other stateful transducers, e.g. `dedupe`,
+> previous inputs (kind of the whole point of this operator, since it's wrapping
+> a reducer). There're several other stateful transducers, e.g. `dedupe`,
 > `distinct`, `partition`, `throttle` etc. However, none of them are using
 > global state and their internal stateful nature is more or less an
 > implementation detail.
@@ -261,7 +261,7 @@ reducer (which, if you remember from the previous article, is just a [3-element
 array of
 functions](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers#reducer)).
 This currently seems way more effort than using `iterate`, but `scan` being a
-transducer instead of a generator means it’s more flexible in terms of
+transducer instead of a generator means it's more flexible in terms of
 supporting different data flow scenarios (as we will see v. soon).
 
 ```js
@@ -287,7 +287,7 @@ tx.transduce(
 
 ## Wolfram automata
 
-If you’ve been wondering what all this so far had _anything_ to do with
+If you've been wondering what all this so far had _anything_ to do with
 [Cellular Automata] (https://en.wikipedia.org/wiki/Cellular_automaton)(CA),
 wonder no more! Discovered in 1940 by Stanislaw Ulam & John Von Neumann, CAs are
 deterministic, rule-based systems, which are evolved from one generation to the
@@ -301,26 +301,26 @@ A cellular automaton consists of three pieces of data:
     straightforward, especially for 1D automata. For our project, we are only
     dealing with cells with 2 states: dead or alive (`0` or `1`). This also is
     the most common case but by no means the only option. In other words, a
-    “generation” in CA terms is the discrete function to be convolved, just as
-    we’ve seen earlier, albeit with a more limited set of values.
+    "generation" in CA terms is the discrete function to be convolved, just as
+    we've seen earlier, albeit with a more limited set of values.
 2.  A convolution kernel (another array), defining the size and shape of each
-    cell’s neighborhood. In terms of convolution, these are the weights of
+    cell's neighborhood. In terms of convolution, these are the weights of
     neighboring cells: a weight of `1` includes that neighbor, a `0` ignores it.
     For 1D CAs the kernel usually includes one or more cells on either side. For
     2D and higher, the neighborhood usually defines a ring (or cross) of cells
     around an empty center. We will get back to that later.
 3.  An encoding of birth & survival rules for a cell. These rules define the
     overall behavior, lifespan, and complexity of the resulting automata. In
-    [John Conway’s Game of
+    [John Conway's Game of
     Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), the most
     famous CA of all (and still an active area of research, even after decades),
-    there’re only two rules: 1) A currently dead cells becomes alive if it has
+    there're only two rules: 1) A currently dead cells becomes alive if it has
     exactly 3 alive neighbors, 2) A live cell remains alive if it has 2 or 3
     alive neighbors, else it dies.> In general, only cells selected by the
     kernel have an impact on the next state of the cell being processed. The
     beauty of CAs is that very simple behaviors on the local level of a few
     individual cells can lead to highly complex global behaviors of the entire
-    simulated CA universe.> Another thing to keep in mind (if you’re of a
+    simulated CA universe.> Another thing to keep in mind (if you're of a
     philosophical nature): The entire evolution of the CA is completely defined
     by the state of the first generation and the rules… This is
     [Predeterminism](https://en.wikipedia.org/wiki/Predeterminism) in action.
@@ -336,11 +336,11 @@ in the 1200 page tome [A New Kind of Science](https://www.wolframscience.com/).
 
 Visualizations of a selection of the possible 256 rules of Wolfram automata
 
-In the classic configuration, there’re 256 possible Wolfram automata. The
-“classic” refers to a kernel size of 3 cells (with equal weight) and therefore
+In the classic configuration, there're 256 possible Wolfram automata. The
+"classic" refers to a kernel size of 3 cells (with equal weight) and therefore
 selecting the current cell plus a neighbor cell on either side. With this
-configuration, there’re 8 (2³) possible outcomes for each cell, depending on the
-current pattern selected by the kernel. Here’re the state transitions for [Rule
+configuration, there're 8 (2³) possible outcomes for each cell, depending on the
+current pattern selected by the kernel. Here're the state transitions for [Rule
 110](https://en.wikipedia.org/wiki/Rule_110), considered a [universal,
 elementary
 automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton):
@@ -348,7 +348,7 @@ automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton):
 ![image](../assets/ad/84/01lHxkVGa0Pu0TqYl.png)
 
 The first row shows all 8 possible cell states for a given kernel and the 2nd
-row a rule specific outcome for each state. If you’re familiar with binary
+row a rule specific outcome for each state. If you're familiar with binary
 notation, you should recognize the bit pattern in the last row represents 110
 (decimal):
 
@@ -358,7 +358,7 @@ notation, you should recognize the bit pattern in the last row represents 110
 
 ## Into the land of bits
 
-Let’s use a function from the
+Let's use a function from the
 [thi.ng/transducers-binary](https://thi.ng/transducers-binary) package to
 convert a number into its bit sequence:
 
@@ -384,17 +384,17 @@ const rule = [...bits(8, false, [110])];
 
 This is more useful for our purposes since we will use the resulting bit array
 as a [lookup table](https://en.wikipedia.org/wiki/Lookup_table) to apply the
-rule behavior to each cell in a **_completely branchless_ **manner. You’ll find
+rule behavior to each cell in a **_completely branchless_ **manner. You'll find
 most other CA tutorials employ all sorts of conditional constructs to determine
-the new state of a cell. Here, we’ll have none of that and instead solve this
+the new state of a cell. Here, we'll have none of that and instead solve this
 task via some binary trickery, not just in the current 1D case, but also later
 in 2D. Another huge benefit of that approach is that our CA is now completely
-data-driven and no code changes have to be performed if we’re changing the
+data-driven and no code changes have to be performed if we're changing the
 rule(s).
 
 With `rule` encoded as an array in LSB order, we can now change our kernel
 weights to include position info (relative to the kernel) of each cell. Since
-we’re in the binary domain, we assign each kernel value a different power of 2:
+we're in the binary domain, we assign each kernel value a different power of 2:
 
 ```js
 // left cell = 1
@@ -404,9 +404,9 @@ we’re in the binary domain, we assign each kernel value a different power of 2
 const kernel = [1, 2, 4];
 ```
 
-Now the “trick” is that if we compute the dot product of this kernel with a cell
+Now the "trick" is that if we compute the dot product of this kernel with a cell
 pattern from the current CA generation, the resulting number can be directly
-used as an index into our rule-specific lookup table to decide a cell’s fate in
+used as an index into our rule-specific lookup table to decide a cell's fate in
 the next generation. In other words, calculating `dot([1,2,4], bitpattern)`
 provides us with the decimal/numeric version of the given bit pattern, which is
 then used to obtain a 0 or 1 from the `rule`.
@@ -508,7 +508,7 @@ Extended browser version of the CLI example below — [Live demo](https://de
 > numbers. If you do, please share the Rule ID in the comments.
 
 Since the browser demo utilizes several other aspects (non-CA related) which we
-will only start covering in follow up articles, I’ve extracted the key parts of
+will only start covering in follow up articles, I've extracted the key parts of
 that example as non-interactive command line version. The full code is shown
 below. This is meant to be run in an ANSI compatible terminal, via `node`. You
 can cancel the script via Control+C.
@@ -590,12 +590,12 @@ setInterval(update, 16);
 
 Whilst 1D automata can produce an impressive array of complex patterns, none of
 them are really suitable for building a game world, at least not a playable one.
-So let’s try our luck by increasing the number of dimensions and do so with very
+So let's try our luck by increasing the number of dimensions and do so with very
 little effort. Good foundations count!
 
 As mentioned earlier, a 2D convolution kernel usually defines/selects a ring of
 cells around an empty center cell — at least for CA purposes. In the general
-case, the weights can be (and often are) any numeric value. [Von Neumann’s
+case, the weights can be (and often are) any numeric value. [Von Neumann's
 original CA kernel
 neighborhood](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood) is still
 one of the most commonly used, however, the larger [Moore
@@ -611,8 +611,8 @@ Instead of updating our existing 1D convolution function for 2D, we will
 continue to use the existing functionality of the **thi.ng/transducers**
 package, as shown in the above example code.
 
-First, we’re building a 2D kernel of a Moore neighborhood, a 9 element array
-(3x3) of 1’s, with the center cell a zero:
+First, we're building a 2D kernel of a Moore neighborhood, a 9 element array
+(3x3) of 1's, with the center cell a zero:
 
 ```js
 // 3x3 Moore neighborhood
@@ -697,10 +697,10 @@ code](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata
 
 ## The end
 
-And there we are! You’ve reached the end of an, I hope, informative part 3 of
+And there we are! You've reached the end of an, I hope, informative part 3 of
 this series.
 
-As always, if you’ve got any questions or feedback, please do get in touch via
+As always, if you've got any questions or feedback, please do get in touch via
 [Twitter](https://twitter.com/thing_umbrella), the [GitHub issue
 tracker](https://github.com/thi-ng/umbrella/issues/), join our
 [Discord](https://discord.gg/JhYcmBw) or discuss on [Hacker
@@ -712,7 +712,7 @@ Other parts:
 -   [Part 2](./20190307-of-umbrellas-transducers-reactive-streams-pt2.md) — HOFs, Transducers, Reducers, ES6 iterables
 -   [Part 4](./20190314-of-umbrellas-transducers-reactive-streams-pt4.md) — Disjoint Sets, Graph analysis, Signed Distance Fields
 
-PS. To prove textmode can still be hip, here’re a few more demoscene productions
+PS. To prove textmode can still be hip, here're a few more demoscene productions
 for your viewing pleasure:
 
 https://www.youtube.com/watch?v=t76kr2lKC2k

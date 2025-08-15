@@ -15,10 +15,10 @@ specialization of Genetic Algorithms) too has been on my to-do list of
 techniques to use for a project, yet it never seemed sufficiently suitable until
 about a year ago, when I received a chance email from my friends at
 [HOLO](https://www.holo.mg) to create a guest design for the second issue
-of their “magazine” (it really should be called a book series!). Each issue of
+of their "magazine" (it really should be called a book series!). Each issue of
 HOLO is centered around a topic in the crossover field of arts, science and
-technology. The topic chosen for the new issue was an “investigation of chance,
-predictability, and (true) randomness”, a near perfect fit for employing some
+technology. The topic chosen for the new issue was an "investigation of chance,
+predictability, and (true) randomness", a near perfect fit for employing some
 evolutionary techniques to create visuals supporting the editorial throughout
 the magazine.
 
@@ -31,11 +31,11 @@ to utilize this form of programming for design creation with Clojure.
 AFAIK this still is _the_ Genetic Programming text book. Jam packed with theory
 and lots of different implementation approaches. I found my copy in a second
 hand bookstore in Boston and its discussion of LISP was one of the reasons I
-picked up Clojure a few years later (2011). Hint: It’s perfect for GP.
+picked up Clojure a few years later (2011). Hint: It's perfect for GP.
 
-Before going into the various design routes explored, let’s first briefly
+Before going into the various design routes explored, let's first briefly
 discuss what Genetic programming actually is. Many people familiar with
-generative design will have heard of or even played around with GP’s cousin
+generative design will have heard of or even played around with GP's cousin
 (superset really), [Genetic
 Algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) (GA). Both
 techniques are very similar and strongly based on the Darwinian theory of
@@ -45,7 +45,7 @@ of initially random genomes, we decode & apply them to create concrete
 [phenotypes](https://en.wikipedia.org/wiki/Phenotype) (individuals with specific
 gene expressions), which are then scored for fitness using a domain specific
 fitness function. The only real differentiator between GA and GP is that
-genotypes in the latter are program operators and phenotypes actual “complete”
+genotypes in the latter are program operators and phenotypes actual "complete"
 programs, needing to be run/executed before their outputs can be used for
 fitness scoring. In other words, GP is a form of progressive, goal-guided,
 automatic code generation and optimization - all in one. The most successful
@@ -60,7 +60,7 @@ with the aim of gradually increasing the overall fitness of the population until
 a threshold/target fitness has been reached or no further improvements can be
 found…
 
-Since the process does not prescribe any other specifics, it’s suitable &
+Since the process does not prescribe any other specifics, it's suitable &
 flexible enough for a wide range of design problems and for many years has
 provided a fertile ground for research and experimentation, incl. arts, music,
 architecture & engineering, but also the nature of programming itself (see
@@ -76,12 +76,12 @@ in hitherto unknown situations (see second video below).
 
 https://www.youtube.com/watch?v=HWMJdO4klIE
 
-Lee Spector’s GP talk at Clojure Conj 2015 is a great intro to the field and how
+Lee Spector's GP talk at Clojure Conj 2015 is a great intro to the field and how
 to use it in Clojure
 
 https://www.youtube.com/watch?v=tQvFZVlM2Gk
 
-Wes Faler’s talk about using Cartesian Genetic Programming to evolve camera
+Wes Faler's talk about using Cartesian Genetic Programming to evolve camera
 De-Bayer filters for their moon buggy.
 
 Defining a suitable fitness function and encoding scheme for genes can be the
@@ -92,7 +92,7 @@ prerequisite for success…
 
 ![image](../assets/00/59/01lDyPkqOkKuCArIJ.jpeg)
 
-A section in Richard Dawkins’ “Climbing Mount Improbable” (1996) was my first
+A section in Richard Dawkins' "Climbing Mount Improbable" (1996) was my first
 general introduction to applying the concept programmatically on the computer.
 
 ## Morphogen
@@ -106,7 +106,7 @@ commission](http://devartcodefactory.com/) for the Barbican / [Google
 DevArt](https://devart.withgoogle.com/) exhibition. Morphogen is a small
 domain-specific language, written in Clojure, for defining complex 3D forms
 starting from a single seed shape. Each operation acts on a single input shape
-and produces any number of result shapes (e.g. the “subdiv” operator splits a
+and produces any number of result shapes (e.g. the "subdiv" operator splits a
 shape along an axis into 2 or more smaller shapes). If arranged in a tree
 structure, these operators recursively transform e.g. a box into highly complex
 objects. Most interesting to me was, how few operators would be actually needed
@@ -123,7 +123,7 @@ Rendered with [Luxrender](https://luxcorerender.org).
 
 The main take away points from this project were:
 
-1.  Being completely code based (the DSL is merely creating syntax trees), it’s
+1.  Being completely code based (the DSL is merely creating syntax trees), it's
     of course easy to define re-usable operator trees/sequences as ever more
     high-level operators.
 2.  Because each generated object is tree based, its creation can be understood
@@ -146,7 +146,7 @@ The main take away points from this project were:
 
 ![image](../assets/88/63/01lDzoWR7Aca6NzWS.gif)
 
-Animation created using partial evaluation of the object’s operator tree with
+Animation created using partial evaluation of the object's operator tree with
 increasing tree depth limit over time.
 
 ![image](../assets/70/01/01lE0avDqgr42XflO.png)
@@ -160,12 +160,12 @@ So mixing ideas from Morphogen,
 [LOGO](https://en.wikipedia.org/wiki/Logo_%28programming_language%29) ([Turtle
 concept](https://en.wikipedia.org/wiki/Turtle_graphics)) and GP [ant colony
 simulations](https://www.youtube.com/watch?v=BKF7pGw8qbY) (food locations), I
-set out to define a LOGO-like mini “language” to evolve path-finding agents
+set out to define a LOGO-like mini "language" to evolve path-finding agents
 whose genome is consisting of only these three different operations:
 
 -   **if-target(dist)** - hard-coded condition with true & false branches,
     checks if agent is currently sufficiently close to the target path and
-    hasn’t been in this vicinity previously
+    hasn't been in this vicinity previously
 -   **mov(dist)** - move X units forward (in current direction)
 -   **turn(theta)** - rotate X degrees (counter)clockwise, no movement
 
@@ -179,13 +179,13 @@ such language experiments without much ceremony. The program tree
 nested [S-expression](https://en.wikipedia.org/wiki/S-expression) using simple
 Clojure vectors and symbols. For cross-over and mutation operations I used the
 [fast-zip](https://github.com/akhudek/fast-zip) library, a faster, drop-in
-replacement for Clojure’s built-in
+replacement for Clojure's built-in
 [clojure.zip](https://crossclj.info/ns/org.clojure/clojure/latest/clojure.zip.html)
 namespace. A [zipper](https://en.wikipedia.org/wiki/Zipper_%28data_structure%29)
 allows us to traverse a tree structure in a linear manner, whilst also
 supporting ascend/descend and sibling navigation at any point. That makes it
 very easy to pick a random tree node/branch and edit/replace it in a functional
-manner. And since we’re dealing with immutable data, this “editing” is of course
+manner. And since we're dealing with immutable data, this "editing" is of course
 non-destructive and would be quite involved without using zippers. Btw. Tommy
 Hall has a [great introduction to zippers (and GP using
 S-Expressions)](https://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/).
@@ -245,14 +245,14 @@ Each generation consisted of 128 such agent programs, with many growing to 2000
 operations each (enforced limit). To keep code size down, I experimented with
 applying a simple [Peephole
 optimization](https://en.wikipedia.org/wiki/Peephole_optimization) to coalesce
-successive ops of the same type (e.g. the sequence “mov(15), mov(12), turn(45),
-turn(-45), mov(10)” could be rewritten as a single “mov(37)” - the two turns
+successive ops of the same type (e.g. the sequence "mov(15), mov(12), turn(45),
+turn(-45), mov(10)" could be rewritten as a single "mov(37)" - the two turns
 cancel out each other and can be removed). Even though this worked and
 noticeably cut down on execution time for single generations, it also had a
 negative impact on the overall fitness progress. I never spent enough time
 trying to figure out why, but speculate it has to do with the overall smaller
-surface area to apply mutations and cross-over. “[Junk
-DNA](https://en.wikipedia.org/wiki/Noncoding_DNA)” is important indeed. If I
+surface area to apply mutations and cross-over. "[Junk
+DNA](https://en.wikipedia.org/wiki/Noncoding_DNA)" is important indeed. If I
 ever get another chance in the future, I would like to implement ADF
 ([Automatically Defined
 Functions](http://www.wseas.us/e-library/conferences/2009/cambridge/AIKED/AIKED56.pdf)),
@@ -417,7 +417,7 @@ generation highlighted in red.
 As part of the evolution, the top 10 paths of each generation were recorded and
 a subset of these later visualized together in a single image, thus showing the
 slow reduction of complete random walks and the appearance of the ever more
-complete target path over time. I used [thi.ng/geom](https://thi.ng/geom)’s [SVG
+complete target path over time. I used [thi.ng/geom](https://thi.ng/geom)'s [SVG
 module](https://github.com/thi-ng/geom/blob/master/geom-svg/src/index.org) to
 export the raw paths, then used the
 [auto-spline](https://github.com/thi-ng/geom/blob/master/geom-types/src/bezier.org#automatic-curve-generation)
@@ -433,7 +433,7 @@ templates](https://github.com/thi-ng/luxor/blob/master/src/scenes.org) for
 [Luxrender](https://luxcorerender.org) with model, camera, light groups & material
 setups and then could directly produce hi-def renders straight from the REPL. To
 free up my laptop, rendering happened on dynamically spawned 16-core EC2
-instances (relatively straightforward to achieve via Michael Cohen’s
+instances (relatively straightforward to achieve via Michael Cohen's
 [Amazonica](https://github.com/mcohen01/amazonica) library).
 
 ![image](../assets/ae/17/01lE5jESho5OfUTtT.png)
@@ -461,13 +461,13 @@ streams.
 source:
 [github.com/postspectacular/rnd.farm](https://github.com/postspectacular/rnd.farm)
 
-> “It is a misconception, based on the stereotype of a Turing machine as
+> "It is a misconception, based on the stereotype of a Turing machine as
 > executing a prearranged program one step at a time, to assume that Turing
 > believed that any single, explicitly programmed serial process would ever
-> capture human intelligence in mechanical form.” - George Dyson
+> capture human intelligence in mechanical form." - George Dyson
 
-Reading George Dyson’s “[Darwin among the
-machines](https://www.amazon.com/Darwin-among-Machines-Evolution-Intelligence/dp/0465031625)”
+Reading George Dyson's "[Darwin among the
+machines](https://www.amazon.com/Darwin-among-Machines-Evolution-Intelligence/dp/0465031625)"
 at about the same time, I found it an especially good complement to what I was
 doing. Its anecdotal coverage of the history of computing machines and
 contrasting parallels and philosophical arguments in biology (e.g. Darwinian
@@ -477,7 +477,7 @@ Barricelli](https://en.wikipedia.org/wiki/Nils_Aall_Barricelli), one of (if not
 _the_) first pioneer(s) of GP and computer-based artificial life simulations.
 
 What followed next in my process was a long exploration, research and partial
-reconstruction of Barricelli’s approach, mixed with an additional second layer
+reconstruction of Barricelli's approach, mixed with an additional second layer
 of GP to actually breed replication rules & functions. However this all will be
 discussed in detail in the upcoming second part of this article…
 
@@ -500,7 +500,7 @@ re-interpreting the produced distance values).
 
 https://www.youtube.com/watch?v=4oPpcSZa3NE
 
-Fairlight & Alcatraz’ “Uncovering Static” demo (64KB, 2011) was a pioneering
+Fairlight & Alcatraz' "Uncovering Static" demo (64KB, 2011) was a pioneering
 production using SDFs for mesh (re)construction. Matt Swoboda (Smash of
 Fairlight) also has done a few highly informative talks about realtime
 applications of this topic, [slides
@@ -508,9 +508,9 @@ here](https://directtovideo.files.wordpress.com/2012/03/gdc_2012_released.pdf).
 
 Fundamentally, an SDF is a mathematical function, which returns the signed
 distance between a point and the surface of an object. So for a sphere the
-function would return the distance between the point and sphere’s origin minus
+function would return the distance between the point and sphere's origin minus
 the radius. If the distance is negative, the point is inside, if positive
-outside, and if zero, it’s on the surface itself. Whereas SDFs are mostly used
+outside, and if zero, it's on the surface itself. Whereas SDFs are mostly used
 for realtime GPU rendering in pixel shaders, my main interest in them so far has
 been in defining [voxel](https://en.wikipedia.org/wiki/Voxel) geometries and
 constructing mesh files from those for later offline processing (e.g. for 3D
@@ -522,7 +522,7 @@ The mesh in the image above has been created with the handful of ready-to-run
 Clojure functions below (using various pieces of the
 [thi.ng/geom](https://thi.ng/geom) library), then rendered in
 [Blender](https://www.blender.org/). Instead of using the regular sphere distance
-function, the “sd-nested-sphere” function re-interpretes & warps the space
+function, the "sd-nested-sphere" function re-interpretes & warps the space
 _within_ the sphere, using the modulo of the distance and some arbitrary step
 value, and thus creates the strange repetitions. The fractured patterns on the
 surface are sampling artifacts, caused by the voxel grid itself, with the
@@ -607,7 +607,7 @@ functions achieve all that (far from realtime though):
 With the GP setup from earlier extended with more math (and vector math)
 operators, the next step was breeding random SDFs, applying them to voxels and
 myself playing the fitness function, purely judging results aesthetically and
-choosing the “fittest” individuals of each generation manually. I also
+choosing the "fittest" individuals of each generation manually. I also
 introduced two other concepts in order to create more varied results:
 
 1.  Layers - The voxel space is divided along the Z-axis into slices and grouped
@@ -615,7 +615,7 @@ introduced two other concepts in order to create more varied results:
     isosurface of the whole voxel space still produces only a single mesh
     though, and the interfaces between the different layers (and cells) produce
     interesting effects/geometries.
-2.  Macro cells - To break the “boring” cube shape of the voxel grid/space, a
+2.  Macro cells - To break the "boring" cube shape of the voxel grid/space, a
     random polygon mask is applied to each voxel layer. The polygon itself is
     created using (unconstrained) [Delaunay
     triangulation](https://github.com/thi-ng/geom/blob/master/geom-meshops/src/delaunay.org)
@@ -627,7 +627,7 @@ introduced two other concepts in order to create more varied results:
 
 ![image](../assets/7c/b5/01lEEtY0YV2AA7t1h.png)
 
-A single layer of “tissue”, showing only minor differences in genes (and
+A single layer of "tissue", showing only minor differences in genes (and
 resulting SDFs) for each macro cell (triangles). Each layer has its own base
 genome, which cells inherit and only mutate.
 
@@ -651,17 +651,17 @@ SDFs.
 For the last two images two other special layers were introduced: One using a
 hardcoded SDF to the edges of randomized & subdivided
 [icosahedron](https://en.wikipedia.org/wiki/Icosahedron) mesh constellations.
-The other is a “meta layer” intersecting all other layers and uses an SDF to a
+The other is a "meta layer" intersecting all other layers and uses an SDF to a
 random spline path.
 
-To dial down the possibly too “organic” aesthetic for the HOLO project, another
+To dial down the possibly too "organic" aesthetic for the HOLO project, another
 variation on this theme was to use randomly bred Cellular Automata instead of
 SDFs to fill the voxel space and also skip computing the isosurface, creating an
 altogether more crystalline aesthetic…
 
 As indicated by the title of this article, repetitive failure is the core
 principle of any evolutionary process, and so too in our (somewhat evolutionary)
-design process, all these experiments discussed so far didn’t pass the ultimate
+design process, all these experiments discussed so far didn't pass the ultimate
 fitness function of this project. My sincere thanks go out to the HOLO team
 though, who proved to be super supportive during all stages!!! Thank you, thank
 you, guys!
@@ -702,14 +702,14 @@ found helpful:
 -   [Genetic Programming Notebook](http://www.geneticprogramming.com/)
 -   [Cartesian Genetic Programming](http://www.cartesiangp.co.uk/)
 -   [Cartesian GP tutorial](http://www.cartesiangp.co.uk/papers/gecco2012-tutorial-miller.pdf) (@ GECCO 2012)
--   [Tommy Hall’s GP tutorial](https://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/)
+-   [Tommy Hall's GP tutorial](https://www.thattommyhall.com/2013/08/23/genetic-programming-in-clojure-with-zippers/)
 
-A closing thought from George Dyson’s book:
+A closing thought from George Dyson's book:
 
-> “Intelligence would never be clean and perfectly organized, but like the brain
+> "Intelligence would never be clean and perfectly organized, but like the brain
 > would remain slippery and disordered in its details. The secret of large,
 > reliable, and flexible machines, as Turing noted, is to construct them, or let
 > them construct themselves, from large numbers of individual parts -
 > independently free to make mistakes, search randomly, and generally act
 > unpredictably so that at a much higher level of the hierarchy the machine
-> appears to be making an intelligent choice”
+> appears to be making an intelligent choice"

@@ -3,22 +3,22 @@
 The majority of Clojurescript application development and community discussions
 seems to be focused on improving standard UI implementation patterns and the
 general workflow of how we can build web applications better, easier and faster.
-In this respect it’s been truly amazing to observe how much has been achieved in
+In this respect it's been truly amazing to observe how much has been achieved in
 so short time (especially over the past 2 years) and I think by now
 Clojurescript and the tooling enabled by it, really does offer an outstanding,
 _simple_ and largely joyful web development experience. Since the language is
-mainly targeting the browser environment, it’s maybe also about time to become
+mainly targeting the browser environment, it's maybe also about time to become
 an ever more attractive choice for building apps utilizing the full feature set
-of what the modern browser environment offers and here I’m thinking mainly about
+of what the modern browser environment offers and here I'm thinking mainly about
 applications going beyond those usually built with Clojurescript thus far. When
 it comes to working with features like WebGL, WebAudio, WebRTC, WebWorkers,
 building data and graphics intensive, visualization related or generally highly
 interactive and media rich web applications, games etc., Clojurescript tooling /
-library support and feasibility suddenly have been still questionable and it’s
+library support and feasibility suddenly have been still questionable and it's
 something myself (and others) have been actively working on to fix over the past
 few years. The primary approach to work with these features then has been via
 existing Javascript libraries, often requiring large amounts of interop code and
-having to deal with issues that don’t fit that nicely with the Clojurescript
+having to deal with issues that don't fit that nicely with the Clojurescript
 modus operandi.
 
 Most applications related to graphics involve a large amount of heavy data
@@ -48,7 +48,7 @@ learning etc.)
 
 ![image](../assets/99/c4/01lEQ4k6Jl9z5GhMe.png)
 
-Workshop exercise #1: Six implementations of Conway’s Game of Life — from naive
+Workshop exercise #1: Six implementations of Conway's Game of Life — from naive
 (but idiomatic & slow) to optimized Clojurescript using typed arrays and direct
 pixel manipulations (10,840 ms / frame vs 16.5 ms / frame = ~650x faster for a
 1024x1024 grid). [Live demo](https://demo.thi.ng/ws-ldn-8/gol/)
@@ -57,20 +57,20 @@ When it comes to optimization, there are generally two prevailing camps:
 Optimize Early and Optimize Late, with the latter being the by far larger group,
 and both having good arguments for their case. The main arguments used by the
 Optimize Late crowd are that optimized code is harder to read, harder to
-maintain, less flexible, often contains bugs and above all that it’s often only
+maintain, less flexible, often contains bugs and above all that it's often only
 10% of a code base which drastically impact performance. On the other hand, the
 Optimize Early crowd argues that the slow 10% in reality never exist in
 isolation, are scattered around, hard to find and hence optimizing them usually
 is limited to piecewise micro-optimizations and therefore requires a large
 amount of refactoring and re-testing, all of which can be avoided by simply
 being more aware of performance critical sections during the design and
-implementation. For them, it’s a matter of better understanding language
+implementation. For them, it's a matter of better understanding language
 constructs, algorithms and how the machine actually operates and therefore write
 more efficient (rather than just functional/working) code in the first place.
 System response times are/should be part of the design spec and been given time
 budgets, as e.g. is often done in game development and embedded software with
-hard real time limitations. We can’t argue that this is a bad thing, can we?
-(Just for the record, I’m trying not to be ignorant of either way and
+hard real time limitations. We can't argue that this is a bad thing, can we?
+(Just for the record, I'm trying not to be ignorant of either way and
 unconsciously aim for an happy compromise between these polar extremes)
 
 With this in mind, as part of this first exercise we looked at:
@@ -147,7 +147,7 @@ introduction to JS [Typed
 Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays),
 creating typed views over byte buffers and updating the canvas not via its 2D
 drawing API, but making use of direct pixel manipulations via the canvas
-context’s
+context's
 [ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData). Since
 all our data (both simulation grid and pixels) are stored in typed arrays, we
 switched to only use `loop` instead of `map` / `reduce` (thereby removing
@@ -156,7 +156,7 @@ compared to the original.
 
 A live version of the exercise is here:
 [https://demo.thi.ng/ws-ldn-8/gol/](https://demo.thi.ng/ws-ldn-8/gol/) (Please be
-aware that the UI for the “naive” mode and largest grid size will completely
+aware that the UI for the "naive" mode and largest grid size will completely
 freeze for ~10 seconds)
 
 Some of the other things we talked about:
@@ -175,10 +175,10 @@ huge & fascinating topic, but it can also be very daunting for newcomers to
 graphics programming, since efficient use of it requires a multitude of
 prerequisite knowledge and terminology about 2D/3D geometry, linear algebra,
 spatial thinking in multiple spaces (coordinate systems), low-level data
-organization, the OpenGL state machine (with 100’s of options), GPU processing
+organization, the OpenGL state machine (with 100's of options), GPU processing
 pipelines, knowledge of the GLSL shading language, color theory etc. Not all of
-it has to do with actual coding and it’s often the theory moments when A-level
-maths knowledge comes back knocking on our door — it’s a lot to take in,
+it has to do with actual coding and it's often the theory moments when A-level
+maths knowledge comes back knocking on our door — it's a lot to take in,
 especially in a 3-day workshop, but we tried to cover most of the core topics
 (and altogether probably spent most of the time on that) and we put theory to
 practical use with the help of various [thi.ng/geom](https://thi.ng/geom)
@@ -188,7 +188,7 @@ geometries from scratch and creating a path-following camera etc.
 
 ![image](../assets/16/34/01lERt2cpXpI2WEZy.png)
 
-Live demo of the game “prototype” (just a POC really thus far):
+Live demo of the game "prototype" (just a POC really thus far):
 [https://demo.thi.ng/sjo/](https://demo.thi.ng/sjo/) — Move mouse to move
 horizontally in the tunnel, press/hold down to accelerate (also works with
 touch) — The entire tunnel is generated using the [Cinquefoil
@@ -198,7 +198,7 @@ frames](https://github.com/thi-ng/geom/blob/develop/examples/ptf/demos.org) to
 create the polygon segments. Btw. Sjö = Seven in Islandic
 
 [thi.ng/geom](https://thi.ng/geom) is the most mature of the thi.ng projects and
-has had basic WebGL support for over 2 years, however only recently I’ve managed
+has had basic WebGL support for over 2 years, however only recently I've managed
 to invest more time in extending and updating its API to provide an unified
 solution for both desktop OpenGL & WebGL in the browser. Some of the latest
 additions include:
@@ -224,7 +224,7 @@ additions include:
 -   Geometry & texture I/O
 
 The thi.ng/geom library takes a semi-declarative approach to working with
-OpenGL/WebGL in that it’s extensively using Clojure maps to define various
+OpenGL/WebGL in that it's extensively using Clojure maps to define various
 geometry and shader specifications, which are then compiled into the required
 data buffers & GLSL programs. This approach helps to make data manipulations
 easier and avoids (for most common use cases) the direct use of WebGL function
@@ -254,8 +254,8 @@ types of texture mapping
 ## Using WebGL with Reagent / React.js
 
 Since a WebGL app usually wants to update its visualization as often as
-possible, it doesn’t directly map to the worldview of React. For this purpose,
-I’ve been defining a little reusable canvas component for Reagent and most of
+possible, it doesn't directly map to the worldview of React. For this purpose,
+I've been defining a little reusable canvas component for Reagent and most of
 the later workshop examples made use of it:
 
 ```clj
@@ -294,7 +294,7 @@ Clojurescript from early on, we can use the
 [thi.ng/shadergraph](https://thi.ng/shadergraph) library, which provides us with:
 
 -   a transitive dependency resolution mechanism for GLSL code (based on the
-    normal Clojure namespace mechanism and Stuart Sierra’s dependency library)
+    normal Clojure namespace mechanism and Stuart Sierra's dependency library)
 -   a growing library of pure, commonly used GLSL functions (lighting, color
     conversion, matrix math, rotations, effects etc.). Shader snippets can be
     defined via Clojure strings or loaded from separate source files (as part of
@@ -329,7 +329,7 @@ abstractions) with the illusion of concurrent processes in the inherently
 single-threaded environment of the JS VM. However, the currently only way to
 obtain _real_ extra compute resources of a multi-core CPU in JavaScript is to
 use WebWorkers and their use is one of the not-so-widely talked about topics in
-the Clojurescript community. For one, they’re not the same as multi-threading in
+the Clojurescript community. For one, they're not the same as multi-threading in
 Clojure, and furthermore, their use throws several spanners in the works, both
 in terms of Clojurescript (+Figwheel) workflow, but also due to their inherent
 limitation of running in an isolated environment from the main application.
@@ -345,11 +345,11 @@ processing setup of the same data object between main process and worker, each
 claiming temporary ownership rights before sending it back to the other party.
 [Rust](https://rust-lang.org) users might feel right at home here :)
 
-In terms of code organization, Clojurescript’s (well, actually Google Closure
-compiler’s) modular compilation at least allows us to keep the worker parts in
+In terms of code organization, Clojurescript's (well, actually Google Closure
+compiler's) modular compilation at least allows us to keep the worker parts in
 the same code base without incurring another copy of compiled Clojurescript. The
 bad news are, that modular compilation is currently not supported when using the
-build profile “:optimizations :none”, as is usually the case during development.
+build profile ":optimizations :none", as is usually the case during development.
 One way to workaround this is by trying to isolate the development of the worker
 in time (do it first), compile it and then use Figwheel (or similar) for working
 on the main app.
@@ -361,13 +361,13 @@ Our little example project can be found here:
 ## asm.js & Emscripten
 
 Even though [thi.ng](https://thi.ng/) started out as (and largely still is) a
-Clojure & Clojurescript-centric collection of projects, over the past year I’ve
+Clojure & Clojurescript-centric collection of projects, over the past year I've
 been slowly expanding its scope to become more polyglot, so far mainly in the
 form of some still unreleased C projects (not counting previous OpenCL related
 thi.ngs). And whilst the combination of
 [Clojure](https://clojure.org)/[Clojurescript](https://github.com/clojure/clojurescript)
 
--   C seems a bit weird at first, I’m fully convinced (and have proof!) there are
+-   C seems a bit weird at first, I'm fully convinced (and have proof!) there are
     many use cases for which I believe this combination is golden, giving us the
     best of both worlds: one of the currently best approaches and workflows to build
     the high-level aspects of an app and at the same time benefit from much better
@@ -389,15 +389,15 @@ The former (asm.js) is a highly optimizable subset of JavaScript. WASM
 (WebAssembly) is a new sandboxed execution environment currently still being
 designed as an open standard by a [W3C Community
 Group](https://www.w3.org/community/webassembly/) that includes representatives
-from all major browsers. Even though Emscripten’s current output isn’t really
+from all major browsers. Even though Emscripten's current output isn't really
 native code, it allows us to write code in C, which for some use cases (e.g.
 math heavy code, mutable data structures, WebGL, DSP etc.) is much easier to
 write than in Clojurescript and in my own tests the resulting asm.js code almost
 always performs noticeably faster than the Clojurescript version (even if the
-latter is compiled w/ Closure compiler’s advanced optimizations). [With
+latter is compiled w/ Closure compiler's advanced optimizations). [With
 WebAssembly on the
-horizon](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/), it’s maybe
-a good time to invest some time into some “upskilling” (or down-skilling, as in
+horizon](https://hacks.mozilla.org/2016/03/a-webassembly-milestone/), it's maybe
+a good time to invest some time into some "upskilling" (or down-skilling, as in
 low-level)…
 
 For the final exercise of the workshop we implemented a simple 3D particle
@@ -442,24 +442,24 @@ of planning we can directly make use of this from the Clojurescript side to
 avoid copying large amounts of data, something which would cause a huge overhead
 and make the whole exercise of using C/asm.js pointless…
 
-The diagram below shows the memory layout of the ParticleSystem’s “particles”
+The diagram below shows the memory layout of the ParticleSystem's "particles"
 array. Each particle only takes up 36 bytes (much less than we could
-idiomatically achieve in Clojurescript) and since that’s a multiple of 4, all
+idiomatically achieve in Clojurescript) and since that's a multiple of 4, all
 particles in this array are tightly packed and no alignment bytes are needed
 (Floats always need to be stored at 4-byte boundaries).
 
 ![image](../assets/1b/ab/01lEUuivnupxA4d5R.png)
 
-On the Clojurescript side we’re using
+On the Clojurescript side we're using
 [Reagent](https://reagent-project.github.io) to wrap React.js and the latest dev
 snapshot (0.0.1158-SNAPSHOT) of [thi.ng/geom](https://thi.ng/geom) to handle all
 WebGL aspects.
 
-Thanks to Emscripten’s [interop
+Thanks to Emscripten's [interop
 API](https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html),
 communication between the compiled C module and CLJS is pretty trivial, even
-though we’re limited to only passing/receiving primitive LLVM data types. In the
-case of our example this is absolutely fine though, since in CLJS we’re only
+though we're limited to only passing/receiving primitive LLVM data types. In the
+case of our example this is absolutely fine though, since in CLJS we're only
 interested in a) initializing the particle system, b) updating it and c)
 obtaining a pointer to the array of particles. The following code shows how to
 [wrap](https://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html?highlight=closure#cwrap)
@@ -481,11 +481,11 @@ The full source code for this example is here:
 
 ## Outlook & Near future
 
-If you’re interested in learning more about any of these technologies, please
+If you're interested in learning more about any of these technologies, please
 visit the [workshop.thi.ng](http://workshop.thi.ng/) website for upcoming
 training sessions or sign up to the [thi.ng
 newsletter](https://tinyletter.com/thi-ng).
 
-**I’m about to announce the next bunch of workshop dates for June in the next 2
-days. Apart from teaching, I’m also currently available for freelance
-consulting. Please get in touch and let’s talk, no agents though! Thanks.**
+**I'm about to announce the next bunch of workshop dates for June in the next 2
+days. Apart from teaching, I'm also currently available for freelance
+consulting. Please get in touch and let's talk, no agents though! Thanks.**

@@ -5,9 +5,9 @@
 Without wanting to sound generalizing, my impression sometimes is that for some
 coders, generative design is often still relegated as only lightweight
 application (and skills) of programming to create fancy imagery. In the
-traditional designer’s camp, generative design is often still looked upon either
+traditional designer's camp, generative design is often still looked upon either
 as a weird & wonderful magic tool to quickly spew out endless variations of
-specific aesthetics (e.g. the ever popular randomized, “organic”/biological
+specific aesthetics (e.g. the ever popular randomized, "organic"/biological
 routes many clients so often like to ask for) or is simply used as an automation
 tool without ever fully wanting to embrace or deeply engage with the underlying
 nature of the approach — that of building a complete design system from scratch,
@@ -124,7 +124,7 @@ distance to produce a sequence of uniformly spaced points.
 A simple transformation like that can yield a quite major change in the
 resulting output of an otherwise unchanged process (this one inspired by my
 childhood hobby of taking hundreds of long exposure photos of a torch hanging in
-a dark room, though here we’re not using [Lissajous
+a dark room, though here we're not using [Lissajous
 curves](https://en.wikipedia.org/wiki/Lissajous_curve)).
 
 ![image](../assets/e7/36/01lEartUWfnpKPyD6.png)
@@ -178,7 +178,7 @@ interpolation factors for color blending.
 
 Ever since their first use in the original
 [Tron](https://www.imdb.com/title/tt0084827/) movie, [Ken
-Perlin](http://mrl.nyu.edu/~perlin/)’s noise formulas have become a staple for
+Perlin](http://mrl.nyu.edu/~perlin/)'s noise formulas have become a staple for
 many procedural design tasks (e.g. texture / terrain generation, volumetric
 clouds, flow fields). In many design situations, procedural noise is more
 desirable than pure randomness, since it preserves local smoothness and can be
@@ -200,7 +200,7 @@ to control any other scalar design parameters.
 
 ![image](../assets/b6/3d/01lEarll1CmwL8iI3.png)
 
-A regular grid of 100k lines (320 x 320). Each line’s rotation and color is
+A regular grid of 100k lines (320 x 320). Each line's rotation and color is
 controlled by the underlying 2D noise field. Color gradient created with
 [http://dev.thi.ng/gradients/](http://dev.thi.ng/gradients/)
 
@@ -235,7 +235,7 @@ instructions.
 With a similar mindset as used for the noise discussion, we briefly looked at
 other means of grid based pattern generation — again not necessarily for direct
 visualization, but as means to control other parameters or processes within a
-larger system. These applications don’t even need to be visual in nature, e.g.
+larger system. These applications don't even need to be visual in nature, e.g.
 CAs are also highly useful for music generation, where the grid would define
 notes over several octaves of a musical scale.
 
@@ -278,7 +278,7 @@ created for each positively charged pole and these are then evaluated until all
 agents have either reached a negative pole or have left the simulation space. At
 each time step, an agent will travel in the weighted direction of all di-poles,
 implicitly taking into account that neighboring same-charged poles exercise a
-repellent force on the agent. Also, at each time step we record an agent’s
+repellent force on the agent. Also, at each time step we record an agent's
 current position and charge potential, information which is then used to
 visualize the field line curves and their colors.
 
@@ -299,25 +299,25 @@ patterns.
 
 An L-System consists of a number of symbols, each associated with an arbitrary
 length replacement for itself (incl. the option of extinction). Given such an
-rule set and an initial sequence of symbols (the so called “axiom”), each symbol
+rule set and an initial sequence of symbols (the so called "axiom"), each symbol
 is iteratively rewritten, often forming vastly longer and more complex sequences
 after even just a few iterations. Some symbols can have a fixed meaning and are
 used as commands, similar to controlling a
 [turtle](https://en.wikipedia.org/wiki/Turtle_graphics) in the [LOGO
 language](https://en.wikipedia.org/wiki/Logo_%28programming_language%29): e.g.
 move forward, turn left/right, branch. These commands can be used to visualize
-the system, but are more or less optional (again, I’m taking a bigger picture
+the system, but are more or less optional (again, I'm taking a bigger picture
 view here, since L-Systems also can be trivially used for non-visual
 applications).
 
 The code below implements a simple, yet easily extensible L-System
 [interpreter](https://en.wikipedia.org/wiki/Interpreter_%28computing%29), based
-on Clojure’s [multimethod](https://clojure.org/reference/multimethods) mechanism
+on Clojure's [multimethod](https://clojure.org/reference/multimethods) mechanism
 (without even a single conditional expression, unlike implementations in most
 other languages). At the end we define a sample rule set for the [Dragon
 curve](https://en.wikipedia.org/wiki/Dragon_curve) fractal (pictured further
-below). The agent and interpreter supports nesting by implementing a “call
-stack” to store & restore previous agent states, whilst always collecting any
+below). The agent and interpreter supports nesting by implementing a "call
+stack" to store & restore previous agent states, whilst always collecting any
 sub-paths generated by a branch back into the main path when popping (unwinding)
 the stack. We also talked about how this is similar to the way
 [S-expressions](https://en.wikipedia.org/wiki/S-expression) are executed and the
@@ -396,7 +396,7 @@ The images below demonstrate different L-Systems generated with the above
 interpreter. My favourite one is the rhomboidal [Penrose
 tiling](https://en.wikipedia.org/wiki/Penrose_tiling) ([rules from
 here](https://es.wikipedia.org/wiki/Teselaci%C3%B3n_de_Penrose#Dibujando_la_teselaci.C3.B3n_de_Penrose_P3)),
-but I’m equally fascinated by the succinctness of the Dragon curve rule set.
+but I'm equally fascinated by the succinctness of the Dragon curve rule set.
 
 ![image](../assets/32/ab/01lEfrX8ORjVuyLtl.png)
 
@@ -411,7 +411,7 @@ existing Twitter bot skeleton project. The repo for this is here:
 
 [thi-ng/thingybot](https://github.com/thi-ng/thingybot)
 
-There’s also [@thingybot](https://twitter.com/thingybot), where you can find some
+There's also [@thingybot](https://twitter.com/thingybot), where you can find some
 more outputs (and the bot is sporadically online).
 
 https://twitter.com/thingybot/status/747696221817544704
@@ -426,7 +426,7 @@ approached with the elegance of the Clojure language and I hope they too
 provided more stimulus to continue building up the (still) small community of
 fellow Clojurians interested in this field.
 
-**If you’re interested in taking part in similar hands-on training workshops in
+**If you're interested in taking part in similar hands-on training workshops in
 the future, please** [**sign up to the
 newsletter**](https://tinyletter.com/thi-ng/) **or visit**
 [workshop.thi.ng](http://workshop.thi.ng) **for announcements.**

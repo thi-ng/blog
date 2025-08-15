@@ -33,7 +33,7 @@ state. Remember, the global pattern produced by a CA is the result of repeated
 local interactions between neighboring cells only. [You can see this convergence
 in action
 here](https://demo.thi.ng/umbrella/cellular-automata/#000001111000011111) — click
-“reset grid” to observe that behavior again…
+"reset grid" to observe that behavior again…
 
 > Not all CA rule sets produce convergent behavior, but ours does. Also, as an
 > aside and addendum to the previous article, similar local/global pattern
@@ -48,7 +48,7 @@ here](https://demo.thi.ng/umbrella/cellular-automata/#000001111000011111) —�
 
 Below is the entire CA generation code for
 [**_Shroomania_**](https://demo.thi.ng/shroomania/)_,_ largely based on what
-we’ve created in the previous article, but with some important additions:
+we've created in the previous article, but with some important additions:
 
 ```ts
 import { IRandom } from "@thi.ng/random";
@@ -170,7 +170,7 @@ reachable/connected.
 
 ## Into the forest of Disjoint Sets
 
-As stated in earlier parts, and unless we’re using a seeded PRNG with a verified
+As stated in earlier parts, and unless we're using a seeded PRNG with a verified
 outcome, we cannot assume that the result of `computeCA` constitutes an actually
 playable map/game level. For example, the 55% version in the above image,
 technically could be used, but it only consists of many small, isolated pockets,
@@ -186,7 +186,7 @@ If the analysis fails, we will have to execute `computeCA` again until it works
 and ones (which actually encode a 2D image), to a) figure out the number of
 individual, isolated regions and b) measure their overall size/area?
 
-Luckily for us, there’s a single data structure we can use to get answers to
+Luckily for us, there's a single data structure we can use to get answers to
 both of these questions: A [Disjoint
 Set](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) tracks a set of
 elements, partitioned into non-overlapping (i.e. disjoint) subsets. This data
@@ -214,7 +214,7 @@ const set = new DisjointSet(10);
 The initial state of the above Disjoint Set
 
 At this point our `set` contains 10 subsets/partitions, i.e. each element
-initially is its own set. Let’s merge some of these:
+initially is its own set. Let's merge some of these:
 
 ```ts
 // combine subsets
@@ -255,7 +255,7 @@ considered the canonical roots of the new subsets. Roots can change if a subset
 is merged with another.
 
 As shown, the DS now has 3 subsets with 2 elements, just as we declared, but
-let’s continue:
+let's continue:
 
 ```ts
 set.union(6, 2);
@@ -282,7 +282,7 @@ Now all 3 larger subsets have been merged into a single one… Again, small loca
 interactions (via `union()`) cause drastic global structural change.
 
 If you want to find out more about Union-Find and the Disjoint Set data
-structure, I refer you to Robert Sedgewick’s & Kevin Wayne’s [amazing lecture
+structure, I refer you to Robert Sedgewick's & Kevin Wayne's [amazing lecture
 notes](https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf) of their
 Princeton [Algorithms course](https://algs4.cs.princeton.edu), which contain
 lots of implementation details and diagrams.
@@ -294,7 +294,7 @@ to take another brief excursion…
 
 ![image](../assets/0c/67/01lHoT6oEY9fapJyt.png)
 
-Leonhard Euler’s sketch of the 7 Königsberg bridges. Source: [Euler
+Leonhard Euler's sketch of the 7 Königsberg bridges. Source: [Euler
 archive](http://eulerarchive.maa.org/)
 
 This 18th-century sketch by the [King of
@@ -312,13 +312,13 @@ _edges_. These connections can be either
 weighted and/or unweighted. For example, in the above map, the four land masses
 are the vertices, connected by 7 bridges, acting as undirected edges (though in
 the Königsberg problem, these could be considered directed, since each bridge is
-only allowed to be crossed once, however, it’s not stated in which
+only allowed to be crossed once, however, it's not stated in which
 direction — in fact, the problem has no solution).
 
 ![image](../assets/ab/8b/01lHoSrgvdBSmbyrh.png)
 
 A 1D cell array interpreted as 2D image and as a graph. Array indices are used
-as vertex IDs. For our analysis, we’re only interested in the white vertices and
+as vertex IDs. For our analysis, we're only interested in the white vertices and
 must also take care of the horizontal/vertical wrap-around, when looking for
 qualifying neighbors. **Due to this toroidal topology, all white cells actually
 form a single continuous region**…
@@ -328,8 +328,8 @@ interpret each array index/cell/pixel as a vertex, with up to four edges to its
 top, left, right and bottom neighbors. However, we will need to apply the
 following restrictions:
 
-1.  We only care about 0-cells, which we declared to be our walkable areas. 1’s
-    in the CA array are considered unreachable / obstacles. Since we’re going to
+1.  We only care about 0-cells, which we declared to be our walkable areas. 1's
+    in the CA array are considered unreachable / obstacles. Since we're going to
     use transducers for processing, we can just plug in a `filter` at the start
     of the transformation pipeline to ignore all 1's.
 2.  Related to the previous point: For each of these cells only edges to other
@@ -340,7 +340,7 @@ following restrictions:
     at column 0 might have edges to cells on the rightmost column of the image
     and vice versa (and same for top/bottom rows)
 
-For our purposes, we don’t actually need a proper graph data structure itself,
+For our purposes, we don't actually need a proper graph data structure itself,
 but it still helps to think about the problem from a graph perspective. In code
 form this all can be expressed as:
 
@@ -473,7 +473,7 @@ The first and largest subset returned contains the IDs of all white cells. The
 subsets with single items are all the black ones. Of course, for our game, we
 need to generate a much larger grid (e.g. 128 x 128), which will result in a
 number of larger subsets at the beginning of the returned array. However, for
-our map qualification/playability test, we’re really only interested in the very
+our map qualification/playability test, we're really only interested in the very
 first (and therefore largest) set. Our check simply is:
 
 ```ts
@@ -483,7 +483,7 @@ if (regions[0].length >= grid.length / 3) {
 ```
 
 Finally, in case of a test failure, we need to regenerate the CA with a new,
-random state and repeat these analysis steps until we’re successful. We also
+random state and repeat these analysis steps until we're successful. We also
 want to avoid going into a potentially infinite loop, and hence, will need to
 put a cap on the maximum number of trials. All this can be done via a single,
 composed transducer pipeline (surprised? not! :)
@@ -518,7 +518,7 @@ const generateWalkable = (opts: GenerationOpts) =>
     );
 ```
 
-The `generateWalkable` function uses several transducers we haven’t previously
+The `generateWalkable` function uses several transducers we haven't previously
 mentioned:
 
 -   [matchFirst](https://docs.thi.ng/umbrella/transducers/modules/_xform_match_first_.html) — waits
@@ -567,7 +567,7 @@ binary CA array to another array encoding a 2.5D terrain, in the form of an
 elevation map. We will assign an elevation value to each cell, based on the
 distance to the nearest cells with a different color/value, i.e. 0 = white, 1 =
 black. For white cells, the search stops with the first black cell found and
-vice versa. The meaning of “nearest” will be not entirely precise (though more
+vice versa. The meaning of "nearest" will be not entirely precise (though more
 than sufficient) since we will restrict our searches to 45-degree angles. In
 other words, the search proceeds outwards from the current cell in 8 directions,
 and as with our prior graph analysis, is taking into account the toroidal nature
@@ -650,12 +650,12 @@ In the next article we will continue to combine these computed results further
 and start working on visualizing them in the browser, using
 [thi.ng/hdom](https://thi.ng/hdom) and
 [thi.ng/hdom-canvas](https://thi.ng/hdom-canvas)… and even more transducers
-(after all they’re one of the key topics of this series).
+(after all they're one of the key topics of this series).
 
-## Mo’ pictures, please!
+## Mo' pictures, please!
 
 In preparation for this next part, and to leave you with at least some visual
-output from this installment’s exercises, here’s a small final example to
+output from this installment's exercises, here's a small final example to
 compute and export the SDF as SVG heatmap via NodeJS. The code utilizes all the
 other functions created above but is omitted here for brevity. You can [download
 the full example from
@@ -665,11 +665,11 @@ here](https://gist.github.com/postspectacular/cea5f570c492897c28c804c6345755e2).
 
 SVG output produced by the above example, showing walkable areas in blues and
 non-walkable regions in browns (with elevation/SDF labels). The walkable areas
-are labeled with their respective region name. E.g. all “A” cells are part of
+are labeled with their respective region name. E.g. all "A" cells are part of
 the same region. I find small tools like this very useful for debugging and
 quick exploration without having to build a UI first...
 
-One doesn’t need to stop here and might also like to extract contour lines from
+One doesn't need to stop here and might also like to extract contour lines from
 the SDF and visualize them as SVG (or via canvas). I shall leave this exercise
 to the reader, code examples can be found in the
 [thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isoline)
@@ -682,7 +682,7 @@ demo](https://demo.thi.ng/umbrella/iso-plasma/) / [Source
 code](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)
 
 This really is the end now of this longer than expected article! As always, if
-you’ve got any questions or feedback, please do get in touch via
+you've got any questions or feedback, please do get in touch via
 [Twitter](https://twitter.com/thing_umbrella), the [GitHub issue
 tracker](https://github.com/thi-ng/umbrella/issues/), join our
 [Discord](https://discord.gg/JhYcmBw) or discuss on Hacker News.

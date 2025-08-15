@@ -4,7 +4,7 @@ Last week, during the second 3-day data visualization
 [workshop](http://workshop.thi.ng) with [Clojure](https://clojure.org),
 [Clojurescript](https://github.com/clojure/clojurescript) and the
 [thi.ng](https://thi.ng) libraries, we built a small web application using data
-from the UK’s [Office for National Statistics](https://statistics.data.gov.uk/)
+from the UK's [Office for National Statistics](https://statistics.data.gov.uk/)
 (ONS) and the [London Data
 Store](https://data.london.gov.uk/dataset/average-house-prices-borough).
 
@@ -48,7 +48,7 @@ the clearly visible upward trend for most boroughs. Charts are generated for all
 ![image](../assets/e8/db/01lD32Gr4GdNtJii6.png)
 
 Screenshot of the query editor and auto-generated visualization of the shown
-query’s structure (courtesy [thi.ng/fabric](https://thi.ng/fabric) and
+query's structure (courtesy [thi.ng/fabric](https://thi.ng/fabric) and
 [Graphviz](http://graphviz.org) on the server, editor uses
 [CodeMirror](https://codemirror.net))
 
@@ -62,29 +62,29 @@ and lots of links to further reading…
 Marcin Ignac (one of the participants and fellow computational designer) also
 just [shared some of his own workshop
 experiences](http://marcinignac.com/blog/what-i-like-about-clojure/) (and some
-great “homework” examples) over on his blog.
+great "homework" examples) over on his blog.
 
 ## Graphs, RDF, SPARQL and the Linked Data model
 
-Some background: I’ve been fascinated by graphs as general data structure for a
-long time and think it’s safe to say they’re becoming an ever increasingly
+Some background: I've been fascinated by graphs as general data structure for a
+long time and think it's safe to say they're becoming an ever increasingly
 popular choice, especially for greenfield projects. Graphs are more natural and
 friendlier to deal with than tables or document stores when dealing with complex
 data relationships and many [large public datasets](http://wiki.dbpedia.org/)
 have been expressed as graphs way before [neo4j](https://neo4j.com) appeared and
-had any commercial success and way before Facebook’s
+had any commercial success and way before Facebook's
 [GraphQL](https://graphql.org/), which recently/finally introduced the whole idea
 as big news to the big wide world of JS devs.
 
-With all the current excitement around these two platforms (for example), I’m
+With all the current excitement around these two platforms (for example), I'm
 always somewhat taken aback by the fact that so many developers have either
-never heard of RDF (the W3C’s [Resource Description
+never heard of RDF (the W3C's [Resource Description
 Format](https://www.w3.org/TR/rdf11-primer/)) or (worse) never want to work with
 it again. I can somewhat share the top-level thinking behind the latter
 sentiment, since historically (RDF is in existence since 1999), the format had
 been closely associated with XML (originally the de-facto encoding) and its
 large/verbose Java tooling. However, _RDF is an abstract data model_ encoding
-knowledge statements with clearly defined semantics. It’s not tied to XML or any
+knowledge statements with clearly defined semantics. It's not tied to XML or any
 other particular representation. All what really matters is a standard way to
 encode data / knowledge as triples of _subject, predicate, object,_ and use,
 where possible, URIs to provide uniqueness and dereferencing capabilities to
@@ -103,9 +103,9 @@ _Linked Data_ (LD) stands for.
 The Freebase Parallax UI, a research project by [David
 Huynh](https://davidhuynh.net/) from 2008, still is one of my favourite examples,
 nicely showing this current limitation and contrasting it with the potential a
-Linked Data approach can offer (even though he’s only using one large dataset in
+Linked Data approach can offer (even though he's only using one large dataset in
 the example [[Freebase](http://freebase.com)]). Now, 7 years later we still
-can’t get answers like this from the market leaders in search and this lack of
+can't get answers like this from the market leaders in search and this lack of
 interoperability in many (most?) public datasets is also holding back entire
 disciplines (UX, UI, data vis) at large:
 
@@ -125,7 +125,7 @@ small.
 The [Linked Open Data cloud](https://lod-cloud.net/) as of 2014, an overview of
 interlinked open data sets describing over 8 billion resources
 
-In addition to the sheer amount of Linked Data available, there’re are as well
+In addition to the sheer amount of Linked Data available, there're are as well
 [hundreds of well-defined, freely available data
 vocabularies](https://lov.okfn.org/dataset/lov) (ontologies) to define terms and
 express semantics of all complexities in a **standard, interoperable and
@@ -134,8 +134,8 @@ data analysis / visualization should be embracing, or at least be welcoming… F
 many use cases, a handful of core vocabularies is sufficient to at least express
 the most common relationships in an interoperable manner. Data integration
 almost always is a continuous effort, but small, incremental changes can go a
-long way. It’s also important to recognize that these vocabularies themselves
-are expressed in RDF, so there’s no distinction between data and language. This
+long way. It's also important to recognize that these vocabularies themselves
+are expressed in RDF, so there's no distinction between data and language. This
 should feel familiar to any Lisper/Clojurian ;)
 
 ## Back to the workshop exercise…
@@ -144,12 +144,12 @@ The LD portal of the UK Statistics Office provides access to structured
 geographic data, which can be directly queried via their
 [SPARQL](https://www.w3.org/TR/sparql11-overview/)
 [endpoint](https://statistics.data.gov.uk/flint-sparql). SPARQL is the RDF
-world’s SQL, a vendor independent standard, query language, protocol and service
+world's SQL, a vendor independent standard, query language, protocol and service
 description for semantic data. Its query language part is heavily inspired by
 Prolog, Datalog and other pattern matching/unification approaches, which makes
 dealing with graph based data very easy: Simply state the patterns/relationships
 you wish to find, add some constraints (filters, unions, negations etc.) and
-modifiers (aggregation, sorting etc.) to manipulate the result set. There’re
+modifiers (aggregation, sorting etc.) to manipulate the result set. There're
 loads of more unique options, e.g. federated queries of multiple sources at
 once. See the [primer](https://www.w3.org/TR/sparql11-overview/) for details.
 
@@ -163,7 +163,7 @@ lat/lon boundary polygons:
 The second dataset we used comes from the London Data store and constitutes
 ~[650MB of all property
 sales](https://data.london.gov.uk/dataset/average-house-prices-borough) between
-1995–2014. This data comes in “glorious” CSV flavor, with several files using
+1995–2014. This data comes in "glorious" CSV flavor, with several files using
 different column layouts and so, of course, requiring special, manual treatment.
 Oh the joy!
 
@@ -201,7 +201,7 @@ can be [expressed (more)
 succinctly](https://github.com/thi-ng/fabric#general-compute-graph-examples)
 using this setup, but for the workshop we focused on the two library modules
 allowing this architecture to be used as a fairly well featured and ready-to-go
-Linked Data development server. To my best knowledge, it’s also currently the
+Linked Data development server. To my best knowledge, it's also currently the
 only pure Clojure solution there is thus far.
 
 ## thi.ng.fabric.facts & thi.ng.fabric.ld
@@ -223,7 +223,7 @@ These two library modules together realise:
     [JSON-LD](https://json-ld.org/),
     [SPARQL CSV results](https://www.w3.org/TR/sparql11-results-csv-tsv/), more coming)
 
-What do I mean with “SPARQL-like” query engine? Well, since I’ve been using
+What do I mean with "SPARQL-like" query engine? Well, since I've been using
 Clojure for most of my data centric work in recent years, I wanted to have the
 ability to apply these kind of queries to any data without having to restrict
 myself to the requirements of pure-RDF tools. Furthermore, since the boundary
@@ -231,12 +231,12 @@ between code and data can be easily blurred in Clojure, it made sense to define
 everything in an as Clojuresque as possible way, e.g. by using Clojure data
 structures (maps, symbols, s-expressions) to define the queries and gain
 programmatic manipulation/construction as a result. In some way this is similar
-to [Allegrograph’s SPARQL
+to [Allegrograph's SPARQL
 S-expressions](https://franz.com/agraph/support/documentation/current/sparql-sexpr.html),
 though these were not a motive and is quite natural to do in any Lisp. The other
-reason for “SPARQL-like” is that _fabric_ still being a young project, not all
+reason for "SPARQL-like" is that _fabric_ still being a young project, not all
 aspects (e.g. federated queries, construct queries, named graphs) are yet
-implemented, but it’s a work-in-progress.
+implemented, but it's a work-in-progress.
 
 As an example, the query to compute the complete aggregate heatmap data and
 lat/lon polygons for all boroughs, can be expressed with this Clojure EDN map.
@@ -246,7 +246,7 @@ compiled into functions during query execution:
 ## Ready, set, go…
 
 Use the commands below to clone & launch the workshop project locally on your
-machine. You’ll need [Leiningen](https://leiningen.org) and Java 1.7+ installed.
+machine. You'll need [Leiningen](https://leiningen.org) and Java 1.7+ installed.
 The project is also configured to ask for up to 1.28GB of RAM for the server
 part. [Figwheel](https://github.com/bhauman/lein-figwheel) will temporarily also
 require quite a bit of memory, so will your browser.
@@ -255,7 +255,7 @@ The thi.ng/fabric [readme for the LD
 module](https://github.com/thi-ng/fabric/tree/develop/fabric-ld) contains
 several examples how to interact with the server via HTTP.
 
-**Important:** **Do not view the web app via localhost:3449** (figwheel’s port),
+**Important:** **Do not view the web app via localhost:3449** (figwheel's port),
 since none of the queries will work (originally due to CORS, but I also switched
 to relative query paths). Use [http://localhost:8000/](http://localhost:8000/)
 only, figwheel will still apply in any code changes via its WebSocket
@@ -270,12 +270,12 @@ others). A quick breakdown of the various parts follows:
 This project uses a custom _fabric.ld_ server setup and loads the two datasets
 discussed above during startup (see
 [ws-ldn-2.core](https://github.com/thi-ng/ws-ldn-2/blob/master/src/clj/ws_ldn_2/core.clj)
-namespace). Zach Tellman’s [Aleph](https://aleph.io) is used as the default
+namespace). Zach Tellman's [Aleph](https://aleph.io) is used as the default
 underlying HTTP server for the _fabric.ld_ module, since it provides a nice
 mechanism for deferred response handling, which can be important when handling
 long, complex queries. We also injected a server route to handle the [structural
 visualization](https://github.com/thi-ng/fabric/blob/master/fabric-facts/src/viz.org)
-of a user’s query sent from the browser-based query editor. This handler shells
+of a user's query sent from the browser-based query editor. This handler shells
 out to [Graphviz](http://graphviz.org), which needs to be installed and on the
 system path. To install on OSX: `brew install graphviz`
 
@@ -283,11 +283,11 @@ system path. To install on OSX: `brew install graphviz`
 
 Our main focus of development was on the CLJS frontend parts of the app, which
 (like 99% of all Clojurescript web apps) is based on React.js. Of the available
-wrappers, I’ve always found [Reagent](https://reagent-project.github.io) the most
+wrappers, I've always found [Reagent](https://reagent-project.github.io) the most
 lightweight and least painful, so proposed to use this here too. Together with a
 completely [datadriven 100LOC
 router](https://github.com/thi-ng/ws-ldn-2/blob/master/src/cljs/ws_ldn_2/router.cljs),
-which I’ve been using for many of my own projects and a sprinkling of Bootstrap,
+which I've been using for many of my own projects and a sprinkling of Bootstrap,
 we had a basic SPA skeleton app running in no time.
 
 Integrating 3rd party JS libraries into CLJS projects used to be somewhat
@@ -295,8 +295,8 @@ painful until not so long ago. However, since the advent of the [cljsjs
 project](https://cljsjs.github.io/), which is re-packaging JS libs for CLJS, this
 is thankfully a thing of the past and in some ways almost easier to handle than
 with npm. As an integration example, we imported
-[CodeMirror](https://codemirror.net) and used Reagent’s **create-class**
-mechanism to build a “reactified” [editor instance with Clojure syntax
+[CodeMirror](https://codemirror.net) and used Reagent's **create-class**
+mechanism to build a "reactified" [editor instance with Clojure syntax
 highlighting](https://github.com/thi-ng/ws-ldn-2/blob/master/src/cljs/ws_ldn_2/components/editor.cljs),
 learned about the **reaction macro** mechanism to minimize component render
 updates and experimented with submitting queries to the server and visualizing
@@ -325,7 +325,7 @@ software shaders
 
 ![image](../assets/bb/fa/01lD32HEOYGnCF5z1.png)
 
-Blender’s Suzanne imported as STL and rendered in SVG with Phong sofware shader
+Blender's Suzanne imported as STL and rendered in SVG with Phong sofware shader
 
 In order to translate a value range to colors, some form of gradient lookup
 table (or function, or both) is required. The
@@ -336,7 +336,7 @@ cosine wave params). The original idea for these gradients comes from the
 master, [IQ
 himself](https://www.iquilezles.org/www/articles/palettes/palettes.htm), and the
 library provides a few useful presets for our purposes (The library also
-provides some of [Cynthia Brewer](http://mkweb.bcgsc.ca/brewer/)’s categorical
+provides some of [Cynthia Brewer](http://mkweb.bcgsc.ca/brewer/)'s categorical
 pallettes which are often better suited for visualization purposes).
 
 ![image](../assets/40/80/01lD32DpMfBQbGuW5.png)
@@ -344,7 +344,7 @@ pallettes which are often better suited for visualization purposes).
 Example gradient presets
 
 Adding some of these presets to a dropdown menu, then allows the user to see
-London in “different colors” (not all of them good or useful):
+London in "different colors" (not all of them good or useful):
 
 ![image](../assets/f5/b6/01lD325VX3TDCpQkr.png)
 
@@ -370,7 +370,7 @@ cached vectors representing the SVG DOM fragments and have nothing else to do.
 
 At application start we execute two queries: 1) Retrieve the set of polygons and
 aggregate values for each borough, 2) Obtain individual property sale
-transaction details, about 23,000… Both of these queries utilize fabric’s
+transaction details, about 23,000… Both of these queries utilize fabric's
 registered query feature, which means these queries are stored as part of the
 compute graph and their results are always immediately available (without
 incurring new work for each connected client) and will update (on the server
@@ -383,11 +383,11 @@ the original callbacks with async channel operations to coordinate the different
 processing steps, allowed us to keep a linear structure in our functions and
 avoid blocking the DOM during pre-processing of the charts.
 
-[thi.ng/geom](https://thi.ng/geom)’s visualization engine is completely
+[thi.ng/geom](https://thi.ng/geom)'s visualization engine is completely
 declarative and essentially transforms a specification map definining all axes,
 datasets, layout methods and styling configs into a nested DOM-like data
 structure. Because both the initial visualization spec and the result is pure
-data, it’s easily possible for either to be defined or manipulated
+data, it's easily possible for either to be defined or manipulated
 programmatically/interactively. E.g. Changing axis behavior or layout method is
 very easy to do: just update a key in the input spec map or add an event
 listener in the result tree, post-generation. Together with the other CLJS
@@ -399,8 +399,8 @@ Here we explore the impact of different axis scales and rendering methods:
 ![image](../assets/38/f2/01lD324KdLo7QpdBw.png)
 
 Using a linear scale y-axis is a bad choice for this data due to extreme price
-fluctuations in some boroughs (e.g. outliers like Kensington’s 27.9 million or
-Lambeth’s 7 million property sales cause havok)
+fluctuations in some boroughs (e.g. outliers like Kensington's 27.9 million or
+Lambeth's 7 million property sales cause havok)
 
 ![image](../assets/36/11/01lD327Aq4NP9mM65.png)
 
@@ -428,9 +428,9 @@ has more information.
 ## Future workshops
 
 In order to support the open source development of the _thi.ng_ tool chain and
-to provide more learning resources, I’m intending to run more workshops like
+to provide more learning resources, I'm intending to run more workshops like
 this (also more regularly), over the foreseeable future. **These will not only
-be focused on Clojure** — I absolutely believe in combined skillsets! If you’re
+be focused on Clojure** — I absolutely believe in combined skillsets! If you're
 interested, please do check [workshop.thi.ng](http://workshop.thi.ng) for more
 details of upcoming workshops and/or sign up to the no-spam [announcement
 newsletter](https://tinyletter.com/thi-ng).
