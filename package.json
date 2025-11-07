@@ -12,13 +12,13 @@
         "sanitize": "bun src/sanitize.ts"
     },
     "devDependencies": {
-        "@thi.ng/checks": "^3.7.17",
-        "@thi.ng/compare": "^2.4.27",
-        "@thi.ng/file-io": "^2.2.8",
-        "@thi.ng/logger": "^3.1.16",
-        "@thi.ng/markdown-table": "^1.0.33",
-        "@thi.ng/paths": "^5.2.20",
-        "@thi.ng/transclude": "^1.1.30",
-        "typescript": "^5.9.2"
+        "@thi.ng/checks": "^3.7.23",
+        "@thi.ng/compare": "^2.4.33",
+        "@thi.ng/file-io": "^2.2.16",
+        "@thi.ng/logger": "^3.2.6",
+        "@thi.ng/markdown-table": "^1.0.40",
+        "@thi.ng/paths": "^5.2.26",
+        "@thi.ng/transclude": "^1.1.39",
+        "typescript": "^5.9.3"
     }
 }
