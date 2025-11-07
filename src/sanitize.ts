@@ -10,4 +10,4 @@ db.forEach((x) => {
     x.tags.sort();
 });
 
-writeJSON(DB_PATH, db, undefined, undefined, LOGGER);
+writeJSON(DB_PATH, db, null, "\t", LOGGER);
