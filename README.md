@@ -11,9 +11,10 @@ being migrated to here as well...
 ## Blog posts
 
 | Date       | Title                                                                                                                             |
-|:-----------|:----------------------------------------------------------------------------------------------------------------------------------|
-| 2026-08-15 | [Generative vs generative](2025/20250815-generative-vs-generative.md)                                                             |
-| 2026-06-05 | [Dashboard-driven decision making](2025/20250605-dashboards.md)                                                                   |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| 2025-11-07 | [Tags are sets - a query engine in 40 lines of code.](2025/20251107-tags-are-sets.md)                                             |
+| 2025-08-15 | [Generative vs generative](2025/20250815-generative-vs-generative.md)                                                             |
+| 2025-06-05 | [Dashboard-driven decision making](2025/20250605-dashboards.md)                                                                   |
 | 2025-05-13 | [Blue-eyed AI in contemporary design education](2025/20250513-blue-eyed-ai.md)                                                    |
 | 2025-05-13 | [thi.ng/color-palettes updates](2025/20250511-color-palettes.md)                                                                  |
 | 2025-03-29 | [De/Frag on show at ZKM Karlsruhe](2025/20250329-defrag-zkm.md)                                                                   |
